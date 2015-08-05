@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="UpdateWrok" table="updatewrok">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="updateWorkid" column="updateWorkid" type="java.lang.Integer">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="identity"/>
+        	</id>
+        	<property name="taskid" column="taskid" type="java.lang.Integer"/>
+        	<property name="taskStep" column="taskStep" type="java.lang.Integer"/>
+        	<property name="developName" column="developName" type="java.lang.String"/>
+        	<property name="planDocumentAddress" column="planDocumentAddress" type="java.lang.String"/>
+        	<property name="workSummaryAddress" column="workSummaryAddress" type="java.lang.String"/>
+        </class>
+</hibernate-mapping>

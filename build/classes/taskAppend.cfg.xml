@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="TaskAppend" table="taskAppend">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="taskid" column="taskid" type="java.lang.Integer">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="assigned"/>
+        	</id>
+        	<property name="nextTaskStep" column="nextTaskStep" type="java.lang.Integer"/>
+        	<property name="taskLeader" column="taskLeader" type="java.lang.String"/>
+        	<property name="taskStep" column="taskStep" type="java.lang.Integer"/>
+        	<property name="taskAllocationDoc" column="taskAllocationDoc" type="java.lang.String"/>
+        </class>
+</hibernate-mapping>

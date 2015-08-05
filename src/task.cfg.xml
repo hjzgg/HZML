@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="Task" table="task">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="taskid" column="taskid" type="java.lang.Integer">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="identity"/>
+        	</id>
+        	<property name="publishName" column="publishName" type="java.lang.String"/>
+        	<property name="taskName" column="taskName" type="java.lang.String"/>
+        	<property name="taskDescription" column="taskDescription" type="java.lang.String"/>
+        	<property name="beginTime" column="beginTime" type="java.sql.Timestamp"/>
+        	<property name="publishTime" column="publishTime" type="java.sql.Timestamp"/>
+        	<property name="developmentTime" column="developmentTime" type="java.lang.Integer"/>
+        	<property name="updateTime" column="updateTime" type="java.sql.Timestamp"/>
+        	<property name="money" column="money" type="java.lang.Integer"/>
+        	<property name="state" column="state" type="java.lang.Integer"/>
+        	<property name="taskAddress" column="taskAddress" type="java.lang.String"/>
+        	<property name="documentationAddress" column="documentationAddress" type="java.lang.String"/>
+        </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="DevelopingParty" table="developingparty">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="developName" column="developName" type="java.lang.String">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="assigned"/>
+        	</id>
+        	<property name="pwd" column="pwd" type="java.lang.String"/>
+        	<property name="evaluate" column="evaluate" type="java.lang.Integer"/>
+        	<property name="phone" column="phone" type="java.lang.String"/>
+        	<property name="email" column="email" type="java.lang.String"/>
+        	<property name="address" column="address" type="java.lang.String"/>
+        </class>
+</hibernate-mapping>

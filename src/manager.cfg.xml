@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="Manager" table="manager">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="name" column="name" type="java.lang.String">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="identity"/>
+        	</id>
+        	<property name="pwd" column="pwd" type="java.lang.String"/>
+        </class>
+</hibernate-mapping>

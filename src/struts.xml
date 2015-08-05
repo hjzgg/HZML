@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC	 
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"	 
+  "http://struts.apache.org/dtds/struts-2.0.dtd">	
+<struts>
+  <!-- 将Action的创建交给spring来管理 -->  
+  <constant name="struts.objectFactory" value="spring" />  
+  <constant name="struts.i18n.encoding" value="utf-8"/>
+   <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+  <package namespace="/" name="struts2" extends="struts-default">  
+    
+	    <!-- package中的标签必须按照如下顺序配置
+	    result-types,interceptors,default-interceptor-ref,default-action-ref,default-class-ref,global-results,global-exception-mappings,action*(就是所有的action放到最后)
+	    -->
+	    <!-- 自定义拦截器 ,如果有拦截器，必须放在package标签内的第一位-->
+	    <interceptors>
+		      <!-- 在这里可以添加自己的拦截器
+		      <interceptor name="myInterceptor" class="自定义pojo类"></interceptor>
+		      -->
+		      <interceptor-stack name="myInterceptorStack">
+			        <!--  
+			        <interceptor-ref name="myInterceptor"></interceptor-ref>
+			        -->
+		        	<interceptor-ref name="defaultStack"></interceptor-ref>
+		      </interceptor-stack>
+	    </interceptors>  
+	     
+	    <global-results>
+	      	<result></result>
+	    </global-results>
+	    
+		<!-- 查找所有完成的任务 -->
+		<action name="allFinishedTask" class="companyAndDistributeAction" method="findAllFinishedTask">
+			<result name="allFinishedTask">/finishDistribution.jsp</result> 
+		</action>
+		<!-- 查看公司所有的任务  -->
+		<action name="allTask" class="companyAndDistributeAction" method="findAllTask">
+			<result name="allTask">/lookDistribution.jsp</result> 
+		</action>
+		
+		<action name="companyAndDistributeAction" class="companyAndDistributeAction" method="saveTask">
+		 	<!-- 要创建/hzmlFile文件夹，否则会报找不到文件 -->
+            <param name="savePath">/hzmlFile</param>
+			<result type="redirectAction" name="saveTask">allTask</result> 
+		</action>
+		
+		<!-- 用户登录 -->
+		<action name="login" class="login" method="login">
+			 <result name="loginSucess">/index.jsp</result> 
+			 <result name="loginFail">/login.jsp?msg=true</result> 
+		</action>
+		<!-- 用户注册 -->
+		<action name="register" class="register" method="register">
+			 <result name="registerSuccess">/login.jsp</result> 
+			 <result name="registerFail">/register.jsp?msg=true</result> 
+		</action>
+		
+		<!-- DMI(动态方法调用)-->
+		<action name="uR" class="userRequest">
+			<!-- 用户请求下载文档  -->	
+			<result name="fileDownLoad">/DownloadFile</result>
+			<!-- 组长保留项目地址  -->
+			<result name="userRequestToSaveTaskAddress" type="chain">userRequest</result>
+			<result name="userRequestToFinishTaskAndSubmit" type="chain">userRequest</result>
+		</action>
+		
+		<!-- 用户请求 -->
+		<action name="userRequest" class="userRequest" method="userRequest">
+			 <result name="userTaskFinish">/userTaskFinish.jsp</result> 
+			 <result name="userTaskNoParticipate">/userTaskNoParticipate.jsp</result> 
+			 <result name="userTaskParticipating">/userTaskParticipating.jsp</result>
+			 <result name="showNoParticipateTask">/showNoParticipateTask.jsp</result>
+			 <result name="showParticipateTask">/showParticipateTask.jsp</result>
+			 <result name="fileDownLoad">/DownloadFile</result>
+		</action>
+		<!-- 用户请求参加任务 --> 
+		<action name="userRequestToTakeInDistribute" class="userRequest" method="userRequestToTakeInDistribute">
+			 <result name="userRequestToTakeInDistribute">/sampleJsp/userRequestToTakeInDistribute.jsp?param=success</result> 
+			 <result name="userLoginFail">/sampleJsp/userRequestToTakeInDistribute.jsp?param=fail</result> 
+		</action>
+		<!-- 用户请求请求提交评论 --> 
+		<action name="userRequestToSubmitComment" class="userRequest" method="userRequestToSubmitComment">
+			 <result name="cardSaveSuccess">/sampleJsp/userRequestToSubmitComment.jsp</result> 
+		</action>
+		
+		<!-- 用户请求请求更改任务准备开始或者不同意任务开始 --> 
+		<action name="userRequestToChangeProjectState" class="userRequest" method="userRequestToChangeProjectState">
+			 <result name="changeProjectState"></result> 
+		</action>
+		
+		<!-- 用户(组长)指定任务开始执行 --> 
+		<action name="userRequestToBeginProject" class="userRequest" method="userRequestToBeginProject">
+			 <result name="ProjectBeginSuccess">/sampleJsp/userRequestToBeginProject.jsp?param=success</result> 
+			 <result name="ProjectBeginFail">/sampleJsp/userRequestToBeginProject.jsp?param=fail</result> 
+		</action>
+		
+		<!-- 用户(组长)指定任务执行下一步 --> 
+		<action name="userRequestToBeginNextStep" class="userRequest" method="userRequestToBeginNextStep">
+			 <result name="beginNextStep">/sampleJsp/helloWord.jsp</result> 
+		</action>
+		
+		<!-- 用户提交更新工作任务 --> 
+		<action name="updateWorkAction" class="updateWorkAction" method="struts-default">
+			 <!-- 要创建/hzmlFile文件夹，否则会报找不到文件 -->
+             <param name="savePath">/hzmlFile</param>
+			 <result name="saveUpdateWork" type="chain">userRequest</result> 
+			 <result name="finishMyTaskWrok" type="chain">userRequest</result> 
+			 <result name="fileUpload">/sampleJsp/helloWord.jsp</result> 
+		</action>
+		
+  </package>
+</struts>
