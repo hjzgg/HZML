@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>查看分配任务</title>
+<title>查看全部任务</title>
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -65,20 +65,14 @@
 		<div class="grid_16" id="navigation">
 			<ul>
 				<li><a href="index.jsp"><span>主页</span></a></li>
-				<li><a href="#" class="current"><span>公司管理</span></a></li>
+				<li><a href="#" class="current"><span>用户任务</span></a></li>
 				<li><a href="about.jsp" class="current"><span>关于</span></a></li>
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>
 			</ul>
 			<div id="triSlideContainer"><img src="images/currentarrow.gif" alt="arrow" /></div>
 		</div>
-		
 		<div class="grid_16" id="display">
-			<ul id="subNavigation">
-				<li><a href="distributionOfCompany.jsp">分配任务</a></li>
-				<li><a href="allTask" class="current">查看任务</a></li>
-				<li><a href="allFinishedTask">已完成任务</a></li>
-			</ul>
 		</div>
 		<div class="clear"></div>
 		
@@ -89,11 +83,11 @@
 		<div class="grid_11 content" id="two_col">
 			<h2>所有的任务列表:</h2>
 			<%	
-				String state[] = {"该任务未被执行!", "该任务正在被执行!", "该任务已经完成!", "该任务已经完成!"};
+				String state[] = {"该任务未被执行!", "该任务正在被执行!", "该任务已经完成!"};
 			    //////////////////////////////分页代码
 				int pageCur=0, pageBegin=0, pageTot=0, num= 0;
 			    final int pageSize = 6;//每一面显示的任务的数目
-				List<Task> taskList = (List<Task>)session.getAttribute("allTask");
+				List<Task> taskList = (List<Task>)session.getAttribute("theLastTaskRequestForIndex");
 			    num = taskList.size();//总个数 
 			    pageTot = num%pageSize == 0 ? num/pageSize : num/pageSize+1;//总页数
 			    String curPage  = request.getParameter("page");//当前定位的页码
@@ -102,7 +96,6 @@
 			    pageBegin = pageCur-5;
 			    if(pageBegin < 1) pageBegin = 1;
 			    int i = (pageCur-1)*pageSize;
-			    System.out.println(i+ " " + taskList.size());
 				//////////////////////////////////
 			    if(num>0)
 					for(int cnt=0; cnt<pageSize && i<taskList.size(); ++i, ++cnt){
@@ -111,7 +104,7 @@
 						<div class="class1">
 							任务<%=i+1%>
 							<div style="background-image:url('./images/color.gif'); height: 25px">
-								<a href="#"><h1 style="font-size:19px; color:#434c55; float: left;"><%=task.getTaskName() %></h1></a>
+								<a href="userRequest?userRequest=showNoParticipateTask&taskid=<%=task.getTaskid()%>"><h1 style="font-size:19px; color:#434c55; float: left;"><%=task.getTaskName() %></h1></a>
 								<span style="float:right; cursor:pointer;" id="<%=i+"stateBut"%>" onClick="$use('<%=i+"contentx"%>','<%=i+"stateBut"%>')">展开</span>
 							</div>
 		       				<div class="class1content" id="<%=i+"contentx"%>">
@@ -140,7 +133,7 @@
 										<label>任务说明文档: </label>
 										<input type="text" name="document" id="document" value="<%=task.getDocumentationAddress() %>" readOnly/>
 									</div>
-									<a class="button" style="float:right;" href="DownloadFile?fileName=<%=task.getDocumentationAddress() %>"><span>下载文档</span></a>
+									<a class="button" style="float:right;" href="uR!fileDownLoad?fileName=<%=task.getDocumentationAddress() %>"><span>下载文档</span></a>
 								</form>
 							</div>
 						</div>
@@ -149,7 +142,7 @@
 		<!-- 加入分页的按钮  -->
 		<div style="margin-top: 20px">
 			<%if(pageCur!=1){%>
-				  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('allTask?page=<%=pageCur-1%>')"><span>上一页</span></a>	
+				  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=pageCur-1%>')"><span>上一页</span></a>	
 	         <%}%>
 	         <% 
 	         	int j;
@@ -159,12 +152,12 @@
 	                      <%=i%>
 	                  </b>
 	             <%} else {%>
-	              	  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('allTask?page=<%=i%>')"><span><%=i%></span></a>	
+	              	  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=i%>')"><span><%=i%></span></a>	
 	             <%}%>
 	         <% } %>                
 	
 	         <%if(pageCur!=pageTot){%>
-	                 <a href="javascript:void(0)" class="button_page" onclick="myGoTo('allTask?page=<%=pageCur+1%>')"><span>下一页</span></a>
+	                 <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=pageCur+1%>')"><span>下一页</span></a>
 	         <%}%>
 	          <b class="pageword">
 	                  &nbsp;&nbsp;共<%=pageTot%>页&nbsp;&nbsp;
@@ -174,7 +167,7 @@
 	             	 向第<input type="text" id="pageTo" size="1">页
 	          </b>
 	          
-	          <a href="javascript:void(0)" class="button_page" onclick="myDumpTo('<%=pageTot%>', 'allTask?page=')"><span>跳转</span></a>
+	          <a href="javascript:void(0)" class="button_page" onclick="myDumpTo('<%=pageTot%>', 'showAllTask.jsp?page=')"><span>跳转</span></a>
           </div>
 		  <!-- 加入分页的按钮  -->
 		

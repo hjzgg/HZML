@@ -45,25 +45,40 @@ public class DistributeDao implements Serializable{
 		tran.commit();
 	}
 	
+	public void updateDevelopingParty(DevelopingParty developingParty){//更新开发者信息
+		Session session = this.getSession();
+		Transaction tran = session.beginTransaction();
+		session.update(developingParty); 
+		tran.commit();
+	}
+	
 	public void saveTask(Task task) {
 		Session session = this.getSession();
 		Transaction tran = session.beginTransaction();
 		session.save(task); 
 		tran.commit();
 	}
-
+	
 	public List<Task> findAllTask() {
 		Session session = this.getSession();
 		Transaction tran = session.beginTransaction();
-		List<Task> datas = session.createQuery("from Task").list();
+		List<Task> datas = session.createQuery("from Task order by publishTime desc").list();
 		tran.commit();
 		return datas;
 	}
 	
-	public List<Task> findAllFinishedTask() {
+	public List<Task> findAllTaskOfCompany(String peopleName) {//获得该公司的所有的任务
 		Session session = this.getSession();
 		Transaction tran = session.beginTransaction();
-		List<Task> datas = session.createQuery("from Task where state=2").list();
+		List<Task> datas = session.createQuery("from Task where publishName = \'" + peopleName + "\' order by publishTime desc").list();
+		tran.commit();
+		return datas;
+	}
+	
+	public List<Task> findAllFinishedTaskOfCompany(String peopleName) {
+		Session session = this.getSession();
+		Transaction tran = session.beginTransaction();
+		List<Task> datas = session.createQuery("from Task where state>=2 and publishName = \'" + peopleName + "\'").list();
 		tran.commit();
 		return datas;
 	}
@@ -71,7 +86,7 @@ public class DistributeDao implements Serializable{
 	public List<Task> findUserTaskFinish(String developName){
 		Session session = this.getSession();
 		Transaction tran = session.beginTransaction();
-		String sql="select * from task where task.taskid in (select taskteam.taskid from taskteam where taskteam.developName=\'" + developName + "\') and task.state=2";
+		String sql="select * from task where task.taskid in (select taskteam.taskid from taskteam where taskteam.developName=\'" + developName + "\') and task.state>=2";
 		List<Task> datas = (List<Task>)session.createSQLQuery(sql).addEntity(Task.class).list();
 		tran.commit();
 		return datas;
@@ -102,6 +117,15 @@ public class DistributeDao implements Serializable{
 		List<DevelopingParty> datas = session.createSQLQuery(sql).addEntity(DevelopingParty.class).list();
 		tran.commit();
 		return datas;
+	}
+	
+	public DevelopingParty findTaskUser(String developName){
+		Session session = this.getSession();
+		DevelopingParty developingParty = null; 
+		Transaction tran = session.beginTransaction();
+		developingParty = (DevelopingParty) session.createQuery("from DevelopingParty where developName = \'" + developName + "\'").list().get(0);
+		tran.commit();
+		return developingParty;
 	}
 	
 	public void deleteTaskAppendTableMsg(int taskid){//删除当前任务组长信息

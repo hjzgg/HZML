@@ -161,6 +161,35 @@ a.button span {
 	padding-right:10px;
 }
 
+a.button_page span {
+	background:url(../images/orangebutton_left.gif) top left no-repeat;
+	display:block;
+	line-height:30px;
+	padding-left:10px;
+	padding-right:5px;
+}
+
+a.button_page {
+	display:block;
+	height:30px;
+	float:left;
+	background:url(../images/orangebutton_right.gif) no-repeat top right;
+	color:#434c55;
+	font-size:14px;
+	text-decoration: none;
+	text-align: center;
+	padding-right:5px;
+	margin-right:5px;
+}
+
+.pageword{
+	text-align: center; font-family:Arial,sans-serif;font-size:20px;
+	padding-right:5px;
+	padding-top: 5px;
+	margin-left:5px;
+	float:left;
+}
+
 a.button_aa span {
 	background:url(../images/orangebutton_left_aa.gif) top left no-repeat;
 	display:block;
@@ -595,7 +624,7 @@ div#testimonials div.by {
 	font-family: Arial, sans-serif;
 	font-size:10px;
 	text-transform: uppercase;
-	margin:1px 0px 0px 13px;
+	margin:1px 0px 0px 7px;
 	padding:0px;
 	line-height:10px;
 }
@@ -612,12 +641,16 @@ div#testimonials div.by {
 .news ul li a {
 	display:block;
 	width:175px;
-	float:right;
+	margin-top: 8px;
+	float: left;
 	text-align:right;
 	font-weight:bold;
 	font-size:13px;
 	text-decoration: none;
 	text-transform: capitalize;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 
 a#moreNews {
@@ -726,7 +759,7 @@ a#moreNews {
 }
 
 #beforeSlideshow div#buttons {
-	margin:20px 20px;
+	margin:20px 300px;
 }
 
 #beforeSlideshow div#buttons #leftButton {
@@ -734,7 +767,7 @@ a#moreNews {
 }
 
 #beforeSlideshow div#buttons #rightButton {
-
+	margin-left: 80px;
 }
 
 /* end before slideshow styling */
@@ -1187,3 +1220,60 @@ triBackHome li {
 	margin-top: 10px;
 	width:280px;
 }
+
+#aboutthis{
+	margin-left: 50px;
+}
+
+#aboutthis ul li{
+  display: block;
+  height: 25px;
+  color: #27415a;
+  background: url(../images/ball_orange.gif) left top no-repeat;
+  background-position-y: 6px;
+  padding-left: 20px;
+}
+
+/* 3d°´Å¥  */
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Yanone Kaffeesatz Bold'), local('YanoneKaffeesatz-Bold'), url(We_iSDqttE3etzfdfhuPRWwXwFHHZlCwprwJOQ-Se7k.woff) format('woff');
+}
+
+a.button3d {
+	position: relative;
+	color: rgba(255,255,255,1);
+	text-decoration: none;
+	background-color: rgba(219,87,5,1);
+	font-family: 'Yanone Kaffeesatz';
+	font-weight: 700;
+	font-size: 1.5em;
+	display: block;
+	padding: 4px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+	-moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+	box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+	margin: 100px auto;
+	width: 160px;
+	text-align: center;
+	
+	-webkit-transition: all .1s ease;
+	-moz-transition: all .1s ease;
+	-ms-transition: all .1s ease;
+	-o-transition: all .1s ease;
+	transition: all .1s ease;
+}
+
+a.button3d:active {
+	-webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+	-moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+	box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+	position: relative;
+	top: 6px;
+}
+/* 3d°´Å¥  */

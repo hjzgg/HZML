@@ -46,6 +46,7 @@
 		        <value>card.cfg.xml</value>
 		        <value>manager.cfg.xml</value>
 		        <value>taskAppend.cfg.xml</value>
+		        <value>contact.cfg.xml</value>
 	    	</list>
 	    </property>	   
 	   
@@ -60,6 +61,14 @@
   </bean>
   <bean id="companyAndDistributeAction" class="com.hzml.action.CompanyAndDistributeAction">  	 
 		<property name="distributeDao" ref="distributeDao"/>
+  </bean>
+  
+  <!-- 处理消息（如用户发送联系管理员的消息）   -->
+  <bean id="messageDao" class="com.hzml.dao.MessageDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+  </bean>
+  <bean id="messageAction" class="com.hzml.action.MessageAction">  	 
+		<property name="messageDao" ref="messageDao"/>
   </bean>
   
   <!-- ////////////////////////////////////////////////////////// -->
@@ -82,4 +91,9 @@
   <bean id="updateWorkAction" class="com.hzml.action.UpdateWorkAction"><!--用户请求   -->  	 
 		<property name="distributeDao" ref="distributeDao"/>
   </bean>
+  
+   <bean id="indexRequest" class="com.hzml.action.IndexRequest"><!--index.jsp界面请求显示最近发布任务   -->  	 
+		<property name="distributeDao" ref="distributeDao"/>
+  </bean>
+  
 </beans>

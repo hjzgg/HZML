@@ -39,11 +39,57 @@
 		  height:350px;
 		  display: none;
 	}
+	#uploadTaskOrgCode {
+		  background-image: url("./images/loginbg.jpg");
+		  position: absolute;
+		  z-index:10;
+		  left: 400px;
+		  top: 800px;
+		  width:450px;
+		  height:160px;
+		  display: none;
+	}
 </style>
 
 </head>
 <body>
+	<% 
+		Task task = (Task)session.getAttribute("showParticipateTask");
+		String images[]={
+			"",
+			"./images/step/1.gif",
+			"./images/step/2.gif",
+			"./images/step/3.gif",
+			"./images/step/4.gif",
+			"./images/step/5.gif",
+			"./images/step/6.gif",
+			"./images/step/7.gif",
+			"./images/step/8.gif",
+			"./images/step/9.gif",
+			"./images/step/10.gif",
+			"./images/step/11.gif"
+		};
+		TaskAppend taskAppend = (TaskAppend)session.getAttribute("showParticipateTask_leader");
+		List<DevelopingParty> developingPartyList = (List<DevelopingParty>)session.getAttribute("showParticipateTask_AllUser");
+		List<TaskTeam> taskTeamList = (List<TaskTeam>) session.getAttribute("showParticipateTask_taskTeam");
+		String state = null;
+		switch(task.getState()){
+			case 0: state="任务没有开始执行!"; break;
+			case 1: state="任务已经开始执行!"; break;
+			case 2: state="任务已经完成!"; break;
+		}
+	%>		
 	<div id="div_absolute">
+	</div>
+	<div id="uploadTaskOrgCode" > 
+		<form action="#" method="get" id="contactForm">
+			<center><p style="font-size: 20px; color: red">请选择项目的源代码(压缩包形式)进行上传:</p></center>
+			<br>
+			<div>
+				<input style="width: 280px" type="file" name="TaskOrgCodFile" id="TaskOrgCodFile"/>
+				<a style="float: right;  margin-right: 20px" class="button" href="javascript:void(0)" onclick="finishTaskAndSubmit('TaskOrgCodFile', '<%=task.getTaskid()%>')"><span>上传</span></a>
+			</div>
+		</form>
 	</div>
 	<div class="container_16" id="main">
 		<div class="grid_16" id="top">
@@ -97,32 +143,7 @@
 		<div class="clear"></div>
 		
 	</div><!-- /#main -->
-	<% 
-		Task task = (Task)session.getAttribute("showParticipateTask");
-		String images[]={
-			"",
-			"./images/step/1.gif",
-			"./images/step/2.gif",
-			"./images/step/3.gif",
-			"./images/step/4.gif",
-			"./images/step/5.gif",
-			"./images/step/6.gif",
-			"./images/step/7.gif",
-			"./images/step/8.gif",
-			"./images/step/9.gif",
-			"./images/step/10.gif",
-			"./images/step/11.gif"
-		};
-		TaskAppend taskAppend = (TaskAppend)session.getAttribute("showParticipateTask_leader");
-		List<DevelopingParty> developingPartyList = (List<DevelopingParty>)session.getAttribute("showParticipateTask_AllUser");
-		List<TaskTeam> taskTeamList = (List<TaskTeam>) session.getAttribute("showParticipateTask_taskTeam");
-		String state = null;
-		switch(task.getState()){
-			case 0: state="任务没有开始执行!"; break;
-			case 1: state="任务已经开始执行!"; break;
-			case 2: state="任务已经完成!"; break;
-		}
-	%>		
+	
 	<div class="container_16" id="content">
 		<div class="grid_11 content" id="two_col">
 			<h2>当前参与的任务:</h2>
@@ -135,7 +156,7 @@
 					<form action="#" method="get" id="contactForm">
 						<div>
 							<label>发布者: </label>
-							<input type="text" name="name" id="name" value="<%=task.getPublishTime() %>" readOnly/>
+							<input type="text" name="name" id="name" value="<%=task.getPublishName() %>" readOnly/>
 						</div>
 						<div>
 							<label>任务发布时间: </label>
@@ -151,7 +172,7 @@
 						</div>
 						<div>
 							<label>任务描述:</label>
-							<textarea name="message" rows="10" cols="20" id="message" readOnly><%=task.getTaskDescription() %>></textarea>
+							<textarea name="message" rows="10" cols="20" id="message" readOnly><%=task.getTaskDescription() %></textarea>
 						</div>
 						<div>
 							<label>任务状态: </label> <!--完成 或者 正在进行中--> 
@@ -178,15 +199,15 @@
 						<% 
 							if(task.getState() == 2){
 						%>
-								<a class="button" style="float:right;" href="DownloadFile"><span>下载项目</span></a>
+								<a class="button" style="float:right;" href="uR!fileDownLoad?fileName=<%=task.getTaskAddress() %>"><span>下载项目</span></a>
 						<%
 						    }
 						%>
-						<div>
+						<div style="padding-top: 20px;">
 							<label>任务说明文档: </label>
-							<input type="text" name="document" id="document" value="codeforce.cpp" readOnly/>
+							<input type="text" name="document" id="document" value="<%=task.getDocumentationAddress() %>" readOnly/>
 						</div>
-						<a class="button" style="float:right;" href="DownloadFile"><span>下载文档</span></a>
+						<a class="button" style="float:right;" href="uR!fileDownLoad?fileName=<%=task.getDocumentationAddress() %>"><span>下载文档</span></a>
 					</form>
 				</div>
 			</div>
@@ -212,10 +233,10 @@
 										<div style="padding-top: 20px;">
 											<label>功能划分说明书: </label>
 											<input style="width: 280px" type="text" name="projectPlan" id="projectPlan" value="<%=taskAppend.getTaskAllocationDoc()%>"/>
-											<a style="float: right;  margin-right: 40px" class="button" href="DownloadFile"><span>下载</span></a>
+											<a style="float: right;  margin-right: 40px" class="button" href="uR!fileDownLoad?fileName=<%=taskAppend.getTaskAllocationDoc()%>"><span>下载</span></a>
 											<br><br>
 											<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-											<input style="width: 280px" type="file" name="upLoadProjectPlan" id="upLoadProjectPlan" value="<%=taskAppend.getTaskAllocationDoc()%>"/>
+											<input style="width: 280px" type="file" name="upLoadProjectPlan" id="upLoadProjectPlan"/>
 											<a style="float: right;  margin-right: 40px" class="button" href="javascript:void(0)" onclick="UpladFile('upLoadProjectPlan', '<%=task.getTaskid() %>')"><span>上传</span></a>
 										</div>
 								<%
@@ -228,7 +249,7 @@
 										<div style="padding-top: 20px;">
 											<label>功能划分说明书: </label>
 											<input style="width: 280px" type="text" name="projectPlan" id="projectPlan" value="<%=taskAppend.getTaskAllocationDoc()%>" readonly="readonly"/>
-											<a style="float: right; margin-right: 40px" class="button" href="DownloadFile"><span>下载</span></a>
+											<a style="float: right; margin-right: 40px" class="button" href="uR!fileDownLoad?fileName=<%=taskAppend.getTaskAllocationDoc()%>"><span>下载</span></a>
 										</div>
 								<%
 									}
@@ -367,7 +388,7 @@
 									if(taskAppend.getTaskLeader().equals((String)session.getAttribute("peopleName")) && task.getState()==1){
 								%>
 										<center><a class="button_aa" href="javascript:void(0)" onclick="beginToNextStep('<%=task.getTaskid()%>')"><span>项目进行下一步</span></a></center>
-										<center><a class="button_aa" href="javascript:void(0)" onclick="finishTaskAndSubmit('<%=task.getTaskid()%>')"><span>完成并提交项目</span></a></center>
+										<center><a class="button_aa" href="javascript:void(0)" onclick="showUploadTaskOrgCodeDiv()"><span>完成并提交项目</span></a></center>
 								<%
 									}
 								%>
@@ -544,22 +565,22 @@
 	<div id="footerwrapper">
 		<div class="container_16">
 			<div class="grid_16" id="footer">
-				<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
+				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
 				<div>
 					<ul class="services">
-						<li>web design</li>
-						<li>design customization</li>
-						<li>CMS systems</li>
+						<li>敏捷开发</li>
+						<li>在线团队合作</li>
+						<li>新手学习</li>
 					</ul>
 					<ul class="services">
-						<li>Wordpress themes/setups</li>
-						<li>Slicing PSD's into HTML/WP</li>
-						<li>code/html optimization</li>
+						<li>项目开发者</li>
+						<li>项目发布者</li>
+						<li>web维护者</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
+						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
 					</ul>
 				</div>
 			

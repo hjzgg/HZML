@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Quick select menu - 关于 us | ChillyBlues Web Builders</title>
+<title>Get in touch with us | ChillyBlues Web Builders</title>
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -14,11 +14,30 @@
 <script type="text/javascript" src="js/custom.js"></script>
 <style type="text/css">
 
-body {
-	background: #f9fafb url(images/pages/bg.gif) top repeat-x;
-}
+	body {
+		background: #f9fafb url(images/pages/bg.gif) top repeat-x;
+	}
 
 </style>
+<script type="text/javascript">
+
+Cufon.replace('http://chillyblues.chillyorange.com/h1');
+Cufon.replace('http://chillyblues.chillyorange.com/h2');
+
+$(document).ready(function(){
+	
+	$('#contactForm input, #contactForm textarea').focus(function(){ $(this).stop().animate({backgroundColor: "#fff3c5"}, 500), $(this).css("borderColor", "#f89d1c") })
+	
+	$('#contactForm input, #contactForm textarea').blur(function(){ $(this).stop().animate({backgroundColor: "#fffff"}, 500), $(this).css("borderColor", "#97b2cd") });
+	
+})
+
+$('#main').ready(function(){
+	
+	//process possible form errors
+})
+
+</script>
 </head>
 
 <body>
@@ -59,14 +78,26 @@ body {
 		
 		<div class="grid_16" id="navigation">
 			<ul>
-				<li><a href="index.jsp"><span>主页</span></a></li>
-				
-				<li><a href="#" class="current"><span>用户任务</span></a></li>
-				<li><a href="#" class="current"><span>公司管理</span></a></li>
-				<li><a href="#" class="current"><span>管理员</span></a></li>
-				<li><a href="#" class="current"><span>新手学习</span></a></li>
-				
-				<li><a href="about.jsp" class="current"><span>关于</span></a></li>
+				<li><a href="index.jsp" class="current"><span>主页</span></a></li>
+				<% 
+					String peopleType = (String)session.getAttribute("peopleType");
+					if(peopleType!=null)
+						if(peopleType.equals("user")){
+				%>
+							<li><a href="userRequest?userRequest=userTaskNoParticipate"><span>用户任务</span></a></li>
+							<li><a href="#"><span>新手学习</span></a></li>
+				<%
+						} else if(peopleType.equals("company")){
+				%>
+							<li><a href="distributionOfCompany.jsp"><span>公司管理</span></a></li>
+				<%
+						} else if(peopleType.equals("manager")){
+				%>
+							<li><a href="#" class="current"><span>管理员</span></a></li>
+				<%
+						}
+				%>
+				<li><a href="about.jsp"><span>关于</span></a></li>
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>
 			</ul>
@@ -75,10 +106,7 @@ body {
 		
 		<div class="grid_16" id="display">
 			<ul id="subNavigation">
-				<li><a href="about.jsp">slideshow</a></li>
-				<li><a href="quickselectmenu.jsp" class="current">quick select menu</a></li>
-				<li><a href="port.jsp">portfolio</a></li>
-				<li><a href="sidebars.jsp">sidebars</a></li>
+				<li><a href="contact.jsp" class="current">联系我们</a></li>
 			</ul>
 		</div>
 		<div class="clear"></div>
@@ -87,15 +115,24 @@ body {
 			
 	<div class="container_16" id="content">
 		
-		<div class="grid_16 content" id="three_col">
-			<h2>Quick select menu</h2>
-			<p>
-			<img src="images/关于usbig.jpg" alt="关于us" />The ChillyBlues theme also features an extra drop-down menu to make finding the right content on your site even easier. The drop-down navigation is activated by clicking the QUICK SELECT MENU link and disappears again after clicking this link once more.
-			</p>
-			<p>
-			The drop-down navigation can hold whatever you want. Besides pages it can also hold news items, a site-search field, a newsletter sign-up, etc. The drop-down navigation supports two level of navigation (pages and sub-pages) by default, however it only requires small CSS adjustments to support even more levels.
-			</p>
+		<div class="grid_11 content contact" id="two_col">
+			<h2>消息提交成功!</h2>
+			<br>
+			<h4>
+				&nbsp;&nbsp;&nbsp;我们会在24小时内给您提供回复！请您耐心的等待...
+			</h4>
+			<a class="button" style="float:right" href="contact.jsp" id="send"><span>返回</span></a>				
 		</div><!-- /#left -->
+		<div class="grid_5 news" id="one_col">
+			<h2>联系</h2>
+			<p>
+			<b>在线软件工程团队</b><br/>
+			河南省高新区科学大道100号<br/>
+			郑州大学新校区<br/><br/>
+			phone: 15670637914<br/>
+			e-mail: <a href="#">271413190@qq.com</a>
+			</p>
+		</div><!-- /#right -->
 		<div class="clear"></div>
 		
 	</div><!-- /#content -->
@@ -106,23 +143,22 @@ body {
 		
 			<div class="grid_16" id="footer">
 			
-			<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
-			
+				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
 				<div>
 					<ul class="services">
-						<li>web design</li>
-						<li>design customization</li>
-						<li>CMS systems</li>
+						<li>敏捷开发</li>
+						<li>在线团队合作</li>
+						<li>新手学习</li>
 					</ul>
 					<ul class="services">
-						<li>Wordpress themes/setups</li>
-						<li>Slicing PSD's into HTML/WP</li>
-						<li>code/html optimization</li>
+						<li>项目开发者</li>
+						<li>项目发布者</li>
+						<li>web维护者</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
+						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
 					</ul>
 				</div>
 			

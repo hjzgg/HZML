@@ -31,6 +31,7 @@ public class DownloadFile extends HttpServlet {
     	 ServletContext context = getServletContext();  
     	 String fileDir = context.getRealPath("/") + "/hzmlFile/"; 
     	 String filename = (String)request.getSession().getAttribute("fileName");   
+    	 System.out.println(fileDir + filename);
          FileInputStream in = null;   
          ServletOutputStream out = null;   
          try {  

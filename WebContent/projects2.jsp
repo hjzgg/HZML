@@ -76,12 +76,24 @@ $(document).ready(function(){
 		<div class="grid_16" id="navigation">
 			<ul>
 				<li><a href="index.jsp"><span>主页</span></a></li>
-				
-				<li><a href="#" class="current"><span>用户任务</span></a></li>
-				<li><a href="#" class="current"><span>公司管理</span></a></li>
-				<li><a href="#" class="current"><span>管理员</span></a></li>
-				<li><a href="#" class="current"><span>新手学习</span></a></li>
-				
+				<% 
+					String peopleType = (String)session.getAttribute("peopleType");
+					if(peopleType!=null)
+						if(peopleType.equals("user")){
+				%>
+							<li><a href="userRequest?userRequest=userTaskNoParticipate"><span>用户任务</span></a></li>
+							<li><a href="#"><span>新手学习</span></a></li>
+				<%
+						} else if(peopleType.equals("company")){
+				%>
+							<li><a href="distributionOfCompany.jsp"><span>公司管理</span></a></li>
+				<%
+						} else if(peopleType.equals("manager")){
+				%>
+							<li><a href="messageAction!getAllContactMsg"><span>管理员</span></a></li>
+				<%
+						}
+				%>
 				<li><a href="about.jsp"><span>关于</span></a></li>
 				<li><a href="projects.jsp" class="current"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>

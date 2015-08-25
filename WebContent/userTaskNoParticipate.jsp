@@ -16,6 +16,7 @@
 <script type="text/javascript" src="js/jquery.cycle.min.all.js"></script>
 <script type="text/javascript" src="js/TitilliumText15L_100-TitilliumText15L_400.font.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
 	
 	body {
@@ -89,8 +90,21 @@
 		<div class="grid_11 content" id="two_col">
 			<h2>未参与的任务如下:</h2>
 			<%
-				List<Task> taskList = (List<Task>)session.getAttribute("userTaskNoParticipate");
-				for(int i=0; i<taskList.size(); ++i){
+			//////////////////////////////分页代码
+			int pageCur=0, pageBegin=0, pageTot=0, num= 0;
+			final int pageSize = 6;//每一面显示的任务的数目
+			List<Task> taskList = (List<Task>)session.getAttribute("userTaskNoParticipate");
+			num = taskList.size();//总个数 
+			pageTot = num%pageSize == 0 ? num/pageSize : num/pageSize+1;//总页数
+			String curPage  = request.getParameter("page");//当前定位的页码
+			if(curPage == null) pageCur = 1; 
+			else pageCur = Integer.valueOf(curPage);
+			pageBegin = pageCur-5;
+			if(pageBegin < 1) pageBegin = 1;
+			int i = (pageCur-1)*pageSize;
+			//////////////////////////////////
+			if(num>0)
+				for(int cnt=0; cnt<pageSize && i<taskList.size(); ++i, ++cnt){
 					Task task = taskList.get(i);
 			%>
 						<div id="list">
@@ -101,6 +115,38 @@
 			<%
 				}
 			%>
+			
+			<!-- 加入分页的按钮  -->
+			<div style="margin-top: 20px">
+				<%if(pageCur!=1){%>
+					  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('userRequest?userRequest=userTaskNoParticipate&page=<%=pageCur-1%>')"><span>上一页</span></a>	
+		         <%}%>
+		         <% 
+		         	int j;
+		         	for(i=pageBegin, j=1; j<=10 && i<=pageTot; ++i, ++j) {%>
+		             <%if(i == pageCur){%>
+		                  <b class="pageword" style="color:red;">
+		                      <%=i%>
+		                  </b>
+		             <%} else {%>
+		              	  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('userRequest?userRequest=userTaskNoParticipate&page=<%=i%>')"><span><%=i%></span></a>	
+		             <%}%>
+		         <% } %>                
+		
+		         <%if(pageCur!=pageTot){%>
+		                 <a href="javascript:void(0)" class="button_page" onclick="myGoTo('userRequest?userRequest=userTaskNoParticipate&page=<%=pageCur+1%>')"><span>下一页</span></a>
+		         <%}%>
+		          <b class="pageword">
+		                  &nbsp;&nbsp;共<%=pageTot%>页&nbsp;&nbsp;
+		          </b>
+		          
+		          <b class="pageword">
+		             	 向第<input type="text" id="pageTo" size="1">页
+		          </b>
+		          
+		          <a href="javascript:void(0)" class="button_page" onclick="myDumpTo('<%=pageTot%>', 'userRequest?userRequest=userTaskNoParticipate&page=')"><span>跳转</span></a>
+	          </div>
+		  <!-- 加入分页的按钮  -->
 		</div><!-- /#two_col -->
 		<div class="grid_5 news" id="one_col">
 			<h2>如何进行一个任务的分派？</h2>
@@ -135,23 +181,22 @@
 		<div class="container_16">
 		
 			<div class="grid_16" id="footer">
-				<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
-			
+				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
 				<div>
 					<ul class="services">
-						<li>web design</li>
-						<li>design customization</li>
-						<li>CMS systems</li>
+						<li>敏捷开发</li>
+						<li>在线团队合作</li>
+						<li>新手学习</li>
 					</ul>
 					<ul class="services">
-						<li>Wordpress themes/setups</li>
-						<li>Slicing PSD's into HTML/WP</li>
-						<li>code/html optimization</li>
+						<li>项目开发者</li>
+						<li>项目发布者</li>
+						<li>web维护者</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
+						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
 					</ul>
 				</div>
 			

@@ -213,8 +213,16 @@
 		xmlhttp.send();
 	}
 	
-	function finishTaskAndSubmit(taskid){//提交保存的项目
+	function finishTaskAndSubmit(fileUploadId, taskid){//提交保存的项目
 		var xmlhttp;
+		if(document.getElementById(fileUploadId).value==""){
+			alert("项目源码不能为空!");
+			return;
+		}
+		var fileObj = document.getElementById(fileUploadId).files[0]; // 获取文件对象
+        var form = new FormData();
+        form.append("taskid", taskid);
+        form.append("file", fileObj);                
 		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
 		  xmlhttp=new XMLHttpRequest();
 		}
@@ -227,9 +235,9 @@
 				  alert("项目提交成功!");
 			  }
 		 }
-		var myrequest = "uR!userRequestToFinishTaskAndSubmit?taskid="+taskid;
-		xmlhttp.open("get", myrequest, true);
-		xmlhttp.send();
+		var myrequest = "uR!userRequestToFinishTaskAndSubmit";
+		xmlhttp.open("post", myrequest, true);
+		xmlhttp.send(form);
 	}
 	
 	function userUpdateWork(id){
@@ -274,3 +282,38 @@
 
          xhr.send(form);
     }
+	
+	function showUploadTaskOrgCodeDiv(){
+		document.getElementById('uploadTaskOrgCode').style.display='block';
+	}
+	
+	//用于分页
+    function myDumpTo(tot, request) { //函数参数定义时不加var，否则出错
+         var pageMsg = document.getElementById("pageTo").value;
+         var patrn=/^\d+$/;
+         if (patrn.test(pageMsg)) {   
+             if(parseInt(pageMsg)<1 || parseInt(pageMsg)>parseInt(tot)) return;
+             location.href=request+pageMsg;
+         }
+    }
+    
+    function myGoTo(request) {  
+    	location.href=request;   
+	}
+    
+    function submitTaskScore(formid) {
+        $.ajax({
+    		type:"post",
+    		url:"companyAndDistributeAction!scoreTask",
+    		data:$(formid).serialize(),
+    		success:
+    			function(){
+    				document.getElementById("hjzggContent").innerHTML="<center><h1>评论成功!</h1></center>&nbsp;&nbsp;&nbsp;&nbsp;<a href='allFinishedTask'>返回</a>";
+    			},
+        	error:
+        		function(){
+        			alert("评论失败!");
+        		}
+    	});
+   }
+	

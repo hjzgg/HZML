@@ -1,9 +1,11 @@
+<%@page import="java.util.List"%>
+<%@page import="com.hzml.entriy.Task"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ChillyBlues - Internet Professionals</title>
+<title>在线软件工程</title>
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -124,6 +126,7 @@ function getStarted(){
 			}	
 		});
 		
+		
 		$('#displayIn').css("background", "url(images/mainDisplayBG.jpg) no-repeat bottom");
 				
 		$('#beforeSlideshow').css("display", "none");
@@ -209,7 +212,7 @@ function getStarted(){
 				<%
 						} else if(peopleType.equals("manager")){
 				%>
-							<li><a href="#" class="current"><span>管理员</span></a></li>
+							<li><a href="messageAction!getAllContactMsg" class="current"><span>管理员</span></a></li>
 				<%
 						}
 				%>
@@ -224,14 +227,16 @@ function getStarted(){
 		<div class="grid_16" id="mainDisplay">
 			<div id="displayIn">
 				<div id="beforeSlideshow">
-					<div id="countdown">slideshow starting in &nbsp;&nbsp;<span id="count"><script type="text/javascript">document.write(countdownFrom)</script></span></div>
-					<h1>We're all kinds of awesome!</h1>
+					<div id="countdown">即将进入开发图解 &nbsp;&nbsp;<span id="count"><script type="text/javascript">document.write(countdownFrom)</script></span></div>
+					<h1>在线软件工程,等待你的加入!</h1>
 					<div class="clear"></div>
-					<h2>With over 15 years of experience, we build jaw-dropping, fingerlicking-good stuff for the Internet.</h2>
+					<marquee hspace="50px" width="800px"><h2>在这里，你可找到志同道合的人共同完成软件项目的开发。这里是开发者的天堂。追求卓越是我们的共同目标!</h2></marquee>
+					<h2 style="color: red">温馨提示:</h2>
+					<h2 style="margin-left: 0px;">请熟练掌握敏捷开发的方法,这样才能跟紧大牛们的进度。对于新手请认真做完新手任务!</h2>
 					<div class="clear"></div>
 					<div id="buttons">
-						<a href="about.jsp" class="button_aa" id="leftButton"><span>find out more 关于 us</span></a>
-						<a href="#" class="button_aa" id="rightButton"><span>get a free quote now</span></a>
+						<a href="about.jsp" class="button" id="leftButton"><span>关于我们</span></a>
+						<a href="#" class="button" id="rightButton"><span>自由询问</span></a>
 					</div>
 				</div>
 			
@@ -317,44 +322,46 @@ function getStarted(){
 	<div class="container_16" id="content">
 		
 		<div class="grid_11 content" id="two_col">
-			<h2>ChillyBlues: topnotch web builders</h2>
+			<h2>在线软件工程: </h2>
 			<p>
-				<img src="images/aboutus.jpg" alt="关于us" />ChillyBlues is a clean, business-oriented template with a blue, orange and 
-				grey shaded color theme. ChillyBlues is escpecially suitable for tech and web companies looking to strengthen their online presence. It includes features
-				like an extremely flexible, yet easy to customize slider; 8 fully coded pages
-				(nothing but 100% valid, table-less, XHTML 1.0), a fully functional contact
-				page; and much more!
+				<img src="images/aboutus.jpg" alt="关于us" />
+				&nbsp;&nbsp;&nbsp;&nbsp;在线学软件工程，是为了提高软件开发的灵活性，方便性，秉持着敏捷开发的思路为开发者提供良好的开发环境。
+				本网站为解决由于人力不足导致项目开发无法进行的问题。
+      			  对于商业用户，通过这个平台可以发布自己的项目任务。对于开发人员，可以通过这个平台接受任务并找到志同道合的合作伙伴儿。
 			</p>
 			<p>
-			The has numerous features and is easy to configure and customize thanks to the nicely layered and grouped PSD files and clear <a href="documentation/index.jsp">documentation</a>. For more info and features, have a look <a href="about.jsp">here</a>. 
+				本网站致力于：
+				<div id="aboutthis">
+					<ul>
+						<li>提高效率，解决任务发布与获得的时效 </li>
+						<li>实现多用户操作，权限管理，安全可靠</li>
+						<li>实现在线系统管理信息化</li>
+						<li>界面友好，操作简单实用，功能完善</li>
+					</ul>
+				</div>
 			</p>
 		</div><!-- /#left -->
 		<div class="grid_5 news" id="one_col">
-			<h2>News &amp; Events</h2>
+			<%
+				List<Task> taskList = (List<Task>)session.getAttribute("theLastTaskRequestForIndex");
+			%>
+			<h2>最近发布的任务:</h2>
 			<ul>
-			<li>
-				<div class="cal">
-					<div class="month">aug</div>
-					<div class="date">26</div>
-				</div>
-				<a href="post.jsp">First newsitem</a>
-			</li>
-			<li>
-				<div class="cal">
-					<div class="month">aug</div>
-					<div class="date">26</div>
-				</div>
-				<a href="post.jsp">Second newsitem</a>
-			</li>
-			<li>
-				<div class="cal">
-					<div class="month">aug</div>
-					<div class="date">26</div>
-				</div>
-				<a href="post.jsp">And a third newsitem</a>
-			</li>
+				<%
+					for(int i=0; i<6 && i<taskList.size(); ++i){
+				%>
+						<li>
+							<div class="cal">
+								<div class="month">TASK</div>
+								<div class="date"><%=i+1 %></div>
+							</div>
+							<a href="userRequest?userRequest=showNoParticipateTask&taskid=<%=taskList.get(i).getTaskid()%>" title="<%=taskList.get(i).getTaskName()%>"><%=taskList.get(i).getTaskName()%></a>
+						</li>
+				<%
+					}
+				%>
 			</ul>
-			<a href="blog.jsp" id="moreNews">more news</a>
+			<a href="showAllTask.jsp" id="moreNews">更多任务</a>
 			
 			<!--<h2>Testimonials</h2>
 			<div id="testimonials">
@@ -388,22 +395,22 @@ function getStarted(){
 		<div class="container_16">
 		
 			<div class="grid_16" id="footer">
-				<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
+				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
 				<div>
 					<ul class="services">
-						<li>web design</li>
-						<li>design customization</li>
-						<li>CMS systems</li>
+						<li>敏捷开发</li>
+						<li>在线团队合作</li>
+						<li>新手学习</li>
 					</ul>
 					<ul class="services">
-						<li>Wordpress themes/setups</li>
-						<li>Slicing PSD's into HTML/WP</li>
-						<li>code/html optimization</li>
+						<li>项目开发者</li>
+						<li>项目发布者</li>
+						<li>web维护者</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
+						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
 					</ul>
 				</div>
 			 

@@ -62,12 +62,24 @@ body {
 		<div class="grid_16" id="navigation">
 			<ul>
 				<li><a href="index.jsp"><span>主页</span></a></li>
-				
-				<li><a href="#"><span>用户任务</span></a></li>
-				<li><a href="#"><span>公司管理</span></a></li>
-				<li><a href="#"><span>管理员</span></a></li>
-				<li><a href="#"><span>新手学习</span></a></li>
-				
+				<% 
+					String peopleType = (String)session.getAttribute("peopleType");
+					if(peopleType!=null)
+						if(peopleType.equals("user")){
+				%>
+							<li><a href="userRequest?userRequest=userTaskNoParticipate"><span>用户任务</span></a></li>
+							<li><a href="#"><span>新手学习</span></a></li>
+				<%
+						} else if(peopleType.equals("company")){
+				%>
+							<li><a href="distributionOfCompany.jsp"><span>公司管理</span></a></li>
+				<%
+						} else if(peopleType.equals("manager")){
+				%>
+							<li><a href="messageAction!getAllContactMsg"><span>管理员</span></a></li>
+				<%
+						}
+				%>
 				<li><a href="about.jsp" class="current"><span>关于</span></a></li>
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>
@@ -77,10 +89,7 @@ body {
 		
 		<div class="grid_16" id="display">
 			<ul id="subNavigation">
-				<li><a href="about.jsp" class="current">slideshow</a></li>
-				<li><a href="quickselectmenu.jsp">quick select menu</a></li>
-				<li><a href="port.jsp">portfolio</a></li>
-				<li><a href="sidebars.jsp">sidebars</a></li>
+				<li><a href="about.jsp" class="current">关于我们</a></li>
 			</ul>
 		</div>
 		<div class="clear"></div>
@@ -111,33 +120,6 @@ body {
 			</ul>
 		</div><!-- /#two_col -->
 		<div class="grid_5 news" id="one_col">
-		
-			<!--<h2>News & Events</h2>
-			<ul>
-			<li>
-				<div class="cal">
-					<div class="month">aug</div>
-					<div class="date">26</div>
-				</div>
-				<a href="post.jsp">First newsitem</a>
-			</li>
-			<li>
-				<div class="cal">
-					<div class="month">aug</div>
-					<div class="date">26</div>
-				</div>
-				<a href="post.jsp">Second newsitem</a>
-			</li>
-			<li>
-				<div class="cal">
-					<div class="month">aug</div>
-					<div class="date">26</div>
-				</div>
-				<a href="post.jsp">And a third newsitem</a>
-			</li>
-			</ul>
-			<a href="blog.jsp" id="moreNews">more news</a>-->
-			
 			<h2>Testimonials</h2>
 			<div id="testimonials">
 				<div>
@@ -170,23 +152,22 @@ body {
 		<div class="container_16">
 		
 			<div class="grid_16" id="footer">
-				<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
-			
+				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
 				<div>
 					<ul class="services">
-						<li>web design</li>
-						<li>design customization</li>
-						<li>CMS systems</li>
+						<li>敏捷开发</li>
+						<li>在线团队合作</li>
+						<li>新手学习</li>
 					</ul>
 					<ul class="services">
-						<li>Wordpress themes/setups</li>
-						<li>Slicing PSD's into HTML/WP</li>
-						<li>code/html optimization</li>
+						<li>项目开发者</li>
+						<li>项目发布者</li>
+						<li>web维护者</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
+						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
 					</ul>
 				</div>
 			

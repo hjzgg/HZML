@@ -1,6 +1,8 @@
-<%@page import="java.util.List"%>
+<%@page import="com.hzml.entriy.TaskAppend"%>
 <%@page import="com.hzml.entriy.Task"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@page import="com.hzml.entriy.DevelopingParty"%>
+<%@page import="java.util.List"%>
+<%@page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,6 +18,7 @@
 <script type="text/javascript" src="js/jquery.cycle.min.all.js"></script>
 <script type="text/javascript" src="js/TitilliumText15L_100-TitilliumText15L_400.font.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
 	
 	body {
@@ -64,9 +67,8 @@
 		<div class="grid_16" id="navigation">
 			<ul>
 				<li><a href="index.jsp"><span>主页</span></a></li>
-				<li><a href="userRequest?userRequest=userTaskNoParticipate" class="current"><span>用户任务</span></a></li>
-				<li><a href="#"><span>新手学习</span></a></li>
-				<li><a href="about.jsp" class="current"><span>关于</span></a></li>
+				<li><a href="#" class="current"><span>公司管理</span></a></li>
+				<li><a href="about.jsp"><span>关于</span></a></li>
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>
 			</ul>
@@ -74,11 +76,7 @@
 		</div>
 		
 		<div class="grid_16" id="display">
-			<ul id="subNavigation">
-				<li><a href="userRequest?userRequest=userTaskNoParticipate">没有参与的任务</a></li>
-				<li><a href="userRequest?userRequest=userTaskParticipating">正在参与的任务</a></li>
-				<li><a href="userRequest?userRequest=userTaskFinish"  class="current">已经完成的任务</a></li>
-			</ul>
+			 
 		</div>
 		<div class="clear"></div>
 		
@@ -87,45 +85,84 @@
 	<div class="container_16" id="content">
 	
 		<div class="grid_11 content" id="two_col">
-			<h2>正在参与的任务如下:</h2>
+			<h2>请您对这次任务完成情况进行评价:</h2>
 			<%
-				List<Task> taskList = (List<Task>)session.getAttribute("userTaskFinish");
-				for(int i=0; i<taskList.size(); ++i){
-					Task task = taskList.get(i);
+				TaskAppend taskAppend = (TaskAppend)session.getAttribute("evaluateTask_taskAppend");
+				Task task = (Task)session.getAttribute("evaluateTask_task");
+				List<DevelopingParty> developingPartyList = (List<DevelopingParty>)session.getAttribute("evaluateTask_DevelopingPartyList");
 			%>
-						<div id="list">
-							<ul class="services">
-								<li>任务<%=i+1%>&nbsp;&nbsp;<a href="userRequest?userRequest=showParticipateTask&taskid=<%=task.getTaskid()%>"><%=task.getTaskName() %></a>&nbsp;&nbsp;
-									<b style="color:red">任务完成.</b>
-								</li>
-							</ul>
-						</div>
-			<%
-				}
-			%>
+			<form action="#" method="post" name="contactForm" id="contactForm">
+				<div style="padding-top: 20px;">
+					<label>功能划分说明书: </label>
+					<input style="width: 280px" type="text" name="projectPlan" id="projectPlan" value="<%=taskAppend.getTaskAllocationDoc()%>"/>
+					<a style="float: right;  margin-right: 40px" class="button" href="uR!fileDownLoad?fileName=<%=taskAppend.getTaskAllocationDoc()%>"><span>下载</span></a>
+				</div>
+			</form>
+			<div id="hjzggContent">
+				<%
+					if(task.getState()!=3){//没有评论过该项目
+				%>
+						<center>
+							<hr style="border:5px dotted #33FFFF;border-bottom:0;border-right:0; border-left:0;width:550px;">
+							<br>
+							<h2>本项目的开发人员如下:</h2>
+						</center>
+						<form method="get" name="contactForm_main" id="contactForm_main">
+							<input type="hidden" name="taskid" value="<%=taskAppend.getTaskid()%>">
+							<div id="updateworkcontent">
+								<%
+									for(int i=0; i<developingPartyList.size(); ++i){
+								%>
+										<div id="updateworkcontent_content">
+											<div style="background-image:url('./images/color.gif');">
+												<center>开发者:<b style="font-size: 20px"> <%=developingPartyList.get(i).getDevelopName() + (developingPartyList.get(i).getDevelopName().equals(taskAppend.getTaskLeader()) ? "(组长)" : "") %></b></center>
+											</div>
+											<div style="margin-top: 20px">
+											     <b style="float:left">项目完成评价:</b>
+												 <input type="radio" style="margin-left: 60px" name="<%=developingPartyList.get(i).getDevelopName() %>" value="1" />非常满意
+												 <input type="radio" style="margin-left: 40px" name="<%=developingPartyList.get(i).getDevelopName() %>" value="2" checked="checked"/>满意
+												 <input type="radio" style="margin-left: 40px" name="<%=developingPartyList.get(i).getDevelopName() %>" value="3"/>一般
+											</div>
+										</div>
+										<center>
+											<hr style="border:5px dotted #33FFFF;border-bottom:0;border-right:0; border-left:0;width:550px;">
+										</center>
+								<%
+									}
+								%>
+							</div>
+						</form>
+						<center><a class="button" style="margin-top: 10px; margin-left: 280px" href="javascript:void(0)" onclick="submitTaskScore('#contactForm_main')"><span>提交</span></a></center>
+				  <%
+					} else {
+				  %>
+				  		<center><h1>评论成功!</h1></center>&nbsp;&nbsp;&nbsp;&nbsp;<a href='allFinishedTask'>返回</a>
+				  <%}%>
+			</div>
 		</div><!-- /#two_col -->
 		<div class="grid_5 news" id="one_col">
 			<h2>如何进行一个任务的分派？</h2>
 			<div id="testimonials">
 				<div>
 					<div>
-						"对于公司分派的任务，可以在用户任务中查看到。可以根据自己的能力和爱好选择！"
+					"首先将开发的任务进行描述，如需求分析，功能模块的划分， 开发时间限制，费用等等，然后将任务发布出去！"
 					</div>
 					<div class="by"><a href="javascript:">下一步</a></div>
 				</div>
 				<div>
 					<div>
-						"点击任务，进入任务详细信息界面，点击加入，就可以参与到这个项目的开发了!"
+					"一定的时间之后可以查看自己的任务是否一定被人接手。"
 					</div>
 					<div class="by"><a href="javascript:">下一步</a></div>
 				</div>
 				<div>
 					<div>
-						"如果你已经参与了项目的开发，那么必须按照项目开发的流程，按时更新自己的任务模块，不要影响整个团队的进度!"
+					"通过查看完成的任务，判断是否符合自己的需求并结束任务！"
 					</div>
 					<div class="by"> <a href="javascript:">完毕</a></div>
 				</div>
 			</div>
+			
 		</div><!-- /#one_col -->
 		<div class="clear"></div>
 		

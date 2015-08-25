@@ -42,11 +42,13 @@
 		 	<!-- 要创建/hzmlFile文件夹，否则会报找不到文件 -->
             <param name="savePath">/hzmlFile</param>
 			<result type="redirectAction" name="saveTask">allTask</result> 
+			<result name="evaluateTask">/evaluateTask.jsp</result> 
+			<result name="scoreTask">/sampleJsp/helloWord.jsp</result> 
 		</action>
 		
 		<!-- 用户登录 -->
 		<action name="login" class="login" method="login">
-			 <result name="loginSucess">/index.jsp</result> 
+			 <result name="loginSucess" type="chain">indexRequest</result> 
 			 <result name="loginFail">/login.jsp?msg=true</result> 
 		</action>
 		<!-- 用户注册 -->
@@ -61,6 +63,8 @@
 			<result name="fileDownLoad">/DownloadFile</result>
 			<!-- 组长保留项目地址  -->
 			<result name="userRequestToSaveTaskAddress" type="chain">userRequest</result>
+			<!-- 要创建/hzmlFile文件夹，否则会报找不到文件 -->
+            <param name="savePath">/hzmlFile</param>
 			<result name="userRequestToFinishTaskAndSubmit" type="chain">userRequest</result>
 		</action>
 		
@@ -108,5 +112,18 @@
 			 <result name="fileUpload">/sampleJsp/helloWord.jsp</result> 
 		</action>
 		
+		<!-- index.jsp显示最近发布任务 --> 
+		<action name="indexRequest" class="indexRequest" method="theLastTaskRequestForIndex">
+			 <result name="theLastTaskRequestForIndex">/index.jsp</result> 
+		</action>
+		<action name="" class="indexRequest" method="theLastTaskRequestForIndex">
+			 <result name="theLastTaskRequestForIndex">/index.jsp</result> 
+		</action>
+		
+		<!-- 消息处理（如用户联系管理员） -->
+		<action name="messageAction" class="messageAction" method="struts-default">
+			 <result name="receiveMessage">/sampleJsp/recevieContactMsg.jsp</result> 
+			 <result name="getAllContactMsg">/adminMessageSolve.jsp</result> 
+		</action>
   </package>
 </struts>

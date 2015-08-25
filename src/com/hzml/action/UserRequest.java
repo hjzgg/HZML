@@ -1,9 +1,16 @@
 package com.hzml.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -21,6 +28,43 @@ import com.opensymphony.xwork2.ActionSupport;
 public class UserRequest extends ActionSupport{
 	private DistributeDao distributeDao;
 	
+	private List<File>	file; // 上传的文件
+    private List<String> fileFileName; // 文件名称
+    private List<String> fileContentType; // 文件类型
+    private String savePath;
+	public List<File> getFile() {
+		return file;
+	}
+
+	public void setFile(List<File> file) {
+		this.file = file;
+	}
+
+	public List<String> getFileFileName() {
+		return fileFileName;
+	}
+
+	public void setFileFileName(List<String> fileFileName) {
+		this.fileFileName = fileFileName;
+	}
+
+	public List<String> getFileContentType() {
+		return fileContentType;
+	}
+
+	public void setFileContentType(List<String> fileContentType) {
+		this.fileContentType = fileContentType;
+	}
+
+	public String getSavePath() {
+		return ServletActionContext.getServletContext().getRealPath(savePath);
+	}
+
+	public void setSavePath(String savePath) {
+		this.savePath = savePath;
+	}
+
+
 	public DistributeDao getDistributeDao() {
 		return distributeDao;
 	}
@@ -170,13 +214,35 @@ public class UserRequest extends ActionSupport{
 		return "userRequestToSaveTaskAddress";
 	}
 	
-	public String userRequestToFinishTaskAndSubmit(){
+	private void init() throws UnsupportedEncodingException{
+		ServletActionContext.getRequest().setCharacterEncoding("UTF-8");
+		ServletContext context = ServletActionContext.getServletContext();  
+	}
+	
+	public String userRequestToFinishTaskAndSubmit() throws IOException{
+		init();
+		// 取得需要上传的文件数组
+        List<File> files = getFile();
+        if (files != null && files.size() > 0) {
+            for (int i = 0; i < files.size(); i++) {
+                FileOutputStream fos = new FileOutputStream(getSavePath() + "\\" + getFileFileName().get(i));
+                FileInputStream fis = new FileInputStream(files.get(i));
+                byte[] buffer = new byte[1024];
+                int len = 0;
+                while ((len = fis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+                fis.close();
+                fos.close();
+            }
+        }
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String taskid = request.getParameter("taskid");
 		request.setAttribute("taskid", taskid);
         request.setAttribute("userRequest", "showParticipateTask");
         Task task = distributeDao.getTask(Integer.parseInt(taskid));
         task.setState(2);
+        task.setTaskAddress(getFileFileName().get(0));
 		distributeDao.updateTask(task);
 		return "userRequestToFinishTaskAndSubmit";
 	}
@@ -185,5 +251,10 @@ public class UserRequest extends ActionSupport{
 		String fileName = ServletActionContext.getRequest().getParameter("fileName");
 		ActionContext.getContext().getSession().put("fileName", fileName);
 		return "fileDownLoad";
+	}
+	
+	public String userToContactUs(){
+		
+		return "userToContactUs";
 	}
 }

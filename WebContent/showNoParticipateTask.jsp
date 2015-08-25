@@ -115,7 +115,7 @@
 	<div class="container_16" id="content">
 	
 		<div class="grid_11 content" id="two_col">
-			 <h2>已经完成的任务如下:</h2>
+			 <h2>任务如下:</h2>
 			 <% 
 			 	Task task = (Task)session.getAttribute("showNoParticipateTask");
 			 	if(task != null){
@@ -145,12 +145,18 @@
 						<label>任务说明文档: </label>
 						<input type="text" name="document" id="document" value="<%=task.getDocumentationAddress() %>" readOnly/>
 					</div>
-					<a class="button" style="float:right;" href="DownloadFile"><span>下载文档</span></a>
+					<a class="button" style="float:right;" href="uR!fileDownLoad?fileName=<%=task.getDocumentationAddress() %>"><span>下载文档</span></a>
 				</form>
 				<br>
 				<br>
 				<br>
-				<a class="button" style="float:left;" href="javascript:void(0)" onclick="takeInDistribute('<%=task.getTaskid()%>')"><span>加入项目开发</span></a>
+				<%
+					if(session.getAttribute("peopleName") != null && "user".equals((String)session.getAttribute("peopleType")) && task.getState() != 2){//没有登录的用户只能查看任务
+				%>
+						<a class="button" style="float:left;" href="javascript:void(0)" onclick="takeInDistribute('<%=task.getTaskid()%>')"><span>加入项目开发</span></a>
+				<%
+				    }
+				%>
 			<%
 				}
 			%>
@@ -188,23 +194,22 @@
 		<div class="container_16">
 		
 			<div class="grid_16" id="footer">
-				<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
-			
+				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
 				<div>
 					<ul class="services">
-						<li>web design</li>
-						<li>design customization</li>
-						<li>CMS systems</li>
+						<li>敏捷开发</li>
+						<li>在线团队合作</li>
+						<li>新手学习</li>
 					</ul>
 					<ul class="services">
-						<li>Wordpress themes/setups</li>
-						<li>Slicing PSD's into HTML/WP</li>
-						<li>code/html optimization</li>
+						<li>项目开发者</li>
+						<li>项目发布者</li>
+						<li>web维护者</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
+						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
 					</ul>
 				</div>
 			

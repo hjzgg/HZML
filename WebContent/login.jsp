@@ -63,7 +63,7 @@ body,td,th {
 
 <% } %>
 <div id="mydiv">
-	 <center><a href="index.jsp"><img src="images/login.gif" title="在线软件工程" /></a></center>
+	 <center><a href="indexRequest!theLastTaskRequestForIndex"><img src="images/login.gif" title="在线软件工程" /></a></center>
 	 <br>
 	 <br>
 	 <form name="form1" action="login" method="get" id="contactForm">

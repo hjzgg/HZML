@@ -96,7 +96,7 @@
 					<div class="class1">
 						任务<%=i+1%>
 						<div style="background-image:url('./images/color.gif'); height: 25px">
-							<h1 style="font-size:19px; color:#434c55; float: left;">第一次任务</h1>
+							<h1 style="font-size:19px; color:#434c55; float: left;"><%=task.getTaskName() %></h1>
 							<span style="float:right; cursor:pointer;" id="<%=i+"stateBut"%>" onClick="$use('<%=i+"contentx"%>','<%=i+"stateBut"%>')">展开</span>
 						</div>
 	       				<div class="class1content" id="<%=i+"contentx"%>">
@@ -126,7 +126,19 @@
 									<label>任务项目源码: </label>
 									<input type="text" name="taskAddress" id="taskAddress" value="<%=task.getTaskAddress() %>" readOnly/>
 								</div>
-								<a class="button" style="float:right;" href="DownloadFile"><span>下载项目</span></a>
+								<a class="button" style="float:right;" href="uR!fileDownLoad?fileName=<%=task.getTaskAddress() %>"><span>下载项目</span></a>
+								
+								<%
+									if(task.getState()!=3){
+								%>
+										<a class="button3d" style="width:60px" href="companyAndDistributeAction!evaluateTask?taskid=<%=task.getTaskid() %>">项目评分</a>
+								<%
+									} else {
+								%>			
+										<a class="button3d" style="width:60px" href="javascript:void(0)">评论完毕</a>
+								<%
+									}
+								%>							
 							</form>
 						</div>
 					</div>
@@ -165,23 +177,22 @@
 		<div class="container_16">
 		
 			<div class="grid_16" id="footer">
-				<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
-			
+				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
 				<div>
 					<ul class="services">
-						<li>web design</li>
-						<li>design customization</li>
-						<li>CMS systems</li>
+						<li>敏捷开发</li>
+						<li>在线团队合作</li>
+						<li>新手学习</li>
 					</ul>
 					<ul class="services">
-						<li>Wordpress themes/setups</li>
-						<li>Slicing PSD's into HTML/WP</li>
-						<li>code/html optimization</li>
+						<li>项目开发者</li>
+						<li>项目发布者</li>
+						<li>web维护者</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
+						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
 					</ul>
 				</div>
 			

@@ -5,14 +5,20 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.http.HttpRequest;
 
 import com.hzml.dao.DistributeDao;
+import com.hzml.entriy.DevelopingParty;
 import com.hzml.entriy.Task;
+import com.hzml.entriy.TaskAppend;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -129,15 +135,60 @@ public class CompanyAndDistributeAction extends ActionSupport{
 	}
 	
 	public String findAllFinishedTask(){
-		List<Task> taskList = distributeDao.findAllFinishedTask();
-		ActionContext.getContext().getSession().put("allFinishedTask", taskList);
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		List<Task> taskList = distributeDao.findAllFinishedTaskOfCompany((String)session.get("peopleName"));
+		session.put("allFinishedTask", taskList);
 		return "allFinishedTask";
 	}
 	
 	public String findAllTask(){
-		List<Task> taskList = distributeDao.findAllTask();
-		ActionContext.getContext().getSession().put("allTask", taskList);
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		List<Task> taskList = distributeDao.findAllTaskOfCompany((String)session.get("peopleName"));
+		session.put("allTask", taskList);
 		return "allTask";
+	}
+	
+	private String taskid;
+
+	public String getTaskid() {
+		return taskid;
+	}
+
+	public void setTaskid(String taskid) {
+		this.taskid = taskid;
+	}
+
+	public String evaluateTask(){
+		TaskAppend taskAppend = distributeDao.findLeaderMsg(Integer.parseInt(taskid));
+		Task task = distributeDao.getTask(Integer.parseInt(taskid));
+		List<DevelopingParty> list= distributeDao.findTaskAllUser(Integer.parseInt(taskid));
+		ActionContext.getContext().getSession().put("evaluateTask_taskAppend", taskAppend);
+		ActionContext.getContext().getSession().put("evaluateTask_task", task);
+		ActionContext.getContext().getSession().put("evaluateTask_DevelopingPartyList", list);
+		return "evaluateTask";
+	}
+	
+	public String scoreTask(){//计算每一个开发者的分数
+		HttpServletRequest request = ServletActionContext.getRequest();
+		Enumeration<String> parameterNames = request.getParameterNames();
+		while(parameterNames.hasMoreElements()){
+			String param = parameterNames.nextElement();
+			String value = request.getParameter(param);
+			if(param.equals("taskid")){
+				Task task = distributeDao.getTask(Integer.parseInt(value));
+				task.setState(3);//表示已经对这个项目审核完毕
+				distributeDao.updateTask(task);
+				continue;
+			}
+			int score = 0;
+			if(value.equals("1")) score = 30;
+			else if(value.equals("2")) score = 20;
+			else if(value.equals("3")) score = 10;
+			DevelopingParty user = distributeDao.findTaskUser(param);
+			user.setEvaluate(user.getEvaluate()+score);
+			distributeDao.updateDevelopingParty(user);
+		}
+		return "scoreTask";
 	}
 	
 	@Override
