@@ -1,0 +1,18 @@
+
+
+#wrap {width:580px; height:440px; background: #c5d99f; border:5px solid #e0ebcb; position:relative; margin:30px auto 20px auto;}
+#slide {width:480px; height:360px; overflow:hidden; position:absolute; left:49px; top:29px; background:#fff; border:1px solid #698639; border-color:#698639 #e0ebcb #e0ebcb #698639;}
+#slide div {text-decoration:none; display:block; width:480px; height:360px; position:absolute; left:480px;}
+#slide div span {width:480px; height:360px; background:url("../images/loginbg.jpg"); padding-left: 20px; padding-top: 100px; display:block; border:0; font-size: 20px; font-family: "¿¬Ìå"}
+#title {width:131px; height:132px; background:url(../images/star.png); position:absolute; left:5px; top:-30px;}
+* html #title {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/star.png', sizingMethod='crop');}
+#previous b {display:none;}
+#previous {width:74px; height:74px; background:url(../images/left.png); position:absolute; left:5px; top:175px; cursor:pointer;}
+* html #previous {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/left.png', sizingMethod='crop');}
+#next b {display:none;}
+#next {width:74px; height:74px; background:url(../images/right.png); position:absolute; left:510px; top:175px; cursor:pointer;}
+* html #next {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/right.png', sizingMethod='crop');}
+#buttons {position:absolute; left:50px; top:405px;}
+#buttons div {width:20px; height:20px; background:url(../images/button.gif); float:left; margin-right:5px; display:inline;}
+#buttons div b {display:block; width:20px; height:20px; line-height:19px; font-family:arial, sans-serif; font-size:11px; color:#16a;text-align:center; cursor:pointer;}
+img#loading {position:absolute; left:240px; top:170px;}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="QuestionList" table="questionlist">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="questionId" column="questionId" type="java.lang.Integer">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="identity"/>
+        	</id>
+        	<property name="optionCorrect" column="optionCorrect" type="java.lang.Integer"/>
+        	<property name="difficultDegree" column="difficultDegree" type="java.lang.Integer"/>
+        	
+        	<property name="questionMsg" column="questionMsg" type="java.lang.String"/>
+        	<property name="optionA" column="optionA" type="java.lang.String"/>
+        	<property name="optionB" column="optionB" type="java.lang.String"/>
+        	<property name="optionC" column="optionC" type="java.lang.String"/>
+        	<property name="optionD" column="optionD" type="java.lang.String"/>
+        </class>
+</hibernate-mapping>

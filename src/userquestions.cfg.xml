@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="UserQuestions" table="userquestions">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="uqId" column="uqId" type="java.lang.Integer">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="identity"/>
+        	</id>
+        	<property name="developName" column="developName" type="java.lang.String"/>
+        	<property name="score" column="score" type="java.lang.Integer"/>
+        	<property name="pageQuestionId" column="pageQuestionId" type="java.lang.Integer"/>
+        </class>
+</hibernate-mapping>

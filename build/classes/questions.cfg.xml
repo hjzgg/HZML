@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="Questions" table="questions">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="qId" column="qId" type="java.lang.Integer">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="identity"/>
+        	</id>
+        	<property name="questionId" column="questionId" type="java.lang.Integer"/>
+        	<property name="optionSelect" column="optionSelect" type="java.lang.Integer"/>
+        	<property name="pageQuestionId" column="pageQuestionId" type="java.lang.Integer"/>
+        </class>
+</hibernate-mapping>

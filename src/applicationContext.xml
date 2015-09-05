@@ -47,6 +47,9 @@
 		        <value>manager.cfg.xml</value>
 		        <value>taskAppend.cfg.xml</value>
 		        <value>contact.cfg.xml</value>
+		        <value>questions.cfg.xml</value>
+		        <value>questionlist.cfg.xml</value>
+		        <value>userquestions.cfg.xml</value>
 	    	</list>
 	    </property>	   
 	   
@@ -96,4 +99,12 @@
 		<property name="distributeDao" ref="distributeDao"/>
   </bean>
   
+  <!-- 对题库的管理和请求  -->
+  <bean id="questionsDao" class="com.hzml.dao.QuestionsDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+  </bean>
+  <bean id="questionsAction" class="com.hzml.action.QuestionsAction">
+		<property name="questionsDao" ref="questionsDao"/>
+  </bean>
+  <!-- ×××××××××××××××××××××××××××××××××××××××××××××　 -->
 </beans>

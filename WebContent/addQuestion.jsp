@@ -33,7 +33,14 @@ $(document).ready(function(){
 	$('#contactForm input, #contactForm textarea').focus(function(){ $(this).stop().animate({backgroundColor: "#fff3c5"}, 500), $(this).css("borderColor", "#f89d1c") })
 	
 	$('#contactForm input, #contactForm textarea').blur(function(){ $(this).stop().animate({backgroundColor: "#fffff"}, 500), $(this).css("borderColor", "#97b2cd") });
-	
+	<%
+		if(session.getAttribute("addQuestionSuccess") != null){
+			session.removeAttribute("addQuestionSuccess");
+	%>
+			alert("新题目添加成功!");
+	<%
+		}
+	%>
 })
 
 $('#main').ready(function(){
@@ -110,8 +117,8 @@ $('#main').ready(function(){
 		
 		<div class="grid_16" id="display">
 			<ul id="subNavigation">
-				<li><a href="messageAction!getAllContactMsg" class="current">消息管理</a></li>
-				<li><a href="addQuestion.jsp">题库管理</a></li>
+				<li><a href="messageAction!getAllContactMsg">消息管理</a></li>
+				<li><a href="messageAction!getAllContactMsg" class="current">题库管理</a></li>
 			</ul>
 		</div>
 		<div class="clear"></div>
@@ -121,94 +128,48 @@ $('#main').ready(function(){
 	<div class="container_16" id="content">
 		
 		<div class="grid_11 content contact" id="two_col">
-			<h2>最近消息如下:</h2>
-			<%	
-			    //////////////////////////////分页代码
-				int pageCur=0, pageBegin=0, pageTot=0, num= 0;
-			    final int pageSize = 6;//每一面显示的任务的数目
-				List<Contact> contactList = (List<Contact>)session.getAttribute("getAllContactMsg");
-			    num = contactList.size();//总个数 
-			    pageTot = num%pageSize == 0 ? num/pageSize : num/pageSize+1;//总页数
-			    String curPage  = request.getParameter("page");//当前定位的页码
-			    if(curPage == null) pageCur = 1; 
-			    else pageCur = Integer.valueOf(curPage);
-			    pageBegin = pageCur-5;
-			    if(pageBegin < 1) pageBegin = 1;
-			    int i = (pageCur-1)*pageSize;
-				//////////////////////////////////
-			    if(num>0)
-					for(int cnt=0; cnt<pageSize && i<contactList.size(); ++i, ++cnt){
-						Contact contact = contactList.get(i);
-			%>
-						<div class="class1">
-							<div style="background-image:url('./images/color.gif'); height: 25px">
-								消息<%=i+1%>&nbsp;&nbsp;
-								<b>时间:&nbsp;<%=contact.getMsgTime() %></b>
-								&nbsp;&nbsp;&nbsp;&nbsp;
- 								<%
-									if(contact.getState()==0){
-								%>
-									<b>处理状态:&nbsp;已经处理</b>
-								<% } else { %>
-									<b>处理状态:&nbsp;<b style="color:red">未处理</b></b>
-								<%
-								   }
-								%>
-								<span style="float:right; cursor:pointer;" id="<%=i+"stateBut"%>" onClick="$use('<%=i+"contentx"%>','<%=i+"stateBut"%>')">展开</span>
-							</div>
-		       				<div class="class1content" id="<%=i+"contentx"%>">
-								<form action="#" method="get" id="contactForm">
-									<br/>
-									<div>
-										<label>姓名:</label>
-										<input type="text" name="userName" id="userName" value="<%=contact.getUserName() %>" readonly="readonly"/>
-									</div>
-									<div>
-										<label>邮箱:<span>*</span></label>
-										<input type="text" name="email" id="email" value="<%=contact.getEmail() %>" readonly="readonly"/>
-									</div>
-									<div>
-										<label>消息:<span>*</span></label>
-										<textarea name="message" rows="10" cols="20" id="message" readonly="readonly"><%=contact.getMessage() %></textarea>
-									</div>
-									<a class="button" style="float:right;" href="#"><span>消息回复</span></a>
-								</form>
-							</div>
-						</div>
-		<% } %>
-		
-		<!-- 加入分页的按钮  -->
-		<div style="margin-top: 20px">
-			<%if(pageCur!=1){%>
-				  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=pageCur-1%>')"><span>上一页</span></a>	
-	         <%}%>
-	         <% 
-	         	int j;
-	         	for(i=pageBegin, j=1; j<=10 && i<=pageTot; ++i, ++j) {%>
-	             <%if(i == pageCur){%>
-	                  <b class="pageword" style="color:red;">
-	                      <%=i%>
-	                  </b>
-	             <%} else {%>
-	              	  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=i%>')"><span><%=i%></span></a>	
-	             <%}%>
-	         <% } %>                
-	
-	         <%if(pageCur!=pageTot){%>
-	                 <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=pageCur+1%>')"><span>下一页</span></a>
-	         <%}%>
-	          <b class="pageword">
-	                  &nbsp;&nbsp;共<%=pageTot%>页&nbsp;&nbsp;
-	          </b>
-	          
-	          <b class="pageword">
-	             	 向第<input type="text" id="pageTo" size="1">页
-	          </b>
-	          
-	          <a href="javascript:void(0)" class="button_page" onclick="myDumpTo('<%=pageTot%>', 'showAllTask.jsp?page=')"><span>跳转</span></a>
-          </div>
-		  <!-- 加入分页的按钮  -->
-							
+			 <h2>请添加新的题目:</h2>
+			 <form action="questionsAction!addQuestion" method="post" id="contactForm">
+					<br/>
+					<div>
+						<label>题目描述:</label>
+						<textarea name="questionMsg" rows="5" cols="20" id="message"></textarea>
+					</div>
+					<div>
+						<label>选项A:</label>
+						<input type="text" name="optionA" id="optionA"/>
+					</div>
+					<div>
+						<label>选项B:</label>
+						<input type="text" name="optionB" id="optionB"/>
+					</div>
+					<div>
+						<label>选项C:</label>
+						<input type="text" name="optionC" id="optionC"/>
+					</div>
+					<div>
+						<label>选项D:</label>
+						<input type="text" name="optionD" id="optionD"/>
+					</div>
+					<div>
+						<label>正确选项:</label>
+					 	<select name="optionCorrect">
+						  <option value ="1" selected="selected">A</option>
+						  <option value ="2">B</option>
+						  <option value="3">C</option>
+						  <option value="4">D</option>
+						</select>
+					</div>
+					<div>
+						<label>难易程度:</label>
+					 	<select name="difficultDegree">
+						  <option value ="1" selected="selected">简单</option>
+						  <option value ="2">较难</option>
+						  <option value="3">难</option>
+						</select>
+					</div>
+					<a class="button" style="float:right" href="#" onclick="$('#contactForm')[0].submit(); return false;" id="send"><span>提交新题目</span></a>
+			</form>			
 		</div><!-- /#left -->
 		<div class="grid_5 news" id="one_col">
 			<h2>联系</h2>

@@ -204,7 +204,7 @@ function getStarted(){
 						if(peopleType.equals("user")){
 				%>
 							<li><a href="userRequest?userRequest=userTaskNoParticipate"><span>用户任务</span></a></li>
-							<li><a href="#"><span>新手学习</span></a></li>
+							<li><a href="noviceTask.jsp"><span>新手学习</span></a></li>
 				<%
 						} else if(peopleType.equals("company")){
 				%>

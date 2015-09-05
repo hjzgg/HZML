@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>helloWorld</title>
+<title>errors</title>
+<script type="text/javascript" src="js/my.js"></script>
+<script language="javascript" type="text/javascript">
+	alert("访问出错或登录超时！");
+</script>
 </head>
 <body>
-	<center>你好，世界！</center>
+	<center>错误, 你好！</center>
 </body>
 </html>
