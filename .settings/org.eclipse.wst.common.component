@@ -2,7 +2,7 @@
     <wb-module deploy-name="HZML">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="HZML"/>
         <property name="java-output-path" value="/HZML/build/classes"/>
+        <property name="context-root" value="HZML"/>
     </wb-module>
 </project-modules>

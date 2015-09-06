@@ -75,7 +75,7 @@
 		<div class="grid_16" id="display">
 			<ul id="subNavigation">
 				<li><a href="#" class="current">新手学习</a></li>
-				<li><a href="#">查看已做题目</a></li>
+				<li><a href="questionsAction!getUserQuestionsAndQuestions">查看已做题目</a></li>
 				<li><a href="shaizi.jsp"><img src="images/骰子.png" height="12" width="12">&nbsp;随机做题</a></li>
 			</ul>
 		</div>

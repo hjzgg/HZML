@@ -38,8 +38,8 @@
 	    <property name="mappingResources">
 	    	<list>
 	    	   <!-- 以下用来列出所有的PO映射文件 -->
-		        <value>developingparty.cfg.xml</value>
 		        <value>publishparty.cfg.xml</value>
+		        <value>developingparty.cfg.xml</value>
 		        <value>task.cfg.xml</value>
 		        <value>taskteam.cfg.xml</value>
 		        <value>updatewrok.cfg.xml</value>

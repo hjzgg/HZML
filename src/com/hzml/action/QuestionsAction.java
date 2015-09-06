@@ -14,6 +14,7 @@ import com.hzml.dao.QuestionsDao;
 import com.hzml.entriy.QuestionList;
 import com.hzml.entriy.Questions;
 import com.hzml.entriy.UserQuestions;
+import com.hzml.entriy.UserQuestionsAndQuestions;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -157,5 +158,15 @@ public class QuestionsAction extends ActionSupport{
 		} else {
 			return "errors";
 		}
+	}
+	
+	public String getUserQuestionsAndQuestions(){//得到用户的所有题单的信息
+		String developName = (String)ActionContext.getContext().getSession().get("peopleName");
+		if(developName==null)
+			 return "errors";
+		List<UserQuestionsAndQuestions> list = null;
+		list = questionsDao.getUserQuestionsAndQuestions(developName);
+		ActionContext.getContext().getSession().put("getUserQuestionsAndQuestions", list);
+		return "getUserQuestionsAndQuestions";
 	}
 }

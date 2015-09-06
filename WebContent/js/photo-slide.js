@@ -5,7 +5,7 @@ Copyright (c) 2009 Stu Nicholls - stunicholls.com - all rights reserved.
 $(document).ready(function(){
 current = 1;
 button = 1;
-images = $("#buttons div b").length;//图片的数目
+images = $("#slide div div").length;//图片的数目
 width = 580;
 
 $('#p1').animate({"left": "0px"}, 500, "swing");

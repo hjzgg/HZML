@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import com.hzml.entriy.QuestionList;
 import com.hzml.entriy.Questions;
 import com.hzml.entriy.UserQuestions;
+import com.hzml.entriy.UserQuestionsAndQuestions;
 
 public class QuestionsDao implements Serializable{
 	private SessionFactory sessionFactory;  
@@ -63,5 +64,16 @@ public class QuestionsDao implements Serializable{
 		Transaction tran = session.beginTransaction();
 		session.save(question); 
 		tran.commit();
+    }
+    
+    public List<UserQuestionsAndQuestions> getUserQuestionsAndQuestions(String developName){//返回用户的题单
+    	List<UserQuestionsAndQuestions> list = null;
+    	String sql = "select new com.hzml.entriy.UserQuestionsAndQuestions(uq.score, uq.pageQuestionId, q.optionSelect, ql.questionMsg, ql.optionA, ql.optionB, ql.optionC, ql.optionD, ql.optionCorrect, ql.difficultDegree) from UserQuestions uq, Questions q, QuestionList ql where uq.developName=\'" + developName + 
+			     "\' and uq.pageQuestionId=q.pageQuestionId and q.questionId=ql.questionId";
+    	Session session = this.getSession();
+		Transaction tran = session.beginTransaction();
+		list = session.createQuery(sql).list();
+		tran.commit();
+		return list;
     }
 }
