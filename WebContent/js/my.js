@@ -364,3 +364,7 @@
 	     document.body.onselectstart = function(){return false;};
     }
 	
+    function mailResponse(index){
+    	var formIndex = parseInt(index, 10);//得到是第几个同名表单
+    	document.getElementsByName("mailMsg")[formIndex].submit();
+    }

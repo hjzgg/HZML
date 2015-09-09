@@ -1,20 +1,24 @@
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
-<%@page import="com.hzml.entriy.Task"%>
+<%@page import="com.hzml.entriy.UserQuestionsAndQuestions"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>查看全部任务</title>
+<title>用户题单</title>
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/userquestionsandquestions.css" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="js/cufon-yui.js"></script>
 <script type="text/javascript" src="js/jquery.cycle.min.all.js"></script>
 <script type="text/javascript" src="js/TitilliumText15L_100-TitilliumText15L_400.font.js"></script>
+<script src="js/photo-slide.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
@@ -64,6 +68,7 @@
 		
 		<div class="grid_16" id="navigation">
 			<ul>
+				<ul>
 				<li><a href="index.jsp"><span>主页</span></a></li>
 				<% 
 					String peopleType = (String)session.getAttribute("peopleType");
@@ -79,12 +84,13 @@
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>
 			</ul>
+			</ul>
 			<div id="triSlideContainer"><img src="images/currentarrow.gif" alt="arrow" /></div>
 		</div>
 		<div class="grid_16" id="display">
 			<ul id="subNavigation">
-				<li><a href="#" class="current">新手学习</a></li>
-				<li><a href="questionsAction!getUserQuestionsAndQuestions">查看已做题目</a></li>
+				<li><a href="#">新手学习</a></li>
+				<li><a href="questionsAction!getUserQuestionsAndQuestions" class="current">查看已做题目</a></li>
 				<li><a href="shaizi.jsp"><img src="images/骰子.png" height="12" width="12">&nbsp;随机做题</a></li>
 			</ul>
 		</div>
@@ -95,7 +101,59 @@
 	<div class="container_16" id="content">
 	
 		<div class="grid_11 content" id="two_col">
-			 
+			 <div id="wrap">
+				<div id="slide">
+					<img id="loading" src="images/loading.gif"/>
+					<% 
+						List<UserQuestionsAndQuestions> list = (List<UserQuestionsAndQuestions>)session.getAttribute("getUserQuestionsAndQuestions");
+						String[] simpleLevel = {"未知", "简单", "较难", "难"};//题目的简易程度
+						String[] choose={"", "A", "B", "C", "D"};
+						int cntPage = 0;//一共有多少的题单
+						if(list != null){
+							Collections.sort(list);
+							for(int i=0; i<list.size(); ){
+								++cntPage;
+					%>
+								<div id="p<%=cntPage%>">
+									<div>
+										<center><b>题单<%=cntPage %>&nbsp;&nbsp;本次得分:<b style="color:red"><%=list.get(i).getScore() %>分</b></b></center>
+										<br>
+									 	<%
+									 		int k = 0;
+									 		for(int j=i; j<list.size(); ++j){
+									 			if(j!=i && list.get(j).getPageQuestionId() != list.get(j-1).getPageQuestionId()){
+									 				i=j;
+									 				break;
+									 			}
+									 			UserQuestionsAndQuestions userQuestionsAndQuestions = list.get(j);
+									 			int optionSelect = userQuestionsAndQuestions.getOptionSelect();
+									 			int optionCorrect = userQuestionsAndQuestions.getOptionCorrect();
+									 			if(j==list.size()-1) i=j+1;
+									 	%>
+									 			<%=++k %>.<%=userQuestionsAndQuestions.getQuestionMsg() %><br>
+									 			A.<%=userQuestionsAndQuestions.getOptionA() %><br>
+									 			B.<%=userQuestionsAndQuestions.getOptionB() %><br>
+									 			C.<%=userQuestionsAndQuestions.getOptionC() %><br>
+									 			D.<%=userQuestionsAndQuestions.getOptionD() %><br>
+									 			简易程度:<%=simpleLevel[userQuestionsAndQuestions.getDifficultDegree()] %><br>
+									 			选择:<%=choose[optionSelect] %>
+									 			<b style="color:red">正确:<%=choose[optionCorrect] %></b><br>
+									 			<br>
+									 	<%
+									 		}
+									 	%>  
+									</div>
+								</div>
+					<%
+							}
+						}
+					%>
+					 
+				</div> <!-- end wrap -->
+			
+				<div id="previous"><b>Previous</b></div>
+				<div id="next"><b>Next</b></div>
+			</div>
 		</div><!-- /#two_col -->
 		<div class="grid_5 news" id="one_col">
 			<h2>如何进行一个任务的分派？</h2>

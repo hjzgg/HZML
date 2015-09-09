@@ -1,5 +1,3 @@
-<%@page import="java.util.List"%>
-<%@page import="com.hzml.entriy.Contact"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -12,10 +10,8 @@
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="js/cufon-yui.js"></script>
-<script type="text/javascript" src="js/jquery.cycle.min.all.js"></script>
 <script type="text/javascript" src="js/TitilliumText15L_100-TitilliumText15L_400.font.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
-<script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
 
 	body {
@@ -97,21 +93,20 @@ $('#main').ready(function(){
 				<%
 						} else if(peopleType.equals("manager")){
 				%>
-							<li><a href="messageAction!getAllContactMsg" class="current"><span>管理员</span></a></li>
+							<li><a href="messageAction!getAllContactMsg"><span>管理员</span></a></li>
 				<%
 						}
 				%>
 				<li><a href="about.jsp"><span>关于</span></a></li>
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
-				<li><a href="contact.jsp"><span>联系</span></a></li>
+				<li><a href="contact.jsp" class="current"><span>联系</span></a></li>
 			</ul>
 			<div id="triSlideContainer"><img src="images/currentarrow.gif" alt="arrow" /></div>
 		</div>
 		
 		<div class="grid_16" id="display">
 			<ul id="subNavigation">
-				<li><a href="messageAction!getAllContactMsg" class="current">消息管理</a></li>
-				<li><a href="addQuestion.jsp">题库管理</a></li>
+				<li><a href="#" class="current">邮件回复</a></li>
 			</ul>
 		</div>
 		<div class="clear"></div>
@@ -121,100 +116,33 @@ $('#main').ready(function(){
 	<div class="container_16" id="content">
 		
 		<div class="grid_11 content contact" id="two_col">
-			<h2>最近消息如下:</h2>
-			<%	
-			    //////////////////////////////分页代码
-				int pageCur=0, pageBegin=0, pageTot=0, num= 0;
-			    final int pageSize = 6;//每一面显示的任务的数目
-				List<Contact> contactList = (List<Contact>)session.getAttribute("getAllContactMsg");
-			    num = contactList.size();//总个数 
-			    pageTot = num%pageSize == 0 ? num/pageSize : num/pageSize+1;//总页数
-			    String curPage  = request.getParameter("page");//当前定位的页码
-			    if(curPage == null) pageCur = 1; 
-			    else pageCur = Integer.valueOf(curPage);
-			    pageBegin = pageCur-5;
-			    if(pageBegin < 1) pageBegin = 1;
-			    int i = (pageCur-1)*pageSize;
-				//////////////////////////////////
-			    if(num>0)
-					for(int cnt=0; cnt<pageSize && i<contactList.size(); ++i, ++cnt){
-						Contact contact = contactList.get(i);
-			%>
-						<div class="class1">
-							<div style="background-image:url('./images/color.gif'); height: 25px">
-								消息<%=i+1%>&nbsp;&nbsp;
-								<b>时间:&nbsp;<%=contact.getMsgTime() %></b>
-								&nbsp;&nbsp;&nbsp;&nbsp;
- 								<%
-									if(contact.getState()!=0){
-								%>
-									<b>处理状态:&nbsp;已经处理</b>
-								<% } else { %>
-									<b>处理状态:&nbsp;<b style="color:red">未处理</b></b>
-								<%
-								   }
-								%>
-								<span style="float:right; cursor:pointer;" id="<%=i+"stateBut"%>" onClick="$use('<%=i+"contentx"%>','<%=i+"stateBut"%>')">展开</span>
-							</div>
-		       				<div class="class1content" id="<%=i+"contentx"%>">
-								<form action="mailResponse.jsp" method="post" id="contactForm" name="mailMsg">
-									<br/>
-									<div>
-										<label>姓名:</label>
-										<input type="text" name="userName" id="userName" value="<%=contact.getUserName() %>" readonly="readonly"/>
-									</div>
-									<div>
-										<label>邮箱:<span>*</span></label>
-										<input type="text" name="email" id="email" value="<%=contact.getEmail() %>" readonly="readonly"/>
-									</div>
-									<div>
-										<label>消息:<span>*</span></label>
-										<textarea name="message" rows="10" cols="20" id="message" readonly="readonly"><%=contact.getMessage() %></textarea>
-									</div>
-									<%
-										if(contact.getState()==0){
-									%>
-											<a class="button" style="float:right;" href="javascript:void(0)" onclick="mailResponse('<%=cnt%>')"><span>消息回复</span></a>
-									<%
-										}
-									%>
-								</form>
-							</div>
-						</div>
-		<% } %>
-		
-		<!-- 加入分页的按钮  -->
-		<div style="margin-top: 20px">
-			<%if(pageCur!=1){%>
-				  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=pageCur-1%>')"><span>上一页</span></a>	
-	         <%}%>
-	         <% 
-	         	int j;
-	         	for(i=pageBegin, j=1; j<=10 && i<=pageTot; ++i, ++j) {%>
-	             <%if(i == pageCur){%>
-	                  <b class="pageword" style="color:red;">
-	                      <%=i%>
-	                  </b>
-	             <%} else {%>
-	              	  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=i%>')"><span><%=i%></span></a>	
-	             <%}%>
-	         <% } %>                
-	
-	         <%if(pageCur!=pageTot){%>
-	                 <a href="javascript:void(0)" class="button_page" onclick="myGoTo('showAllTask.jsp?page=<%=pageCur+1%>')"><span>下一页</span></a>
-	         <%}%>
-	          <b class="pageword">
-	                  &nbsp;&nbsp;共<%=pageTot%>页&nbsp;&nbsp;
-	          </b>
-	          
-	          <b class="pageword">
-	             	 向第<input type="text" id="pageTo" size="1">页
-	          </b>
-	          
-	          <a href="javascript:void(0)" class="button_page" onclick="myDumpTo('<%=pageTot%>', 'showAllTask.jsp?page=')"><span>跳转</span></a>
-          </div>
-		  <!-- 加入分页的按钮  -->
-							
+			<h2>邮件回复</h2>
+			<p>
+				带有<span>*</span>的选项必填
+			</p>
+				<form action="MailResponse.servlet" method="post" id="contactForm">
+					<br/>
+					<div>
+						<label>发件人:<span>*</span></label>
+						<input type="text" name="emailFrom" id="emailFrom" />
+					</div>
+					<div>
+						<label>收件人:<span>*</span></label>
+						<input type="text" name="emailTo" id="emailTo" value="<%=request.getParameter("email") %>"/>
+					</div>
+					<div>
+						<label>收件人消息:<span>*</span></label>
+						<textarea name="message" rows="10" cols="20" id="message" readonly="readonly">
+							<%=request.getParameter("message") %>
+						</textarea>
+					</div>
+					<div>
+						<label>发件人消息:<span>*</span></label>
+						<textarea name="messageTo" rows="10" cols="20" id="messageTo"></textarea>
+					</div>
+					<a class="button" style="float:right" href="#" onclick="$('#contactForm')[0].submit(); return false;" id="send"><span>发送邮件</span></a>
+			</form>
+						
 		</div><!-- /#left -->
 		<div class="grid_5 news" id="one_col">
 			<h2>联系</h2>
