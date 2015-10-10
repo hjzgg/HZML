@@ -73,7 +73,7 @@ public class UserRequest extends ActionSupport{
 		this.distributeDao = distributeDao;
 	}
 
-	public String userRequest(){
+	public String userRequest() throws IOException{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
 		String userRequest = request.getParameter("userRequest");
 		String taskid = request.getParameter("taskid");
@@ -96,11 +96,16 @@ public class UserRequest extends ActionSupport{
 		} else if(userRequest.equals("userTaskParticipating")){
 			List<Task> taskList = distributeDao.findUserTaskParticipating(peopleName);
 			ActionContext.getContext().getSession().put("userTaskParticipating", taskList);
+			
 			return "userTaskParticipating";
 		} else if(userRequest.equals("showNoParticipateTask")){
 			if(taskid==null) return "userError";
 			Task task = distributeDao.getTask(Integer.parseInt(taskid));
 			ActionContext.getContext().getSession().put("showNoParticipateTask", task);
+			if(peopleName != null){
+				DevelopingParty curDevelopingParty = distributeDao.findTaskUser(peopleName);
+				ActionContext.getContext().getSession().put("curDevelopingParty", curDevelopingParty);
+			}
 			return "showNoParticipateTask";
 		} else if(userRequest.equals("showParticipateTask")){
 			if(taskid==null) return "userError";

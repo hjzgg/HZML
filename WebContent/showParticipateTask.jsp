@@ -74,9 +74,10 @@
 		List<TaskTeam> taskTeamList = (List<TaskTeam>) session.getAttribute("showParticipateTask_taskTeam");
 		String state = null;
 		switch(task.getState()){
-			case 0: state="任务没有开始执行!"; break;
-			case 1: state="任务已经开始执行!"; break;
-			case 2: state="任务已经完成!"; break;
+			case 0: state="任务没有开始执行"; break;
+			case 1: state="任务已经开始执行"; break;
+			case 2: state="任务已经完成"; break;
+			default: state="任务已经完成"; break;
 		}
 	%>		
 	<div id="div_absolute">
@@ -105,14 +106,8 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="projects.jsp">团队成员</a></li>
-						<li><a href="#">services</a></li>
-						<li>
-							<a href="blog.jsp">News</a>
-							<ul>
-								<li><a href="post.jsp">First newsitem</a></li>
-								<li><a href="post.jsp">Second newsitem</a></li>
-							</ul>
-						</li>
+						<li><a href="showAllTask.jsp">任务展示</a></li>
+						<li><a href="about.jsp">关于</a></li>
 						<li><a href="contact.jsp">联系</a></li>
 					</ul>
 				</div><!-- /#qsmMiddle -->

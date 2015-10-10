@@ -41,14 +41,8 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="projects.jsp">团队成员</a></li>
-						<li><a href="#">services</a></li>
-						<li>
-							<a href="blog.jsp">News</a>
-							<ul>
-								<li><a href="post.jsp">First newsitem</a></li>
-								<li><a href="post.jsp">Second newsitem</a></li>
-							</ul>
-						</li>
+						<li><a href="showAllTask.jsp">任务展示</a></li>
+						<li><a href="about.jsp">关于</a></li>
 						<li><a href="contact.jsp">联系</a></li>
 					</ul>
 				</div><!-- /#qsmMiddle -->
@@ -131,11 +125,11 @@
 								<%
 									if(task.getState()!=3){
 								%>
-										<a class="button3d" style="width:60px" href="companyAndDistributeAction!evaluateTask?taskid=<%=task.getTaskid() %>">项目评分</a>
+										<a class="button3d" style="width:50px" href="companyAndDistributeAction!evaluateTask?taskid=<%=task.getTaskid() %>">项目评分</a>
 								<%
 									} else {
 								%>			
-										<a class="button3d" style="width:60px" href="javascript:void(0)">评论完毕</a>
+										<a class="button3d" style="width:50px" href="javascript:void(0)">评论完毕</a>
 								<%
 									}
 								%>							

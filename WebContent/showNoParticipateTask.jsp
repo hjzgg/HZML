@@ -1,4 +1,5 @@
 <%@page import="com.hzml.entriy.Task" %>
+<%@page import="com.hzml.entriy.DevelopingParty" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -73,14 +74,8 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="projects.jsp">团队成员</a></li>
-						<li><a href="#">services</a></li>
-						<li>
-							<a href="blog.jsp">News</a>
-							<ul>
-								<li><a href="post.jsp">First newsitem</a></li>
-								<li><a href="post.jsp">Second newsitem</a></li>
-							</ul>
-						</li>
+						<li><a href="showAllTask.jsp">任务展示</a></li>
+						<li><a href="about.jsp">关于</a></li>
 						<li><a href="contact.jsp">联系</a></li>
 					</ul>
 				</div><!-- /#qsmMiddle -->
@@ -99,7 +94,7 @@
 				<li><a href="index.jsp"><span>主页</span></a></li>
 				<li><a href="#" class="current"><span>用户任务</span></a></li>
 				<li><a href="#"><span>新手学习</span></a></li>
-				<li><a href="about.jsp" class="current"><span>关于</span></a></li>
+				<li><a href="about.jsp"><span>关于</span></a></li>
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>
 			</ul>
@@ -151,7 +146,8 @@
 				<br>
 				<br>
 				<%
-					if(session.getAttribute("peopleName") != null && "user".equals((String)session.getAttribute("peopleType")) && task.getState() != 2){//没有登录的用户只能查看任务
+					DevelopingParty curDevelopingParty = (DevelopingParty)session.getAttribute("curDevelopingParty");
+					if(session.getAttribute("peopleName") != null && "user".equals((String)session.getAttribute("peopleType")) && task.getState() != 2 /* && curDevelopingParty.getEvaluate()>=100 */){//没有登录的用户只能查看任务
 				%>
 						<a class="button" style="float:left;" href="javascript:void(0)" onclick="takeInDistribute('<%=task.getTaskid()%>')"><span>加入项目开发</span></a>
 				<%

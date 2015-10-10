@@ -51,14 +51,8 @@ body {
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="projects.jsp">团队成员</a></li>
-						<li><a href="#">services</a></li>
-						<li>
-							<a href="blog.jsp">News</a>
-							<ul>
-								<li><a href="post.jsp">First newsitem</a></li>
-								<li><a href="post.jsp">Second newsitem</a></li>
-							</ul>
-						</li>
+						<li><a href="showAllTask.jsp">任务展示</a></li>
+						<li><a href="about.jsp">关于</a></li>
 						<li><a href="contact.jsp">联系</a></li>
 					</ul>
 				</div><!-- /#qsmMiddle -->
@@ -113,7 +107,7 @@ body {
 						QuestionList question = questionList.get(i);
 				%>
 						<div id="p<%=i+1%>">
-							<span>
+							<div>
 								<%=i+1%>.<%=question.getQuestionMsg() %>
 								<br>
 								<br>
@@ -124,7 +118,7 @@ body {
 								&nbsp;&nbsp;<input type="radio" name="optionSelect<%=i%>" value="3" /><%=question.getOptionC() %>
 								<br>
 								&nbsp;&nbsp;<input type="radio" name="optionSelect<%=i%>" value="4" /><%=question.getOptionD() %>
-							</span>
+							</div>
 							<%
 								if(i==questionList.size()-1){
 							%>

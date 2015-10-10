@@ -28,52 +28,94 @@ public class QuestionsDao implements Serializable{
     }  
     
     public void addQuesstion(QuestionList question){
-    	Session session = this.getSession();
-		Transaction tran = session.beginTransaction();
-		session.save(question); 
-		tran.commit();
+    	Session session = null;
+    	Transaction tran = null;
+    	try{
+    		session = this.getSession();
+    		tran = session.beginTransaction();
+    		session.save(question); 
+    		tran.commit();
+    	} catch(Exception e){
+    		System.out.println(e.toString());
+    		tran.rollback();
+    	}
     }
     
     public List<QuestionList> getAllQuessions(){
     	List<QuestionList> list = null;
-    	Session session = this.getSession();
-		Transaction tran = session.beginTransaction();
-		list = session.createQuery("from QuestionList").list();
-		tran.commit();
+    	Session session = null;
+    	Transaction tran = null;
+    	try{
+    		session = this.getSession();
+    		tran = session.beginTransaction();
+    		list = session.createQuery("from QuestionList").list();
+    		tran.commit();
+    	} catch (Exception e){
+    		System.out.println(e.toString());
+    		tran.rollback();
+    	}
 		return list;
     }
     
     public List<Questions> getAllQuestionsInPage(){//返回题单中的所有题目信息
     	List<Questions> list = null;
-    	Session session = this.getSession();
-		Transaction tran = session.beginTransaction();
-		list = session.createQuery("from Questions").list();
-		tran.commit();
+    	Session session = null;
+    	Transaction tran = null;
+    	try{
+    		session = this.getSession();
+    		tran = session.beginTransaction();
+    		list = session.createQuery("from Questions").list();
+    		tran.commit();
+    	} catch (Exception e){
+    		System.out.println(e.toString());
+    		tran.rollback();
+    	}
 		return list;
     }
     
     public void addNewPage(UserQuestions uquestion){//添加新的题单
-    	Session session = this.getSession();
-		Transaction tran = session.beginTransaction();
-		session.save(uquestion); 
-		tran.commit();
+    	Session session = null;
+    	Transaction tran = null;
+    	try{
+    		session = this.getSession();
+    		tran = session.beginTransaction();
+    		session.save(uquestion); 
+    		tran.commit();
+    	} catch(Exception e){
+    		System.out.println(e.toString());
+    		tran.rollback();
+    	}
     }
     
     public void addNewQuestionToPage(Questions question){//向题单中添加新的题目
-    	Session session = this.getSession();
-		Transaction tran = session.beginTransaction();
-		session.save(question); 
-		tran.commit();
+    	Session session = null;
+    	Transaction tran = null;
+    	try{
+    		session = this.getSession();
+    		tran = session.beginTransaction();
+    		session.save(question); 
+    		tran.commit();
+    	} catch (Exception e){
+    		System.out.println(e.toString());
+    		tran.rollback();
+    	}
     }
     
     public List<UserQuestionsAndQuestions> getUserQuestionsAndQuestions(String developName){//返回用户的题单
     	List<UserQuestionsAndQuestions> list = null;
     	String sql = "select new com.hzml.entriy.UserQuestionsAndQuestions(uq.score, uq.pageQuestionId, q.optionSelect, ql.questionMsg, ql.optionA, ql.optionB, ql.optionC, ql.optionD, ql.optionCorrect, ql.difficultDegree) from UserQuestions uq, Questions q, QuestionList ql where uq.developName=\'" + developName + 
 			     "\' and uq.pageQuestionId=q.pageQuestionId and q.questionId=ql.questionId";
-    	Session session = this.getSession();
-		Transaction tran = session.beginTransaction();
-		list = session.createQuery(sql).list();
-		tran.commit();
+    	Session session = null;
+    	Transaction tran = null;
+    	try{
+    		session = this.getSession();
+    		tran = session.beginTransaction();
+			list = session.createQuery(sql).list();
+			tran.commit();
+    	} catch (Exception e){
+    		System.out.println(e.toString());
+    		tran.rollback();
+    	}
 		return list;
     }
 }

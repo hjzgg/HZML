@@ -45,14 +45,8 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="projects.jsp">团队成员</a></li>
-						<li><a href="#">services</a></li>
-						<li>
-							<a href="blog.jsp">News</a>
-							<ul>
-								<li><a href="post.jsp">First newsitem</a></li>
-								<li><a href="post.jsp">Second newsitem</a></li>
-							</ul>
-						</li>
+						<li><a href="showAllTask.jsp">任务展示</a></li>
+						<li><a href="about.jsp">关于</a></li>
 						<li><a href="contact.jsp">联系</a></li>
 					</ul>
 				</div><!-- /#qsmMiddle -->
@@ -89,7 +83,7 @@
 		</div>
 		<div class="grid_16" id="display">
 			<ul id="subNavigation">
-				<li><a href="#">新手学习</a></li>
+				<li><a href="noviceTask.jsp">新手学习</a></li>
 				<li><a href="questionsAction!getUserQuestionsAndQuestions" class="current">查看已做题目</a></li>
 				<li><a href="shaizi.jsp"><img src="images/骰子.png" height="12" width="12">&nbsp;随机做题</a></li>
 			</ul>

@@ -481,6 +481,7 @@ var myfun=function()
 				this.onmousemove = null;
 				this.onmouseup = null;
 				startMove( oContainer );
+				setTimeout(randomQuestion, 1000);
 			});
 			
 			stopMove( oContainer.timer );
@@ -526,7 +527,7 @@ var myfun=function()
 			++cntcc;
 			y = startY + ( clientX - moveX )/5;
 			x = startX - ( clientY - moveY )/5;
-			if(cntcc==50){ 
+			if(cntcc==25){ 
 				 window.clearInterval(hjzgg);
 			}
 			transform( oContainer, "perspective(" + pers + "px) rotateX("+ Math.ceil( x ) +"deg) rotateY(" + Math.ceil( y ) +"deg)" );

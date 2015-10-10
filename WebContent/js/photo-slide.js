@@ -14,15 +14,15 @@ $('#b1 b').css("color","#fff");
 
 $("#next").click(function() {
 		button = current;
-		current++
-	if (current == (images+1) ) {current = 1}
+		current++;
+	if (current >= (images+1) ) {current = 1}
 animateLeft(current,button)
 });
 
 $("#previous").click(function() {
 		button = current;
-		current--
-	if (current == 0 ) {current = images}
+		current--;
+	if (current <= 0 ) {current = images}
 animateRight(current,button)
 });
 
@@ -45,14 +45,16 @@ $("#buttons div b").mouseout(function() {
 function animateLeft(current,button) {
 	$('#p'+current).css("left",width +"px");
 	$('#p'+current).animate({"left": "0px"}, 500, "swing");
-	$('#p'+button).animate({"left": -width+"px"}, 500, "swing");
+	if(images!=1)
+		$('#p'+button).animate({"left": -width+"px"}, 500, "swing");
 	setbutton()
 }
 
 function animateRight(current,button) {
 	$('#p'+current).css("left",-width+"px");
 	$('#p'+current).animate({"left": "0px"}, 500, "swing");
-	$('#p'+button).animate({"left": width+"px"}, 500, "swing");
+	if(images!=1)
+		$('#p'+button).animate({"left": width+"px"}, 500, "swing");
 	setbutton()
 }
 

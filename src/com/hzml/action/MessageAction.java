@@ -22,6 +22,16 @@ public class MessageAction extends ActionSupport{
 	private String userName;
 	private String email;
 	private String message;
+	private String msgId;
+	
+	public String getMsgId() {
+		return msgId;
+	}
+
+	public void setMsgId(String msgId) {
+		this.msgId = msgId;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -51,6 +61,14 @@ public class MessageAction extends ActionSupport{
 		Contact msg = new Contact(0, userName, email, message, 0, new Timestamp(System.currentTimeMillis()));
 		messageDao.saveContactMsg(msg);
 		return "receiveMessage";
+	}
+	
+	public String updateContactMsg(){
+		int msgIdd = Integer.parseInt(msgId);
+    	Contact msg = messageDao.getContactMsg(msgIdd);
+    	msg.setState(1);
+    	messageDao.updateContactMsg(msg);
+    	return "updateContactMsg";
 	}
 	
 	public String getAllContactMsg(){

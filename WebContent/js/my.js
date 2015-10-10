@@ -204,7 +204,6 @@
 		}
 		xmlhttp.onreadystatechange=function(){
 			  if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				  window.location.reload(); 
 				  alert("项目地址更改成功!");
 			  }
 		 }
@@ -231,7 +230,6 @@
 		}
 		xmlhttp.onreadystatechange=function(){
 			  if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				  window.location.reload(); 
 				  alert("项目提交成功!");
 			  }
 		 }
@@ -255,7 +253,11 @@
 	}
 	
 	function UpladFile(fileUploadId, taskid) {
-
+		 if(document.getElementById(fileUploadId).value == ""){
+			 alert("请选择上传的文件!");
+			 return ;
+		 }
+		
          var fileObj = document.getElementById(fileUploadId).files[0]; // 获取文件对象
 
          var FileController = "updateWorkAction!fileUpload";                    // 接收上传文件的后台地址 
@@ -273,12 +275,12 @@
          var xhr = new XMLHttpRequest();
 
          xhr.open("post", FileController, true);
-
-         xhr.onload = function () {
-        	 location.reload(true);   
-             alert("上传完成!");
-
-         };
+         
+         xhr.onreadystatechange=function(){
+			  if (xhr.readyState==4 && xhr.status==200){
+				  alert('上传完成!');
+			  }
+		 }
 
          xhr.send(form);
     }

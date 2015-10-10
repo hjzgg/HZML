@@ -41,14 +41,8 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="projects.jsp">团队成员</a></li>
-						<li><a href="#">services</a></li>
-						<li>
-							<a href="blog.jsp">News</a>
-							<ul>
-								<li><a href="post.jsp">First newsitem</a></li>
-								<li><a href="post.jsp">Second newsitem</a></li>
-							</ul>
-						</li>
+						<li><a href="showAllTask.jsp">任务展示</a></li>
+						<li><a href="about.jsp">关于</a></li>
 						<li><a href="contact.jsp">联系</a></li>
 					</ul>
 				</div><!-- /#qsmMiddle -->
@@ -83,7 +77,7 @@
 		<div class="grid_11 content" id="two_col">
 			<h2>所有的任务列表:</h2>
 			<%	
-				String state[] = {"该任务未被执行!", "该任务正在被执行!", "该任务已经完成!"};
+				String state[] = {"该任务未被执行!", "该任务正在被执行!", "该任务已经完成!", "该任务已经完成!"};
 			    //////////////////////////////分页代码
 				int pageCur=0, pageBegin=0, pageTot=0, num= 0;
 			    final int pageSize = 6;//每一面显示的任务的数目

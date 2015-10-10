@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/menu.css" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="js/cufon-yui.js"></script>
@@ -41,14 +42,8 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="projects.jsp">团队成员</a></li>
-						<li><a href="#">services</a></li>
-						<li>
-							<a href="blog.jsp">News</a>
-							<ul>
-								<li><a href="post.jsp">First newsitem</a></li>
-								<li><a href="post.jsp">Second newsitem</a></li>
-							</ul>
-						</li>
+						<li><a href="showAllTask.jsp">任务展示</a></li>
+						<li><a href="about.jsp">关于</a></li>
 						<li><a href="contact.jsp">联系</a></li>
 					</ul>
 				</div><!-- /#qsmMiddle -->
@@ -95,7 +90,39 @@
 	<div class="container_16" id="content">
 	
 		<div class="grid_11 content" id="two_col">
+			 <div class="mymenu">
+			 	<div class="mytitle">
+			 		自学习网站推荐
+			 	</div>
+			 	<a href="http://www.w3school.com.cn/" title="w3cschool">w3cschool</a>
+			 	<a href="http://www.educity.cn/" title="专业IT教育平台">专业IT教育平台</a>
+			 	<a href="http://www.imooc.com/" title="慕课网">慕课网</a>
+			 	<a href="http://www.csdn.net/" title="CSDN">CSDN</a>
+			 </div>
 			 
+			 <div class="mymenu">
+			 	<div class="mytitle">
+			 		推荐学习
+			 	</div>
+			 	<span>
+			 		&nbsp;&nbsp;&nbsp;&nbsp;通过推荐学习的步骤，你可以从一个菜鸟一步一步的迈向入门。
+			 	</span>
+		 		<span>
+			 		<a class="button3d" href="javascript:void(0)">推荐学习</a>
+			 	</span>
+			 </div>
+			 
+			 <div class="mymenu">
+			 	<div class="mytitle">
+			 		随机学习
+			 	</div>
+			 	<span>
+			 		&nbsp;&nbsp;&nbsp;&nbsp;随机性的学习适用于基础比较好的人。
+			 	</span>
+			 	<span>
+			 		<a class="button3d" style="margin-top: 103px" href="javascript:void(0)">随机学习</a>
+			 	</span>
+			 </div>
 		</div><!-- /#two_col -->
 		<div class="grid_5 news" id="one_col">
 			<h2>如何进行一个任务的分派？</h2>

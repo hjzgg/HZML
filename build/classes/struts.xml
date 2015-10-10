@@ -6,7 +6,8 @@
   <!-- 将Action的创建交给spring来管理 -->  
   <constant name="struts.objectFactory" value="spring" />  
   <constant name="struts.i18n.encoding" value="utf-8"/>
-   <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+  <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+  <constant name="struts.multipart.maxSize" value="100000000"/> 
   <package namespace="/" name="struts2" extends="struts-default">  
     
 	    <!-- package中的标签必须按照如下顺序配置
@@ -73,7 +74,7 @@
 			 <result name="userTaskFinish">/userTaskFinish.jsp</result> 
 			 <result name="userTaskNoParticipate">/userTaskNoParticipate.jsp</result> 
 			 <result name="userTaskParticipating">/userTaskParticipating.jsp</result>
-			 <result name="showNoParticipateTask">/showNoParticipateTask.jsp</result>
+			 <result name="showNoParticipateTask" type="redirect">/showNoParticipateTask.jsp</result>
 			 <result name="showParticipateTask">/showParticipateTask.jsp</result>
 			 <result name="fileDownLoad">/DownloadFile</result>
 		</action>
@@ -124,6 +125,7 @@
 		<action name="messageAction" class="messageAction" method="struts-default">
 			 <result name="receiveMessage">/sampleJsp/recevieContactMsg.jsp</result> 
 			 <result name="getAllContactMsg">/adminMessageSolve.jsp</result> 
+			 <result name="updateContactMsg" type="redirect">/sampleJsp/mailState.jsp</result>
 		</action>
 		
 	 	<!-- 对题库的管理和请求  -->

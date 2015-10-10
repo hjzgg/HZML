@@ -3,7 +3,7 @@
 #wrap {width:580px; height:440px; background: #c5d99f; border:5px solid #e0ebcb; position:relative; margin:30px auto 20px auto;}
 #slide {width:480px; height:360px; overflow:hidden; position:absolute; left:49px; top:29px; background:#fff; border:1px solid #698639; border-color:#698639 #e0ebcb #e0ebcb #698639;}
 #slide div {text-decoration:none; display:block; width:480px; height:360px; position:absolute; left:480px;}
-#slide div span {width:480px; height:360px; background:url("../images/loginbg.jpg"); padding-left: 20px; padding-top: 100px; display:block; border:0; font-size: 20px; font-family: "¿¬Ìå"}
+#slide div div {position:relative; left:0px; top:0px; padding-top:80px; padding-right:20px; padding-left: 20px; overflow:auto;width:480px; height:360px; background:url("../images/loginbg.jpg"); font-size: 20px; font-family: "¿¬Ìå"}
 #title {width:131px; height:132px; background:url(../images/star.png); position:absolute; left:5px; top:-30px;}
 * html #title {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/star.png', sizingMethod='crop');}
 #previous b {display:none;}
