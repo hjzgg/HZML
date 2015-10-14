@@ -21,8 +21,8 @@
   <filter-mapping>
     <filter-name>struts2</filter-name>
     <url-pattern>/*</url-pattern>
-    <dispatcher>FORWARD</dispatcher>
     <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
   <filter>
     <filter-name>openSessionInViewFilter</filter-name>

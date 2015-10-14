@@ -61,7 +61,7 @@
 		<!-- DMI(动态方法调用)-->
 		<action name="uR" class="userRequest">
 			<!-- 用户请求下载文档  -->	
-			<result name="fileDownLoad">/DownloadFile</result>
+			<result name="fileDownLoad">/DownloadFile.servlet</result>
 			<!-- 组长保留项目地址  -->
 			<result name="userRequestToSaveTaskAddress" type="chain">userRequest</result>
 			<!-- 要创建/hzmlFile文件夹，否则会报找不到文件 -->
@@ -76,7 +76,7 @@
 			 <result name="userTaskParticipating">/userTaskParticipating.jsp</result>
 			 <result name="showNoParticipateTask" type="redirect">/showNoParticipateTask.jsp</result>
 			 <result name="showParticipateTask">/showParticipateTask.jsp</result>
-			 <result name="fileDownLoad">/DownloadFile</result>
+			 <result name="fileDownLoad">/DownloadFile.servlet</result>
 		</action>
 		<!-- 用户请求参加任务 --> 
 		<action name="userRequestToTakeInDistribute" class="userRequest" method="userRequestToTakeInDistribute">
