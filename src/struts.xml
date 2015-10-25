@@ -136,5 +136,13 @@
 			 <result name="getUserQuestionsAndQuestions">/userPageQuestions.jsp</result>
 			 <result name="errors" type="redirect">/sampleJsp/helloWord.jsp</result>
 		</action>
+		
+		<!--  任务组长请求和发布者联系  -->
+		<action name="developToPublishMsgAction" class="developToPublishMsgAction" method="struts-default">
+			 <result name="saveDevelopToPublishMsg">/sampleJsp/helloWord.jsp</result>
+			 <result name="updateDevelopToPublishMsg">/sampleJsp/helloWord.jsp</result> 
+			 <result name="getAllDevelopToPublishMsg">/publisherMessageSolve.jsp</result> 
+			 <result name="getTaskAllocationDoc">/publishChatRoom.jsp</result>
+		</action>
   </package>
 </struts>

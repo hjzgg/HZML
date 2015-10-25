@@ -36,6 +36,17 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
+  <!-- 在线聊天室 -->
+    <servlet>
+		<servlet-name>actionServlet</servlet-name>
+		<servlet-class>com.ttszw.action.ActionServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>actionServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+  <!-- 在线聊天室 -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

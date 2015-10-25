@@ -26,15 +26,14 @@
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
-	
 	body {
 		background: #f9fafb url(images/pages/bg.gif) top repeat-x;
 	}
 	#div_absolute {
-		  position: absolute;
+		  position: fixed;
 		  z-index:10;
 		  left: 400px;
-		  top: 800px;
+		  top: 80px;
 		  width:450px;
 		  height:350px;
 		  display: none;
@@ -50,6 +49,13 @@
 		  display: none;
 	}
 </style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#contactForm input, #contactForm textarea').focus(function(){ $(this).stop().animate({backgroundColor: "#fff3c5"}, 500), $(this).css("borderColor", "#f89d1c") })
+	$('#contactForm input, #contactForm textarea').blur(function(){ $(this).stop().animate({backgroundColor: "#fffff"}, 500), $(this).css("borderColor", "#97b2cd") });
+})
+</script>
 
 </head>
 <body>
@@ -206,7 +212,71 @@
 					</form>
 				</div>
 			</div>
+	<!-- 新增模块***************************************************************************** -->	
+			<!-- 项目分析与规划讨论区 -->
+			<div class="class1">
+				<div style="background-image:url('./images/color.gif'); height: 25px;">
+					<h1 style="font-size:19px; color:#434c55; float: left;">项目分析与规划</h1>
+					<span style="float:right; cursor:pointer;" id="stateButxx" onClick="chatRoomEnter('contentxxx','stateButxx', '<%=(String)session.getAttribute("peopleName")%>', '<%=task.getTaskid()%>')">展开</span>
+				</div>
+      			<div class="class1content" id="contentxxx">
+					<iframe src="" id="chatRoomId" name="chatRoom" width="610px" height="450px"></iframe>
+					<br><br>
+					<% 
+						if(taskAppend.getTaskLeader().equals((String)session.getAttribute("peopleName"))){//当前是组长
+					%>
+							<center><a class="button" style="float:right" href="javascript:void(0)" onclick="contactToPublisherFun();"><span>联系发布者</span></a></center>
+					<%
+						}
+					%>
+				</div>
+			</div>
 			
+			<div class="taskCheckRoomDiv" id="taskCheckChatRoomDivId" style="display: none">
+				<iframe src="" id="taskCheckChatRoomId" name="taskCheckChatRoomName" width="470px" height="450px"></iframe>
+				<br><br>
+				<% 
+					if(taskAppend.getTaskLeader().equals((String)session.getAttribute("peopleName"))){//当前是组长
+				%>
+						<center><a class="button" style="float:right" href="javascript:void(0)" onclick="contactToPublisherFun();"><span>联系发布者</span></a></center>
+						<center><a class="button" style="float:right; margin-right: 50px;" href="javascript:void(0)" onclick="showTaskCheckChatRoomDiv(false)"><span>关闭</span></a></center>
+						<center><a class="button" style="margin-left: 20px;" href="javascript:void(0)" onclick="beginToNextStep('<%=task.getTaskid()%>')"><span>项目进行下一步</span></a></center>
+				<%
+					}
+				%>
+			</div>
+			
+			<div class="grid_11 content contact" id="contactToPublisher" style="display:none; background-color:white;z-index:10; position: fixed; left:194px; top:19px">
+				<h2>联系发布者</h2>
+				<p>
+					带有<span>*</span>的选项必填
+				</p>
+					<form action="#" method="post" id="contactForm" name="contactToPublisherForm">
+						<br/>
+						<div>
+							<label>发布者:<span>*</span></label>
+							<input type="text" name="developToPublishMsgVar.publishName" id="publishName" readonly="readonly" value="<%=task.getPublishName()%>"/>
+						</div>
+						<div>
+							<label>任务名称:<span>*</span></label>
+							<input type="text" name="developToPublishMsgVar.taskName" id="taskName" readonly="readonly" value="<%=task.getTaskName()%>"/>
+						</div>
+						<div>
+							<label>您的邮箱:</label>
+							<input type="text" name="developToPublishMsgVar.email" id="email"/>
+						</div>
+						<div>
+							<input type="hidden" name="developToPublishMsgVar.taskId" value="<%=task.getTaskid()%>">
+							<label>消息:<span>*</span></label>
+							<textarea name="developToPublishMsgVar.message" rows="10" cols="20" id="message"></textarea>
+						</div>
+						<a class="button" style="float:right" href="javascript:void(0)" onclick="contactToPublisherFun();" id="send"><span>关闭</span></a>
+						<a class="button" style="margin-left:10px" href="javascript:void(0)" onclick="contactToPublishSubmit();" id="send"><span>发送消息</span></a>
+				</form>
+							
+			</div> 
+			<!-- 项目分析与规划讨论区 -->
+	<!-- 新增模块***************************************************************************** -->
 			<% 
 				if(task.getState()!=0){
 			%>	
@@ -215,6 +285,7 @@
 							<h1 style="font-size:19px; color:#434c55; float: left;">项目工作区</h1>
 							<span style="float:right; cursor:pointer;" id="stateButx" onClick="$use('contentxx','stateButx')">展开</span>
 						</div>
+						<%-- <a href="javascript:void(0)" onclick="chatRoomTest('<%=(String)session.getAttribute("peopleName")%>', '<%=task.getTaskid()%>');">进入聊天室</a> --%>
 		      			<div class="class1content" id="contentxx">
 		      				<form style="margin-top: 10px" action="#" method="post" enctype="multipart/form-data" name="contactForm" id="contactForm">
 			      				<% 
@@ -382,7 +453,7 @@
 								<%
 									if(taskAppend.getTaskLeader().equals((String)session.getAttribute("peopleName")) && task.getState()==1){
 								%>
-										<center><a class="button_aa" href="javascript:void(0)" onclick="beginToNextStep('<%=task.getTaskid()%>')"><span>项目进行下一步</span></a></center>
+										<center><a class="button_aa" href="javascript:void(0)" onclick="showTaskCheckChatRoomDiv(true, '<%=(String)session.getAttribute("peopleName") %>', '<%=task.getTaskid()%>')"><span>项目审核</span></a></center>
 										<center><a class="button_aa" href="javascript:void(0)" onclick="showUploadTaskOrgCodeDiv()"><span>完成并提交项目</span></a></center>
 								<%
 									}
@@ -551,9 +622,9 @@
 		<%
 			}
 		%>
+		
 		<div class="clear"></div>
 	</div><!-- /#content -->
-		
 		<div class="clear"></div>
 	</div><!-- /#content -->
 	

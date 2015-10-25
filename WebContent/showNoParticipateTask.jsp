@@ -52,8 +52,8 @@
 		xmlhttp.send();
 	}
 	
-	function divDisplayNone(){
-		document.getElementById("div_absolute").style.display="none";
+	function mySkip(){
+		window.location.href="userRequest?userRequest=userTaskParticipating";
 	}
 </script>
 </head>

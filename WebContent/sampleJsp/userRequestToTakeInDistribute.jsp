@@ -21,7 +21,7 @@
 <%
 	}
 %>
-	<a class="button" style="float:right; margin-right: 0px"; href="javascript:void(0)" onclick="divDisplayNone()"><span>知道了</span></a>
+	<a class="button" style="float:right; margin-right: 0px"; href="javascript:void(0)" onclick="mySkip()"><span>知道了</span></a>
 </div>
 </body>
 </html>

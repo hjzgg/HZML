@@ -1221,6 +1221,17 @@ triBackHome li {
 	width:280px;
 }
 
+.taskCheckRoomDiv{
+	background-color:white;
+	z-index:10;
+	margin-bottom: 40px;
+	position:fixed;
+	bottom:15px;
+	right:15px;
+	padding-bottom:10px;
+	width:470px;
+}
+
 #aboutthis{
 	margin-left: 50px;
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+				PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hzml.entriy">
+        <class name="DevelopToPublishMsg" table="developtopublishmsg">
+        	<!-- 定义持久化类的表示属性 -->
+        	<id name="msgId" column="msgId" type="java.lang.Integer">
+        		<!-- 定义主键生成策略 -->
+        		<generator class="identity"/>
+        	</id>
+        	<property name="state" column="state" type="java.lang.Integer"/>
+        	<property name="taskId" column="taskId" type="java.lang.Integer"/>
+        	<property name="email" column="email" type="java.lang.String"/>
+        	<property name="taskName" column="taskName" type="java.lang.String"/>
+        	<property name="msg" column="msg" type="java.lang.String"/>
+        	<property name="publishName" column="publishName" type="java.lang.String"/>
+        	<property name="msgTime" column="msgTime" type="java.sql.Timestamp"/>
+        </class>
+</hibernate-mapping>

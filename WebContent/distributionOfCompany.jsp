@@ -69,6 +69,7 @@
 				<li><a href="distributionOfCompany.jsp" class="current">分配任务</a></li>
 				<li><a href="allTask">查看任务</a></li>
 				<li><a href="allFinishedTask">已完成任务</a></li>
+				<li><a href="developToPublishMsgAction!getAllDevelopToPublishMsg">消息管理</a></li>
 			</ul>
 		</div>
 		<div class="clear"></div>

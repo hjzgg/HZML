@@ -6,6 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Login Page</title>
 <script language="javascript"> 
+	function sendbykey(event){
+		//得到当前事件对象
+		var event=window.event||event;
+		//当按下enter时触发
+		if(event.keyCode==13){
+			verflag();
+		} 
+	}
+
 	function veri(){
 		var sourcenum="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		var siglenum="";
@@ -76,15 +85,15 @@ body,td,th {
 		<br>
 		<div>
 			<label>姓名:</label>
-			<input name="username" type="text" class="textbox" id="username">
+			<input onkeydown="sendbykey(event)" name="username" type="text" class="textbox" id="username">
 		</div>
 		<div>
 			<label>密码:</label>
-			<input name="password" type="password" class="textbox" id="password">
+			<input onkeydown="sendbykey(event)" name="password" type="password" class="textbox" id="password">
 		</div>
 		<div>
 			<label>验证码: </label>
-			<input style="width:280px" name="verifycode" id="verifycode" class="textbox" onFocus="this.select(); " onMouseOver="this.style.background='#E1F4EE';" onMouseOut="this.style.background='#FFFFFF'" size="6" maxlength="4">
+			<input onkeydown="sendbykey(event)" style="width:280px" name="verifycode" id="verifycode" class="textbox" onFocus="this.select(); " onMouseOver="this.style.background='#E1F4EE';" onMouseOut="this.style.background='#FFFFFF'" size="6" maxlength="4">
 			&nbsp;&nbsp;&nbsp;<input style="width:42px; font-size: 15px ;" name="txt_ver" type="text" id="txt_ver" size="4" readonly="ture">   
 		</div>
 	 </form>

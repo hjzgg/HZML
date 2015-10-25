@@ -50,6 +50,7 @@
 		        <value>questions.cfg.xml</value>
 		        <value>questionlist.cfg.xml</value>
 		        <value>userquestions.cfg.xml</value>
+		        <value>developtopublishmsg.cfg.xml</value>
 	    	</list>
 	    </property>	   
 	   
@@ -107,4 +108,9 @@
 		<property name="questionsDao" ref="questionsDao"/>
   </bean>
   <!-- ×××××××××××××××××××××××××××××××××××××××××××××　 -->
+  <!--  任务组长请求和发布者联系  -->
+  <bean id="developToPublishMsgAction" class="com.hzml.action.DevelopToPublishMsgAction">
+		<property name="messageDao" ref="messageDao"/>
+		<property name="distributeDao" ref="distributeDao"/>
+  </bean>
 </beans>

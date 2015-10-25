@@ -160,7 +160,7 @@ public class DistributeDao implements Serializable{
 		try{
 			session = this.getSession();
 			tran = session.beginTransaction();
-			String sql="select * from task where task.taskid not in (select taskteam.taskid from taskteam where developName=\'" + developName + "\')";
+			String sql="select * from task where task.state=0 and task.taskid not in (select taskteam.taskid from taskteam where developName=\'" + developName + "\')";
 			datas = (List<Task>)session.createSQLQuery(sql).addEntity(Task.class).list();
 			tran.commit();
 		} catch(Exception e){

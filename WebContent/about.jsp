@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Slideshow - 关于 Us | ChillyBlues Web Builders</title>
+<title>关于我们</title>
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -93,11 +93,11 @@ body {
 	<div class="container_16" id="content">
 		
 		<div class="grid_11 content" id="two_col">
-			<h2>Slideshow</h2>
+			<h2>关于我们</h2>
 			<p>
 			<img src="images/aboutus.jpg" title="关于us" />
-			The ChillyBlues template features a nice slideshow on the landing page (using the JQuery <a href="http://malsup.com/jquery/cycle/">Cycle</a> plugin). The slideshow can easily be in turned off (if wanted) and configured by changing several Javascript variables.
 			</p>
+			<!-- The ChillyBlues template features a nice slideshow on the landing page (using the JQuery <a href="http://malsup.com/jquery/cycle/">Cycle</a> plugin). The slideshow can easily be in turned off (if wanted) and configured by changing several Javascript variables.
 			<p>
 			Before the slideshow starts, a welcome message is displayed. This is great for telling your visitors what your company does or promoting one or more products. Just below the welcome message, you can display one or more orange buttons for quick access to certain content.
 			</p>
@@ -111,10 +111,10 @@ body {
 				<li>this would be the first item</li>
 				<li>and this would be the second</li>
 				<li>and this the third</li>
-			</ul>
+			</ul> -->
 		</div><!-- /#two_col -->
 		<div class="grid_5 news" id="one_col">
-			<h2>Testimonials</h2>
+			<!-- <h2>Testimonials</h2>
 			<div id="testimonials">
 				<div>
 					<div>
@@ -134,7 +134,7 @@ body {
 					</div>
 					<div class="by">Someone - <a href="#">Some organization</a></div>
 				</div>
-			</div>
+			</div> -->
 			
 		</div><!-- /#one_col -->
 		<div class="clear"></div>

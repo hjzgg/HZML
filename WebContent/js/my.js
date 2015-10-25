@@ -49,6 +49,47 @@
 		    preDD = sb;
 		  }
 	}
+	//展开之后加入聊天室
+	function chatRoomEnter(targetid,objN, user, chatRoomId){
+		var d=document.getElementById(targetid);
+		var sb=document.getElementById(objN);
+		if (d.style.display=="block"){
+		    $D2(targetid);
+		    d.style.display="none";
+		    sb.innerHTML="展开";
+		    
+		    document.getElementById("contentxxx").src="";
+		  } else {//展开
+			showTaskCheckChatRoomDiv(false);
+			if(user=="null"){
+				alert("用户未登录！");
+				return;
+			}
+		    $D(targetid);
+		    d.style.display="block";
+		    sb.innerHTML='收缩';
+		    if(preD!=null && preD != d){
+		    	preD.style.display="none";
+		    	preDD.innerHTML="展开";
+		    }
+		    preD = d;
+		    preDD = sb;
+		    $.ajax({
+	    		type:"post",
+	    		url: "login.do",
+	    		data: "name="+user + "&chatRoomId="+chatRoomId,
+	    		success:
+	    			function(){
+		    			 document.getElementById("chatRoomId").src = "main.jsp?chatRoomId="+chatRoomId;
+	    			},
+	        	error:
+	        		function(){
+	        			alert("加载失败!");
+	        		}
+	    	});
+		  }
+	}
+	
 //showParticipateTask.jsp	
 	var isanswer = false;
 	var receiveCardName = null;
@@ -117,6 +158,7 @@
 	
 	function divDisplayNone(){
 		document.getElementById("div_absolute").style.display="none";
+		window.location.reload();
 	}
 	
 	function myRefresh(){
@@ -369,4 +411,150 @@
     function mailResponse(index){
     	var formIndex = parseInt(index, 10);//得到是第几个同名表单
     	document.getElementsByName("mailMsg")[formIndex].submit();
+    }
+    
+    //进入聊天室
+    var xmlHttp;
+
+    function createXmlHttpRequest(){
+        if (window.XMLHttpRequest) { //Mozilla 浏览器
+            return new XMLHttpRequest();
+        }
+        else 
+            if (window.ActiveXObject) { // IE浏览器
+                try {
+                    return new ActiveXObject("Msxml2.XMLHTTP");
+                } 
+                catch (e) {
+                    try {
+                        return new ActiveXObject("Microsoft.XMLHTTP");
+                    } 
+                    catch (e) {
+                    }
+                }
+            }
+    }
+
+    function ajax(options){
+    	xmlHttp = createXmlHttpRequest();
+    	var url = options.url+"?timeStemp="+new Date().getTime();
+    	xmlHttp.onreadystatechange=function(){
+    		if(xmlHttp.readyState==4){
+    			if(xmlHttp.status==200){
+    				options.Success(xmlHttp.responseText);
+    			}
+    		}
+    	};
+    	xmlHttp.open("POST",url,true);
+    	xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
+    	xmlHttp.send(options.data);
+    }
+    
+    function chatRoomTest(user, chatRoomId){
+    	ajax({
+			data: "name="+user + "&chatRoomId="+chatRoomId,
+			url: "login.do",
+			Success: function(msg){
+				eval("res="+msg);
+				var result = res.massage;
+				window.location.href="main.jsp?chatRoomId="+chatRoomId;
+			}
+		});
+    }
+    
+    var curMsgId;
+    function publisherEnterChatRoom(user, chatRoomId, msgId){
+    	curMsgId = msgId;
+    	contactToDeveloperFun();
+    	ajax({
+			data: "name="+user + "&chatRoomId="+chatRoomId + "&flag=true",//表示这个人是发布方
+			url: "login.do",
+			Success: function(msg){
+				eval("res="+msg);
+				var result = res.massage;
+				ajax({
+					data: "taskId="+chatRoomId,
+					url: "developToPublishMsgAction!getTaskAllocationDoc",
+					Success: function(responseText){
+						document.getElementById("publisherChatRoom").innerHTML = responseText;
+					}
+				});
+			}
+		});
+    }
+    
+    
+    var contactToPublisherFlag = false;
+    function contactToPublisherFun(){
+    	contactToPublisherFlag = !contactToPublisherFlag;
+    	if(contactToPublisherFlag)
+    		document.getElementById("contactToPublisher").style.display = "";
+    	else 
+    		document.getElementById("contactToPublisher").style.display = "none";
+    }
+    
+    var contactToDeveloperFlag = false;
+    function contactToDeveloperFun(){
+    	contactToDeveloperFlag = !contactToDeveloperFlag;
+    	if(contactToDeveloperFlag)
+    		document.getElementById("mainDeveloperChatRoom").style.display = "";
+    	else {
+    		document.getElementById("mainDeveloperChatRoom").style.display = "none";
+    		document.getElementById("publisherChatRoom").innerHTML="";
+    	}
+    }
+    
+    function contactToPublishSubmit(){
+    	$.ajax({
+    		type:"post",
+    		url:"developToPublishMsgAction!saveDevelopToPublishMsg",
+    		data:$("form[name='contactToPublisherForm']").serialize(),
+    		//data:$(document.getElementsByName("contactToPublisherForm")[0]).serialize(),
+    		success:
+    			function(){
+    				alert("发送成功")
+    			},
+        	error:
+        		function(){
+        			alert("发送失败!");
+        		}
+    	});
+    }
+    
+    function showTaskCheckChatRoomDiv(show, user, chatRoomId){
+    	if(show == true){
+    		document.getElementById("taskCheckChatRoomDivId").style.display="";
+    		$.ajax({
+	    		type:"post",
+	    		url: "login.do",
+	    		data: "name="+user + "&chatRoomId="+chatRoomId,
+	    		success:
+	    			function(){
+		    			 document.getElementById("taskCheckChatRoomId").src = "mainCopy.jsp?chatRoomId="+chatRoomId;
+	    			},
+	        	error:
+	        		function(){
+	        			alert("加载失败!");
+	        		}
+	    	});
+    	} else {
+    		document.getElementById("taskCheckChatRoomId").src = "";
+    		document.getElementById("taskCheckChatRoomDivId").style.display="none";
+    	}
+    }
+    
+    function publisherTaskCheckFinish(){
+    	$.ajax({
+    		type:"post",
+    		url: "developToPublishMsgAction!updateDevelopToPublishMsg",
+    		data: "msgId="+curMsgId,
+    		success:
+    			function(){
+    				alert("操作成功!");
+    			},
+        	error:
+        		function(){
+        			alert("操作失败!");
+        		}
+    	});
     }
