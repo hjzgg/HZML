@@ -86,3 +86,28 @@
 	font-family: "¿¬Ìå";
 	font-size: 20px;
 }
+
+.btndiv{
+	position:absolute;
+	top:20px;
+	width:180px;
+	height:250px;
+	z-index: 10;
+	background: url("../images/menu.png") top center no-repeat; 
+}
+
+.btndiv a{
+	display:block;
+	width:170px;
+	background:url("../images/orange_ball_small.gif") left no-repeat;
+	margin-left:10px;
+	margin-top: 8px;
+	padding-left:20px;
+	font-size:15px;
+	text-decoration: none;
+	text-transform: capitalize;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	color:black;
+	white-space: nowrap;
+}

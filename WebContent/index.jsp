@@ -159,8 +159,22 @@ function getStarted(){
 </head>
 
 <body>
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin">退出</a>
+	</div>	
 	<div class="container_16" id="main">
-			
 		<div class="grid_16" id="top">
 			<a href="#" id="qsm">quick select menu <img id="down" src="images/dropdowntriangle.gif" alt="dropdown" /><img id="up" src="images/dropdowntriangle_.gif" alt="dropdown" /></a>
 			<div id="qsmContainer">
@@ -182,6 +196,7 @@ function getStarted(){
 				<div id="qsmBottom"></div>
 			</div>
 		</div>
+		
 		<div class="clear"></div>
 		
 		<div class="grid_16" id="logo">

@@ -25,6 +25,24 @@
 	}
 </style>
 
+<script type="text/javascript">
+	var preDiv = null;
+	function showMenuDiv(divId){
+		var id = "btn_div_" + divId;
+		var curDiv = document.getElementById(id);
+		if(preDiv!=null && preDiv==curDiv){//关掉div
+			preDiv = null;
+			curDiv.style.display = "none";
+		} else if(preDiv != null && preDiv!=curDiv){
+			preDiv.style.display = "none";//关掉之前的div
+			curDiv.style.display = "";
+			preDiv = curDiv;
+		} else if(preDiv == null){//新打开的div
+			preDiv = curDiv;
+			curDiv.style.display = "";
+		}
+	}
+</script>
 </head>
 <body>
 	<div class="container_16" id="main">
@@ -86,7 +104,7 @@
 		<div class="clear"></div>
 		
 	</div><!-- /#main -->
-			
+	
 	<div class="container_16" id="content">
 	
 		<div class="grid_11 content" id="two_col">
@@ -94,10 +112,12 @@
 			 	<div class="mytitle">
 			 		自学习网站推荐
 			 	</div>
-			 	<a href="http://www.w3school.com.cn/" title="w3cschool">w3cschool</a>
-			 	<a href="http://www.educity.cn/" title="专业IT教育平台">专业IT教育平台</a>
-			 	<a href="http://www.imooc.com/" title="慕课网">慕课网</a>
-			 	<a href="http://www.csdn.net/" title="CSDN">CSDN</a>
+			 	<span>
+			 		&nbsp;&nbsp;&nbsp;&nbsp;根据自己喜欢的发展方向，选择合适的网站进行学习。
+			 	</span>
+		 		<span>
+			 		<a style="margin-top: 103px" class="button3d" href="javascript:void(0)"  onclick="showMenuDiv('one')">网站推荐</a>
+			 	</span>
 			 </div>
 			 
 			 <div class="mymenu">
@@ -108,7 +128,7 @@
 			 		&nbsp;&nbsp;&nbsp;&nbsp;通过推荐学习的步骤，你可以从一个菜鸟一步一步的迈向入门。
 			 	</span>
 		 		<span>
-			 		<a class="button3d" href="javascript:void(0)">推荐学习</a>
+			 		<a class="button3d" href="javascript:void(0)" onclick="showMenuDiv('two')">推荐学习</a>
 			 	</span>
 			 </div>
 			 
@@ -123,6 +143,25 @@
 			 		<a class="button3d" style="margin-top: 103px" href="javascript:void(0)">随机学习</a>
 			 	</span>
 			 </div>
+			 
+			 <div class="btndiv" style="display:none;left:20px;" id="btn_div_one">
+				<a href="http://www.w3school.com.cn/" title="w3cschool">w3cschool</a>
+			 	<a href="http://www.educity.cn/" title="专业IT教育平台">专业IT教育平台</a>
+			 	<a href="http://www.imooc.com/" title="慕课网">慕课网</a>
+			 	<a href="http://www.csdn.net/" title="CSDN">CSDN</a>
+			 </div>
+			
+			 <div class="btndiv" style="display:none;left:230px;" id="btn_div_two">
+				<a href="agileDevelopment1.html" title="敏捷开发定义">敏捷开发定义</a>
+			 	<a href="agileDevelopment2.html" title="敏捷开发建模">敏捷开发建模</a>
+			 	<a href="agileDevelopment3.html" title="敏捷开发模式">敏捷开发模式</a>
+			 	<a href="agileDevelopment4.html" title="敏捷开发流程">敏捷开发流程</a>
+			 </div>
+			
+			 <div class="btndiv" style="display:none;left:600px;" id="btn_div_three">
+			
+			 </div>
+			 
 		</div><!-- /#two_col -->
 		<div class="grid_5 news" id="one_col">
 			<h2>如何进行一个任务的分派？</h2>

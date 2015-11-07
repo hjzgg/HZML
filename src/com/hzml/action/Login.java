@@ -64,4 +64,10 @@ public class Login extends ActionSupport{
 		}
 		return "loginFail";
 	}
+	
+	public String quitLogin(){
+		ActionContext.getContext().getSession().remove("peopleType");
+		ActionContext.getContext().getSession().remove("peopleName");
+		return "quitLogin";
+	}
 }
