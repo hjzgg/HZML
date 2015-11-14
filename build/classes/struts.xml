@@ -51,7 +51,7 @@
 		<action name="login" class="login" method="login">
 			 <result name="loginSucess" type="chain">indexRequest</result> 
 			 <result name="loginFail">/login.jsp?msg=true</result>
-			 <result name="quitLogin">/index.jsp</result>  
+			 <result name="quitLogin" type="redirect">/index.jsp</result>  
 		</action>
 		<!-- 用户注册 -->
 		<action name="register" class="register" method="register">

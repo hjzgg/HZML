@@ -16,6 +16,7 @@
 <script type="text/javascript" src="js/jquery.cycle.min.all.js"></script>
 <script type="text/javascript" src="js/TitilliumText15L_100-TitilliumText15L_400.font.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
 	
 	body {
@@ -83,8 +84,21 @@
 		<div class="grid_11 content" id="two_col">
 			<h2>正在参与的任务如下:</h2>
 			<%
+				//////////////////////////////分页代码
+				int pageCur=0, pageBegin=0, pageTot=0, num= 0;
+				final int pageSize = 6;//每一面显示的任务的数目
 				List<Task> taskList = (List<Task>)session.getAttribute("userTaskFinish");
-				for(int i=0; i<taskList.size(); ++i){
+				num = taskList.size();//总个数 
+				pageTot = num%pageSize == 0 ? num/pageSize : num/pageSize+1;//总页数
+				String curPage  = request.getParameter("page");//当前定位的页码
+				if(curPage == null) pageCur = 1; 
+				else pageCur = Integer.valueOf(curPage);
+				pageBegin = pageCur-5;
+				if(pageBegin < 1) pageBegin = 1;
+				int i = (pageCur-1)*pageSize;
+				//////////////////////////////////
+				if(num>0)
+				  for(int cnt=0; cnt<pageSize && i<taskList.size(); ++i, ++cnt){
 					Task task = taskList.get(i);
 			%>
 						<div id="list">
@@ -97,6 +111,37 @@
 			<%
 				}
 			%>
+			<!-- 加入分页的按钮  -->
+			<div style="margin-top: 20px">
+				<%if(pageCur!=1){%>
+					  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('userRequest?userRequest=userTaskFinish&page=<%=pageCur-1%>')"><span>上一页</span></a>	
+		         <%}%>
+		         <% 
+		         	int j;
+		         	for(i=pageBegin, j=1; j<=10 && i<=pageTot; ++i, ++j) {%>
+		             <%if(i == pageCur){%>
+		                  <b class="pageword" style="color:red;">
+		                      <%=i%>
+		                  </b>
+		             <%} else {%>
+		              	  <a href="javascript:void(0)" class="button_page" onclick="myGoTo('userRequest?userRequest=userTaskFinish&page=<%=i%>')"><span><%=i%></span></a>	
+		             <%}%>
+		         <% } %>                
+		
+		         <%if(pageCur!=pageTot){%>
+		                 <a href="javascript:void(0)" class="button_page" onclick="myGoTo('userRequest?userRequest=userTaskFinish&page=<%=pageCur+1%>')"><span>下一页</span></a>
+		         <%}%>
+		          <b class="pageword">
+		                  &nbsp;&nbsp;共<%=pageTot%>页&nbsp;&nbsp;
+		          </b>
+		          
+		          <b class="pageword">
+		             	 向第<input type="text" id="pageTo" size="1">页
+		          </b>
+		          
+		          <a href="javascript:void(0)" class="button_page" onclick="myDumpTo('<%=pageTot%>', 'userRequest?userRequest=userTaskFinish&page=')"><span>跳转</span></a>
+	          </div>
+		  <!-- 加入分页的按钮  -->
 		</div><!-- /#two_col -->
 		<div class="grid_5 news" id="one_col">
 			<h2>如何进行一个任务的分派？</h2>

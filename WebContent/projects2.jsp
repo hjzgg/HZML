@@ -18,6 +18,22 @@ body {
 	background: #f9fafb url(images/pages/bg.gif) top repeat-x;
 }
 
+.hjzggul {
+	list-style: none;
+    float: left;
+    margin: 0px 40px 0px 0px;
+    padding: 0px;
+    display: block;
+}
+
+.hjzggul li{
+	display: block;
+    height: 25px;
+    color: #27415a;
+    background: url(images/ball_orange.gif) left top no-repeat;
+    background-position-y: 6px;
+    padding-left: 20px;
+}
 </style>
 <script type="text/javascript">
 
@@ -35,6 +51,7 @@ $(document).ready(function(){
 })
 
 </script>
+<script type="text/javascript" src="js/mymouse.js" id="mymouse"></script>
 </head>
 
 <body>
@@ -102,19 +119,23 @@ $(document).ready(function(){
 			</ul>
 		</div>
 		<div class="clear"></div>
-		
 	</div><!-- /#main -->
 			
 	<div class="container_16" id="content">
-		
 		<div class="grid_16 content" id="three_col">
 			<div id="port2">
 				<div>
-					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/胡峻峥.jpg" title="胡峻峥" /></a>
+					<a href="http://www.cnblogs.com/hujunzheng/"><img width="280px" height="180px" src="images/胡峻峥.jpg" title="胡峻峥" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HJZGG---越努力，越幸运!</b>
+						我是胡峻峥，我是本项目的经理！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>网站框架</li>
+						<li>技术支持</li>
+						<li>后台处理</li>
+					</ul>
 				</div>
 			</div>
 			<div id="port2">

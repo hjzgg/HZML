@@ -3,6 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Login Page</title>
 <script language="javascript"> 
@@ -32,7 +34,7 @@
 	function verflag(){
 		var str1=document.getElementById("verifycode");
 		var str2=document.getElementById("txt_ver");
-		if(str1.value==str2.value){
+		if(str1.value.toLowerCase()==str2.value.toLowerCase()){
 			document.getElementById("contactForm").submit();
 		}
 		else{
@@ -58,6 +60,7 @@ body,td,th {
 
 -->
 </style>
+
 </head>
 <body onLoad="veri();">
 <% 
@@ -101,11 +104,6 @@ body,td,th {
 	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="register.jsp">还没有账号，注册!</a>
 	 <a class="button" style="float:right;" href="javascript:void(0)" onclick="verflag();"><span>登陆</span></a>
 </div>
- <c:if test="${msg!=null}">
-   <script>
-      $.messager.alert('提示','${msg}','warning');
-   </script>
- </c:if>
 </body>
 </html>
 

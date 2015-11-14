@@ -19,6 +19,7 @@ body {
 }
 
 </style>
+<script type="text/javascript" src="js/mymouse.js" id="mymouse"></script>
 <script type="text/javascript">
 
 Cufon.replace('http://chillyblues.chillyorange.com/h1');
