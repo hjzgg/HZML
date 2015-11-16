@@ -52,7 +52,7 @@ body,td,th {
 	font-size: 18px;
 }
 #mydiv{
-	margin-left:350px;
+	margin:auto;
 	margin-top:100px;
 	width: 600px;
 	height: 400px;

@@ -29,18 +29,23 @@ body {
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript">
 
-countdownFrom = 15;
+var corperationImageIndex = 0;
+var corperationImageArray = ["image_coperation/corperation1.png", "image_coperation/corperation2.png", "image_coperation/corperation3.png"];
+function corperationImage(){
+	document.getElementById("loginbg_div").style.backgroundImage = "URL("+ corperationImageArray[corperationImageIndex++] +")";
+	if(corperationImageIndex >= 3) 
+		corperationImageIndex = 0;
+}
 
+countdownFrom = 15;
 slideSpeed = 2000;
 slideTimeout = 10000;
-
-
-
 /* dont' edit anyting below here unless you're sure 关于 what you're doinf  */
 
-
 $(window).load(function () {
-  	getStarted()
+  	getStarted();
+  	//新加入
+  	setInterval("corperationImage()", 300);
 });
 
 Cufon.replace('http://chillyblues.chillyorange.com/h1');
@@ -159,20 +164,23 @@ function getStarted(){
 </head>
 
 <body>
+    
+    <div class="loginbg_div" id="loginbg_div"></div>
+    
 	<div class="login_div" id="login_div">
 		<%
 			String peopleName = (String)session.getAttribute("peopleName");
 			if(peopleName == null){
 		%>
-				<a href="login.jsp">登录</a>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
 		<%
 			} else {
 		%>
-				<a href="javascript:void(0)"><%=peopleName %></a>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
 		<%
 			}
 		%>
-			<a href="login!quitLogin">退出</a>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
 	</div>	
 	<div class="container_16" id="main">
 		<div class="grid_16" id="top">
@@ -245,7 +253,7 @@ function getStarted(){
 					<div class="clear"></div>
 					<div id="buttons">
 						<a href="about.jsp" class="button" id="leftButton"><span>关于我们</span></a>
-						<a href="#" class="button" id="rightButton"><span>自由询问</span></a>
+						<a href="contact.jsp" class="button" id="rightButton"><span>自由询问</span></a>
 					</div>
 				</div>
 			
