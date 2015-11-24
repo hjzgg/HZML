@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-11-14 16:34:53
+Date: 2015-11-24 15:28:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,7 +81,7 @@ CREATE TABLE `contact` (
   `state` int(11) DEFAULT NULL,
   `msgTime` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`msgId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of contact
@@ -92,6 +92,7 @@ INSERT INTO `contact` VALUES ('3', '啦啦', '2570230521@qq.com', '嘎嘎', '1',
 INSERT INTO `contact` VALUES ('4', 'hjzgg', '2570230521@qq.com', '胡峻峥', '1', '2015-10-13 23:48:27');
 INSERT INTO `contact` VALUES ('5', 'hjzgg', '2570230521@qq.com', 'lala', '1', '2015-10-14 00:22:07');
 INSERT INTO `contact` VALUES ('6', 'hjzgg', '2570230521@qq.com', 'GFD', '0', '2015-10-14 15:18:22');
+INSERT INTO `contact` VALUES ('7', 'hjzgg', '2570230521@qq.com', 'thank you!', '0', '2015-11-23 14:54:52');
 
 -- ----------------------------
 -- Table structure for `developingparty`
@@ -216,7 +217,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`qId`),
   KEY `FK_Reference_8` (`questionId`),
   CONSTRAINT `FK_Reference_8` FOREIGN KEY (`questionId`) REFERENCES `questionlist` (`questionId`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of questions
@@ -341,6 +342,16 @@ INSERT INTO `questions` VALUES ('117', '6', '1', '12');
 INSERT INTO `questions` VALUES ('118', '3', '1', '12');
 INSERT INTO `questions` VALUES ('119', '1', '1', '12');
 INSERT INTO `questions` VALUES ('120', '7', '1', '12');
+INSERT INTO `questions` VALUES ('121', '9', '1', '13');
+INSERT INTO `questions` VALUES ('122', '10', '1', '13');
+INSERT INTO `questions` VALUES ('123', '5', '1', '13');
+INSERT INTO `questions` VALUES ('124', '3', '1', '13');
+INSERT INTO `questions` VALUES ('125', '1', '1', '13');
+INSERT INTO `questions` VALUES ('126', '18', '1', '13');
+INSERT INTO `questions` VALUES ('127', '7', '1', '13');
+INSERT INTO `questions` VALUES ('128', '6', '1', '13');
+INSERT INTO `questions` VALUES ('129', '11', '1', '13');
+INSERT INTO `questions` VALUES ('130', '2', '1', '13');
 
 -- ----------------------------
 -- Table structure for `task`
@@ -359,6 +370,8 @@ CREATE TABLE `task` (
   `taskAddress` varchar(100) DEFAULT NULL,
   `documentationAddress` varchar(30) DEFAULT NULL,
   `taskName` varchar(50) DEFAULT NULL,
+  `accountID` varchar(25) DEFAULT NULL,
+  `keyValue` varchar(75) DEFAULT NULL,
   PRIMARY KEY (`taskid`),
   KEY `FK_publishPartyToTask` (`publishName`),
   CONSTRAINT `FK_publishPartyToTask` FOREIGN KEY (`publishName`) REFERENCES `publishparty` (`publishName`)
@@ -367,18 +380,18 @@ CREATE TABLE `task` (
 -- ----------------------------
 -- Records of task
 -- ----------------------------
-INSERT INTO `task` VALUES ('1', 'hjzgg', '在线软件工程开发，方便，简介，明了！', '2015-06-20 20:25:12', '2015-06-14 12:18:16', '40', '2015-06-14 12:18:16', '10000', '3', 'www.github.com', 'crebas.sql', '在线软件工程开发');
-INSERT INTO `task` VALUES ('2', 'hujunzheng', '大家一起来做一个androidApp吧！', '2015-08-12 20:32:36', '2015-06-14 23:01:57', '40', '2015-06-14 23:01:57', '2000', '3', 'five.zip', '温馨提示.doc', 'androidApp开发');
-INSERT INTO `task` VALUES ('3', 'hujunzheng', '大家一起来做一个IOSApp吧！', '2015-08-02 21:15:48', '2015-06-14 23:02:54', '45', '2015-06-14 23:02:53', '20000', '3', 'www.baidu.com', '温馨提示.doc', 'IOSApp开发');
-INSERT INTO `task` VALUES ('4', 'hjzgg', '网页版的qq聊天程序！', '2015-08-20 17:37:51', '2015-06-22 18:03:16', '43', '2015-06-22 18:03:15', '23333', '3', 'www.baidu.com', 'crebas.sql', 'WEB QQ');
-INSERT INTO `task` VALUES ('5', 'hjzgg', 'web微信，显得跟牛逼你一点儿！', '2015-10-14 15:13:32', '2015-06-22 18:05:12', '40', '2015-06-22 18:05:11', '10000', '3', '北航专业课考研大纲.doc', 'Untitled1.cpp', 'web 微信');
-INSERT INTO `task` VALUES ('6', 'hjzgg', '开发一个关于学校acmoj的测评系统！', '2015-06-22 18:07:40', '2015-06-22 18:07:40', '100', '2015-06-22 18:07:40', '190000', '0', null, 'codeforce.cpp', 'acm 测评系统');
-INSERT INTO `task` VALUES ('7', 'hjzgg', '让喜欢音乐的人有一个展现自己的舞台！', '2015-10-10 13:10:09', '2015-06-22 18:20:13', '100', '2015-06-22 18:20:13', '1000', '3', '16yuedu150pianfandujiexi.pdf', 'Untitled1.cpp', 'web 音乐平台');
-INSERT INTO `task` VALUES ('8', 'hjzgg', '为了让同学们更好的掌握校园里的信息！', '2015-10-24 12:21:07', '2015-06-22 18:22:18', '423', '2015-06-22 18:22:18', '45465', '1', null, 'crebas.sql', '校园信息发布平台');
-INSERT INTO `task` VALUES ('9', 'hjzgg', '增进用户的朋友圈', '2015-10-14 10:31:22', '2015-06-22 18:24:07', '34', '2015-06-22 18:24:07', '3243', '3', 'codeforce.cpp', 'codeforce.cpp', '网上交友平台');
-INSERT INTO `task` VALUES ('10', 'hjzgg', '减少单身狗的数目！', '2015-08-16 14:11:13', '2015-06-22 18:26:03', '34', '2015-06-22 18:26:03', '3243', '0', null, 'codeforce.cpp', '网上恋爱平台');
-INSERT INTO `task` VALUES ('11', 'hjzgg', '网上购物商城，便于人们购物！', '2015-06-22 18:30:20', '2015-06-22 18:30:21', '120', '2015-06-22 18:30:20', '45000', '0', null, 'Untitled1.cpp', '网上购物商城');
-INSERT INTO `task` VALUES ('12', 'hjzgg', '扩展交流，增加知识面!', '2015-08-03 10:04:30', '2015-08-03 10:04:30', '60', '2015-08-03 10:04:30', '3424', '0', null, 'lala.cpp', 'WEB交流平台');
+INSERT INTO `task` VALUES ('1', 'hjzgg', '在线软件工程开发，方便，简介，明了！', '2015-06-20 20:25:12', '2015-06-14 12:18:16', '40', '2015-06-14 12:18:16', '10000', '3', 'www.github.com', 'crebas.sql', '在线软件工程开发', '10001126856', '69cl522AV6q613Ii4W6u8K6XuW8vM1N6bFgyv769220IuYe9u37N4y7rI4Pl');
+INSERT INTO `task` VALUES ('2', 'hujunzheng', '大家一起来做一个androidApp吧！', '2015-08-12 20:32:36', '2015-06-14 23:01:57', '40', '2015-06-14 23:01:57', '2000', '3', 'five.zip', '温馨提示.doc', 'androidApp开发', null, null);
+INSERT INTO `task` VALUES ('3', 'hujunzheng', '大家一起来做一个IOSApp吧！', '2015-08-02 21:15:48', '2015-06-14 23:02:54', '45', '2015-06-14 23:02:53', '20000', '3', 'www.baidu.com', '温馨提示.doc', 'IOSApp开发', null, null);
+INSERT INTO `task` VALUES ('4', 'hjzgg', '网页版的qq聊天程序！', '2015-08-20 17:37:51', '2015-06-22 18:03:16', '43', '2015-06-22 18:03:15', '23333', '3', 'www.baidu.com', 'crebas.sql', 'WEB QQ', null, null);
+INSERT INTO `task` VALUES ('5', 'hjzgg', 'web微信，显得跟牛逼你一点儿！', '2015-10-14 15:13:32', '2015-06-22 18:05:12', '40', '2015-06-22 18:05:11', '10000', '3', '北航专业课考研大纲.doc', 'Untitled1.cpp', 'web 微信', null, null);
+INSERT INTO `task` VALUES ('6', 'hjzgg', '开发一个关于学校acmoj的测评系统！', '2015-06-22 18:07:40', '2015-06-22 18:07:40', '100', '2015-06-22 18:07:40', '190000', '0', null, 'codeforce.cpp', 'acm 测评系统', null, null);
+INSERT INTO `task` VALUES ('7', 'hjzgg', '让喜欢音乐的人有一个展现自己的舞台！', '2015-10-10 13:10:09', '2015-06-22 18:20:13', '100', '2015-06-22 18:20:13', '1000', '3', '16yuedu150pianfandujiexi.pdf', 'Untitled1.cpp', 'web 音乐平台', null, null);
+INSERT INTO `task` VALUES ('8', 'hjzgg', '为了让同学们更好的掌握校园里的信息！', '2015-10-24 12:21:07', '2015-06-22 18:22:18', '423', '2015-06-22 18:22:18', '45465', '1', null, 'crebas.sql', '校园信息发布平台', null, null);
+INSERT INTO `task` VALUES ('9', 'hjzgg', '增进用户的朋友圈', '2015-10-14 10:31:22', '2015-06-22 18:24:07', '34', '2015-06-22 18:24:07', '3243', '3', 'codeforce.cpp', 'codeforce.cpp', '网上交友平台', null, null);
+INSERT INTO `task` VALUES ('10', 'hjzgg', '减少单身狗的数目！', '2015-08-16 14:11:13', '2015-06-22 18:26:03', '34', '2015-06-22 18:26:03', '3243', '0', null, 'codeforce.cpp', '网上恋爱平台', null, null);
+INSERT INTO `task` VALUES ('11', 'hjzgg', '网上购物商城，便于人们购物！', '2015-06-22 18:30:20', '2015-06-22 18:30:21', '120', '2015-06-22 18:30:20', '45000', '0', null, 'Untitled1.cpp', '网上购物商城', null, null);
+INSERT INTO `task` VALUES ('12', 'hjzgg', '扩展交流，增加知识面!', '2015-08-03 10:04:30', '2015-08-03 10:04:30', '60', '2015-08-03 10:04:30', '3424', '0', null, 'lala.cpp', 'WEB交流平台', null, null);
 
 -- ----------------------------
 -- Table structure for `taskappend`
@@ -421,7 +434,7 @@ CREATE TABLE `taskteam` (
   KEY `FK_taskToTaskTeam` (`taskid`),
   CONSTRAINT `FK_developingPartyToTaskTeam` FOREIGN KEY (`developName`) REFERENCES `developingparty` (`developName`),
   CONSTRAINT `FK_taskToTaskTeam` FOREIGN KEY (`taskid`) REFERENCES `task` (`taskid`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='agreeToStart 表示参与这个项目的某个人是否同意该项目开始执行';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='agreeToStart 表示参与这个项目的某个人是否同意该项目开始执行';
 
 -- ----------------------------
 -- Records of taskteam
@@ -453,6 +466,7 @@ INSERT INTO `taskteam` VALUES ('10', 'lxkdd', '25', '0', '0');
 INSERT INTO `taskteam` VALUES ('6', 'lxkdd', '26', '0', '0');
 INSERT INTO `taskteam` VALUES ('8', 'lxkdd', '27', '0', '1');
 INSERT INTO `taskteam` VALUES ('6', 'jjj', '28', '0', '0');
+INSERT INTO `taskteam` VALUES ('11', 'lxkdd', '29', '0', '0');
 
 -- ----------------------------
 -- Table structure for `updatewrok`
@@ -507,7 +521,7 @@ CREATE TABLE `userquestions` (
   PRIMARY KEY (`uqId`),
   KEY `FK_userToQuestion` (`developName`),
   CONSTRAINT `FK_userToQuestion` FOREIGN KEY (`developName`) REFERENCES `developingparty` (`developName`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of userquestions
@@ -524,3 +538,4 @@ INSERT INTO `userquestions` VALUES ('christinaiii', '9', '2', '9');
 INSERT INTO `userquestions` VALUES ('christinaiii', '10', '2', '10');
 INSERT INTO `userquestions` VALUES ('abc', '11', '3', '11');
 INSERT INTO `userquestions` VALUES ('abc', '12', '2', '12');
+INSERT INTO `userquestions` VALUES ('lxkdd', '13', '3', '13');
