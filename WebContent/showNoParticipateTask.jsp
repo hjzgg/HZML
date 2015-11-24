@@ -55,9 +55,30 @@
 	function mySkip(){
 		window.location.href="userRequest?userRequest=userTaskParticipating";
 	}
+	
+	$(window).load(function () {
+	  	setInterval("corperationImage()", 300);
+	});
 </script>
 </head>
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<div id="div_absolute">
 	</div>
 	<div class="container_16" id="main">
@@ -93,7 +114,7 @@
 			<ul>
 				<li><a href="index.jsp"><span>主页</span></a></li>
 				<li><a href="#" class="current"><span>用户任务</span></a></li>
-				<li><a href="#"><span>新手学习</span></a></li>
+				<li><a href="noviceTask.jsp"><span>新手学习</span></a></li>
 				<li><a href="about.jsp"><span>关于</span></a></li>
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>

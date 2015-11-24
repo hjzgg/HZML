@@ -20,14 +20,34 @@
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
-	
 	body {
 		background: #f9fafb url(images/pages/bg.gif) top repeat-x;
 	}
-	
-	</style>
+</style>
+<script type="text/javascript">
+	$(window).load(function () {
+	  	setInterval("corperationImage()", 300);
+	});
+</script>
 </head>
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<div class="container_16" id="main">
 		
 		<div class="grid_16" id="top">
@@ -94,7 +114,7 @@
 			</form>
 			<div id="hjzggContent">
 				<%
-					if(task.getState()!=3){//没有评论过该项目
+					if(task.getState()<3){//没有评论过该项目
 				%>
 						<center>
 							<hr style="border:5px dotted #33FFFF;border-bottom:0;border-right:0; border-left:0;width:550px;">

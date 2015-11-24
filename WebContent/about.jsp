@@ -14,18 +14,39 @@
 <script type="text/javascript" src="js/TitilliumText15L_100-TitilliumText15L_400.font.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <style type="text/css">
-
-body {
-	background: #f9fafb url(images/pages/bg.gif) top repeat-x;
-}
-p{ 
-	text-indent: 2em; /*em是相对单位，2em即现在一个字大小的两倍*/ 
-} 
-
+	body {
+		background: #f9fafb url(images/pages/bg.gif) top repeat-x;
+	}
+	p{ 
+		text-indent: 2em; /*em是相对单位，2em即现在一个字大小的两倍*/ 
+	} 
 </style>
+
+<script type="text/javascript">
+	$(window).load(function () {
+	  	setInterval("corperationImage()", 300);
+	});
+</script>
 </head>
 
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<div class="container_16" id="main">
 		<div class="grid_16" id="top">
 			<a href="#" id="qsm">quick select menu <img id="down" src="images/dropdowntriangle.gif" alt="dropdown" /><img id="up" src="images/dropdowntriangle_.gif" alt="dropdown" /></a>

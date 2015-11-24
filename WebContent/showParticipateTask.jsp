@@ -54,11 +54,31 @@
 $(document).ready(function(){
 	$('#contactForm input, #contactForm textarea').focus(function(){ $(this).stop().animate({backgroundColor: "#fff3c5"}, 500), $(this).css("borderColor", "#f89d1c") })
 	$('#contactForm input, #contactForm textarea').blur(function(){ $(this).stop().animate({backgroundColor: "#fffff"}, 500), $(this).css("borderColor", "#97b2cd") });
-})
+});
+$(window).load(function () {
+  	setInterval("corperationImage()", 300);
+});
 </script>
 
 </head>
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<% 
 		Task task = (Task)session.getAttribute("showParticipateTask");
 		String images[]={
@@ -131,7 +151,7 @@ $(document).ready(function(){
 			<ul>
 				<li><a href="index.jsp"><span>主页</span></a></li>
 				<li><a href="#" class="current"><span>用户任务</span></a></li>
-				<li><a href="#"><span>新手学习</span></a></li>
+				<li><a href="noviceTask.jsp"><span>新手学习</span></a></li>
 				<li><a href="about.jsp" class="current"><span>关于</span></a></li>
 				<li><a href="projects.jsp"><span>团队成员</span></a></li>
 				<li><a href="contact.jsp"><span>联系</span></a></li>
@@ -276,7 +296,7 @@ $(document).ready(function(){
 							
 			</div> 
 			<!-- 项目分析与规划讨论区 -->
-	<!-- 新增模块***************************************************************************** -->
+			<!-- 新增模块***************************************************************************** -->
 			<% 
 				if(task.getState()!=0){
 			%>	
@@ -618,6 +638,19 @@ $(document).ready(function(){
 							}
 						}
 					%>
+				</div><!-- /#one_col -->
+		<%
+			}
+		%>
+		
+		<%
+			if(taskAppend.getTaskLeader().equals((String)session.getAttribute("peopleName"))){//项目完成之后，组长设置汇款账号
+		%>
+				<div class="grid_5 news" id="one_col">
+					<h2>设置易宝汇款商户和秘钥:</h2>
+					<div style="margin-left: 10px;">汇款商户：<input type="text" name="accountID" id="accountID" value="<%=task.getAccountID()==null ? "" : task.getAccountID()%>"></div>
+					<div style="margin-left: 10px;">汇款秘钥：<input type="text" name="keyValue" id="keyValue" value="<%=task.getKeyValue()==null ? "" : task.getKeyValue()%>"></div>
+					<div style="width:100%; height: 50px;"><a class="button" style="margin-left: 30%; margin-top: 10px;" href="javascript:void(0)" onclick="bankCardSubmit('<%=task.getTaskid() %>')"><span>提交汇款账号</span></a></div>
 				</div><!-- /#one_col -->
 		<%
 			}

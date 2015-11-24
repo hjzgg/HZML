@@ -168,6 +168,12 @@ public class CompanyAndDistributeAction extends ActionSupport{
 		return "evaluateTask";
 	}
 	
+	public String onlinePaymentRequest(){
+		Task task = distributeDao.getTask(Integer.parseInt(taskid));
+		ActionContext.getContext().getSession().put("onlinePayment_task", task);
+		return "onlinePaymentRequest";
+	}
+	
 	public String scoreTask(){//计算每一个开发者的分数
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Enumeration<String> parameterNames = request.getParameterNames();

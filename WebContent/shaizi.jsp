@@ -157,8 +157,8 @@ a.button3d:active {
 	    shield.style.position = "absolute";
 	    shield.style.left = "0px";
 	    shield.style.top = "0px";
-	    shield.style.width = "100%";
-	    shield.style.height = document.body.scrollHeight+"px";
+	    shield.style.width = window.screen.width+"px";
+	    shield.style.height = window.screen.height+"px";
 	    shield.style.background = "#333";
 	    shield.style.textAlign = "center";
 	    shield.style.zIndex = "10000";
@@ -168,8 +168,8 @@ a.button3d:active {
 	    alertFram.style.position = "absolute";
 	    alertFram.style.left = "50%";
 	    alertFram.style.top = "50%";
-	    alertFram.style.marginLeft = "-225px";
-	    alertFram.style.marginTop = "-75px";
+	    alertFram.style.marginLeft = "-16%";
+	    alertFram.style.marginTop = "-5%";
 	    alertFram.style.width = "450px";
 	    alertFram.style.height = "150px";
 	    alertFram.style.textAlign = "center";
@@ -187,12 +187,12 @@ a.button3d:active {
 	    this.doAlpha = function(){
 	        if (c++ > 20){clearInterval(ad);return 0;}
 	        shield.style.filter = "alpha(opacity="+c+");";
-	    }
+	    };
 	    var ad = setInterval("doAlpha()",5);
 	    this.doOk = function(){
 	        alertFram.style.display = "none";
 	        shield.style.display = "none";
-	    }
+	    };
 	    alertFram.focus();
 	    document.body.onselectstart = function(){return false;};
 	 }

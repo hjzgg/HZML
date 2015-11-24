@@ -128,3 +128,10 @@ function toggleQSM() {
 	});
 }
 
+var corperationImageIndex = 0;
+var corperationImageArray = ["image_coperation/corperation1.png", "image_coperation/corperation2.png", "image_coperation/corperation3.png"];
+function corperationImage(){
+	document.getElementById("loginbg_div").style.backgroundImage = "URL("+ corperationImageArray[corperationImageIndex++] +")";
+	if(corperationImageIndex >= 3) 
+		corperationImageIndex = 0;
+}

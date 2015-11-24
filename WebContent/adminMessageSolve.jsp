@@ -34,17 +34,37 @@ $(document).ready(function(){
 	
 	$('#contactForm input, #contactForm textarea').blur(function(){ $(this).stop().animate({backgroundColor: "#fffff"}, 500), $(this).css("borderColor", "#97b2cd") });
 	
-})
+});
 
 $('#main').ready(function(){
 	
 	//process possible form errors
-})
+});
 
+$(window).load(function () {
+  	setInterval("corperationImage()", 300);
+});
 </script>
 </head>
 
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<div class="container_16" id="main">
 		
 		<div class="grid_16" id="top">

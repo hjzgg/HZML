@@ -398,12 +398,12 @@
 	     this.doAlpha = function(){
 	         if (c++ > 20){clearInterval(ad);return 0;}
 	         shield.style.filter = "alpha(opacity="+c+");";
-	     }
+	     };
 	     var ad = setInterval("doAlpha()",5);
 	     this.doOk = function(){
 	         alertFram.style.display = "none";
 	         shield.style.display = "none";
-	     }
+	     };
 	     alertFram.focus();
 	     document.body.onselectstart = function(){return false;};
     }
@@ -548,6 +548,33 @@
     		type:"post",
     		url: "developToPublishMsgAction!updateDevelopToPublishMsg",
     		data: "msgId="+curMsgId,
+    		success:
+    			function(){
+    				alert("操作成功!");
+    			},
+        	error:
+        		function(){
+        			alert("操作失败!");
+        		}
+    	});
+    }
+    
+    function bankCardSubmit(taskid){
+    	var accountID = document.getElementById("accountID").value;
+    	var keyValue = document.getElementById("keyValue").value;
+    	if(accountID == "" || isNaN(accountID)){
+    		alert("汇款商户不能为空且为数字!");
+    		return ;
+    	}
+    	var Regx = /^[A-Za-z0-9]*$/;
+    	if(keyValue == "" || !Regx.test(keyValue)){
+    		alert("汇款秘钥不能为空且为字母或数字!");
+    		return ;
+    	}
+    	$.ajax({
+    		type:"post",
+    		url: "userRequest!bankCardSubmit",
+    		data: "taskid="+taskid+"&accountID="+accountID+"&keyValue="+keyValue,
     		success:
     			function(){
     				alert("操作成功!");

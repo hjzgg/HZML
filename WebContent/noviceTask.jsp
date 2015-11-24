@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>查看全部任务</title>
+<title>新手学习</title>
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -19,12 +19,15 @@
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
-	
 	body {
 		background: #f9fafb url(images/pages/bg.gif) top repeat-x;
 	}
 </style>
-
+<script type="text/javascript">
+	$(window).load(function () {
+	  	setInterval("corperationImage()", 300);
+	});
+</script>
 <script type="text/javascript">
 	var preDiv = null;
 	function showMenuDiv(divId){
@@ -45,6 +48,23 @@
 </script>
 </head>
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<div class="container_16" id="main">
 		
 		<div class="grid_16" id="top">

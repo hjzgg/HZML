@@ -262,4 +262,15 @@ public class UserRequest extends ActionSupport{
 		
 		return "userToContactUs";
 	}
+	
+	public String bankCardSubmit(){
+		String taskid = ServletActionContext.getRequest().getParameter("taskid");
+		String accountID = ServletActionContext.getRequest().getParameter("accountID");
+		String keyValue = ServletActionContext.getRequest().getParameter("keyValue");
+		Task task = distributeDao.getTask(Integer.parseInt(taskid));
+		task.setAccountID(accountID);
+		task.setKeyValue(keyValue);
+		distributeDao.updateTask(task);
+		return "bankCardSubmit";
+	}
 }

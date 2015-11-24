@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Some of our recent projects | ChillyBlues Web Builders</title>
+<title>团队成员</title>
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -36,10 +36,8 @@ body {
 }
 </style>
 <script type="text/javascript">
-
 Cufon.replace('http://chillyblues.chillyorange.com/h1');
 Cufon.replace('http://chillyblues.chillyorange.com/h2');
-
 $(document).ready(function(){
 
 	$('#port1 div p').animate({
@@ -48,13 +46,32 @@ $(document).ready(function(){
 
 	$('#port1 div').hover(function(){$(this).children('p').slideDown();}, function(){$(this).children('p').slideUp();})
 	
-})
-
+});
+$(window).load(function () {
+  	setInterval("corperationImage()", 300);
+});
 </script>
 <script type="text/javascript" src="js/mymouse.js" id="mymouse"></script>
 </head>
 
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<div class="container_16" id="main">
 		
 		<div class="grid_16" id="top">
@@ -93,7 +110,7 @@ $(document).ready(function(){
 						if(peopleType.equals("user")){
 				%>
 							<li><a href="userRequest?userRequest=userTaskNoParticipate"><span>用户任务</span></a></li>
-							<li><a href="#"><span>新手学习</span></a></li>
+							<li><a href="noviceTask.jsp"><span>新手学习</span></a></li>
 				<%
 						} else if(peopleType.equals("company")){
 				%>
@@ -221,23 +238,22 @@ $(document).ready(function(){
 		
 			<div class="grid_16" id="footer">
 			
-			<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
-			
+				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
 				<div>
 					<ul class="services">
-						<li>web design</li>
-						<li>design customization</li>
-						<li>CMS systems</li>
+						<li>敏捷开发</li>
+						<li>在线团队合作</li>
+						<li>新手学习</li>
 					</ul>
 					<ul class="services">
-						<li>Wordpress themes/setups</li>
-						<li>Slicing PSD's into HTML/WP</li>
-						<li>code/html optimization</li>
+						<li>项目开发者</li>
+						<li>项目发布者</li>
+						<li>web维护者</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
+						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
 					</ul>
 				</div>
 			

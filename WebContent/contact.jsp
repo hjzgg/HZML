@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Get in touch with us | ChillyBlues Web Builders</title>
+<title>联系我们</title>
 <link rel="stylesheet" href="css/960.css" type="text/css" />
 <link rel="stylesheet" href="css/reset.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -30,17 +30,37 @@ $(document).ready(function(){
 	
 	$('#contactForm input, #contactForm textarea').blur(function(){ $(this).stop().animate({backgroundColor: "#fffff"}, 500), $(this).css("borderColor", "#97b2cd") });
 	
-})
+});
 
 $('#main').ready(function(){
 	
 	//process possible form errors
-})
+});
 
+$(window).load(function () {
+  	setInterval("corperationImage()", 300);
+});
 </script>
 </head>
 
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<div class="container_16" id="main">
 		
 		<div class="grid_16" id="top">
@@ -79,7 +99,7 @@ $('#main').ready(function(){
 						if(peopleType.equals("user")){
 				%>
 							<li><a href="userRequest?userRequest=userTaskNoParticipate"><span>用户任务</span></a></li>
-							<li><a href="#"><span>新手学习</span></a></li>
+							<li><a href="noviceTask.jsp"><span>新手学习</span></a></li>
 				<%
 						} else if(peopleType.equals("company")){
 				%>

@@ -28,16 +28,7 @@ body {
 <script type="text/javascript" src="js/TitilliumText15L_100-TitilliumText15L_400.font.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript">
-
-var corperationImageIndex = 0;
-var corperationImageArray = ["image_coperation/corperation1.png", "image_coperation/corperation2.png", "image_coperation/corperation3.png"];
-function corperationImage(){
-	document.getElementById("loginbg_div").style.backgroundImage = "URL("+ corperationImageArray[corperationImageIndex++] +")";
-	if(corperationImageIndex >= 3) 
-		corperationImageIndex = 0;
-}
-
-countdownFrom = 15;
+countdownFrom = 2;
 slideSpeed = 2000;
 slideTimeout = 10000;
 /* dont' edit anyting below here unless you're sure 关于 what you're doinf  */
@@ -270,57 +261,61 @@ function getStarted(){
 						
 							<div class="slide">
 								<div class="caption">
-									<h2>Themeforest1</h2>
+									<h2>三人行必有我师</h2>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Vivamus mattis convallis turpis. In hac habitasse platea dictumst. Aliquam dignis sim tinci dunt nunc nec venenatis.
+										每个人都有他的优点，好的团队之间也要能够互相学习，互相借鉴，互相启迪，将团队的能力发挥到最大!
 									</p>
 								</div>
 								<div class="sImCon">
-									<img src="slideshow/slide1.jpg" alt="slide1" />
+									<img src="slideshow/1.png" title="三人行必有我师" />
 								</div>
 							</div>
 							<div class="slide">
 								<div class="caption">
-									<h2>Themeforest2</h2>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Vivamus mattis convallis turpis. In hac habitasse platea dictumst. Aliquam dignis sim tinci dunt nunc nec venenatis.
-									</p>
+									<h2>团队合作</h2>
+									<p> 
+										1.确保团队成员了解他们的角色和职责是如何相互影响的;
+										2.确保团队成员重视彼此的贡献;
+										3.积极地处理团队成员间可能会出现的冲突问题; 
+										4.发展与团队成员高度的信任;
+										5.鼓励发展相互尊重,促进团队成员之间的忠诚度和自豪感。
+									</p> 
 								</div>
 								<div class="sImCon">
-									<img src="slideshow/slide1.jpg" alt="slide1" />
+									<img src="slideshow/2.png" title="团队合作" />
 								</div>
 							</div>
 							<div class="slide">
 								<div class="caption">
-									<h2>Themeforest3</h2>
+									<h2>敏捷开发的7款热门工具</h2>
 									<p>
-									Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Vivamus mattis convallis turpis. In hac habitasse platea dictumst. Aliquam dignis sim tinci dunt nunc nec venenatis.
+										<strong>1.Atlassian Jira/ Jira Agile; 2.Axosoft OnTime Scrum; 3.LeanKit; 4.Microsoft Visual Studio Team Foundation Server; 5.Telerik TeamPulse; 6.Rally Platform for Agile Lifecycle Management; 7.Planbox;</strong>
 									</p>
 								</div>
 								<div class="sImCon">
-									<img src="slideshow/slide1.jpg" alt="slide1" />
+									<img src="slideshow/3.png" title="敏捷开发的7款热门工具" />
 								</div>
 							</div>
 							<div class="slide">
 								<div class="caption">
-									<h2>Themeforest1</h2>
+									<h2>敏捷开发——更好地应对客户的需求变更</h2>
 									<p>
-									Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Vivamus mattis convallis turpis. In hac habitasse platea dictumst. Aliquam dignis sim tinci dunt nunc nec venenatis.
+									&nbsp;&nbsp;&nbsp;&nbsp;敏捷开发试图使软件开发工作能够利用人的特点，充分发挥人的创造能力。敏捷开发的目的是建立起一个项目团队全员参与到软件开发中，包括设定软件开发流程的管理人员，只有这样，软件开发流程才有可接受性。同时敏捷开发要求研发人员在技术上独立自主地进行决策，因为他们最了解什么技术是需要和不需要的。
 									</p>
 								</div>
 								<div class="sImCon">
-									<img src="slideshow/slide1.jpg" alt="slide1" />
+									<img src="slideshow/4.png" title="敏捷开发——更好地应对客户的需求变更" />
 								</div>
 							</div>
 							<div class="slide">
 								<div class="caption">
-									<h2>Themeforest2</h2>
+									<h2>敏捷开发与传统方式的对比</h2>
 									<p>
-									Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Vivamus mattis convallis turpis. In hac habitasse platea dictumst. Aliquam dignis sim tinci dunt nunc nec venenatis.
+									&nbsp;&nbsp;&nbsp;&nbsp; 敏捷开发能够缩短项目的反馈周期，因其将项目分成了若干个迭代周期，每个迭代周期结束都能立即反馈。且通过不断的沟通，还能减少理解上的偏差，配合反馈，减少误解，从而降低修正错误的代价。且每个迭代周期的结束都能接受验证，从而能快速的适应变化，及时的适应新的需求，保证产品的正确性。
 									</p>
 								</div>
 								<div class="sImCon">
-									<img src="slideshow/slide1.jpg" alt="slide1" />
+									<img src="slideshow/5.png" title="敏捷开发与传统方式的对比" />
 								</div>
 							</div>
 					

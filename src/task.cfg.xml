@@ -12,6 +12,8 @@
         	<property name="publishName" column="publishName" type="java.lang.String"/>
         	<property name="taskName" column="taskName" type="java.lang.String"/>
         	<property name="taskDescription" column="taskDescription" type="java.lang.String"/>
+        	<property name="keyValue" column="keyValue" type="java.lang.String"/>
+        	<property name="accountID" column="accountID" type="java.lang.String"/>
         	<property name="beginTime" column="beginTime" type="java.sql.Timestamp"/>
         	<property name="publishTime" column="publishTime" type="java.sql.Timestamp"/>
         	<property name="developmentTime" column="developmentTime" type="java.lang.Integer"/>

@@ -6,7 +6,25 @@ import java.sql.Timestamp;
 public class Task  implements Serializable{
 	private int taskid;
 	private String taskName;
+	private String accountID;
+	private String keyValue;
 	
+	public String getAccountID() {
+		return accountID;
+	}
+
+	public void setAccountID(String accountID) {
+		this.accountID = accountID;
+	}
+
+	public String getKeyValue() {
+		return keyValue;
+	}
+
+	public void setKeyValue(String keyValue) {
+		this.keyValue = keyValue;
+	}
+
 	public String getTaskName() {
 		return taskName;
 	}

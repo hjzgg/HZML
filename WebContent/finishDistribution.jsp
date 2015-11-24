@@ -18,14 +18,34 @@
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/my.js"></script>
 <style type="text/css">
-	
 	body {
 		background: #f9fafb url(images/pages/bg.gif) top repeat-x;
 	}
 </style>
-
+<script type="text/javascript">
+	$(window).load(function () {
+	  	setInterval("corperationImage()", 300);
+	});
+</script>
 </head>
 <body>
+	<div class="loginbg_div" id="loginbg_div"></div>
+    
+	<div class="login_div" id="login_div">
+		<%
+			String peopleName = (String)session.getAttribute("peopleName");
+			if(peopleName == null){
+		%>
+				<a href="login.jsp" style="left:40px; top:5px;">登录</a>
+		<%
+			} else {
+		%>
+				<a href="javascript:void(0)" style="left:40px; top:5px;"><%=peopleName %></a>
+		<%
+			}
+		%>
+			<a href="login!quitLogin" style="right:39px; top:5px;">退出</a>
+	</div>	
 	<div class="container_16" id="main">
 		
 		<div class="grid_16" id="top">
@@ -122,19 +142,36 @@
 									<input type="text" name="taskAddress" id="taskAddress" value="<%=task.getTaskAddress() %>" readOnly/>
 								</div>
 								<a class="button" style="float:right;" href="uR!fileDownLoad?fileName=<%=task.getTaskAddress() %>"><span>下载项目</span></a>
-								
-								<%
-									if(task.getState()!=3){
-								%>
-										<a class="button3d" style="width:50px" href="companyAndDistributeAction!evaluateTask?taskid=<%=task.getTaskid() %>">项目评分</a>
-								<%
-									} else {
-								%>			
-										<a class="button3d" style="width:50px" href="javascript:void(0)">评论完毕</a>
-								<%
-									}
-								%>							
 							</form>
+							<div style="width:100%; height: 50px; position: relative;">
+								<div style="z-index: 1; position:absolute; left:30%; top:0px;">
+									<%
+										if(task.getState()<3){
+									%>
+											<a class="button3d" style="width:50px;" href="companyAndDistributeAction!evaluateTask?taskid=<%=task.getTaskid() %>">项目评分</a>
+									<%
+										} else {
+									%>			
+											<a class="button3d" style="width:50px;" href="companyAndDistributeAction!evaluateTask?taskid=<%=task.getTaskid() %>">项目完毕</a>
+									<%
+										}
+									%>
+								</div>
+								<!-- 加入在线支付  -->
+								<div style="z-index: 2; position:absolute;  left:60%; top:0px;">
+									<%
+										if(task.getState()!=4){
+									%>
+											<a class="button3d" style="width:50px" href="companyAndDistributeAction!onlinePaymentRequest?taskid=<%=task.getTaskid()%>">在线支付</a>
+									<%
+										} else {
+									%>			
+											<a class="button3d" style="width:50px" href="javascript:void(0)">支付完毕</a>
+									<%
+										}
+									%>
+								</div>	
+							</div>		
 						</div>
 					</div>
 			<% } %>

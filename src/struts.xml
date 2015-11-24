@@ -44,6 +44,7 @@
             <param name="savePath">/hzmlFile</param>
 			<result type="redirectAction" name="saveTask">allTask</result> 
 			<result name="evaluateTask">/evaluateTask.jsp</result> 
+			<result name="onlinePaymentRequest">/onlinePayment.jsp</result>
 			<result name="scoreTask">/sampleJsp/helloWord.jsp</result> 
 		</action>
 		
@@ -73,6 +74,7 @@
 		<!-- 用户请求 -->
 		<action name="userRequest" class="userRequest" method="userRequest">
 			 <result name="userTaskFinish">/userTaskFinish.jsp</result> 
+			 <result name="bankCardSubmit">/sampleJsp/helloWord.jsp</result>
 			 <result name="userTaskNoParticipate">/userTaskNoParticipate.jsp</result> 
 			 <result name="userTaskParticipating">/userTaskParticipating.jsp</result>
 			 <result name="showNoParticipateTask" type="redirect">/showNoParticipateTask.jsp</result>
