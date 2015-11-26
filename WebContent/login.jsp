@@ -29,7 +29,7 @@
 		   i++;
 		}
 		document.form1.txt_ver.value=checknum;
-	}
+	} 
 
 	function verflag(){
 		var str1=document.getElementById("verifycode");
@@ -62,7 +62,7 @@ body,td,th {
 </style>
 
 </head>
-<body onLoad="veri();">
+<body onload="veri()">
 <% 
 	String msg;
 	if(request.getParameter("msg") != null){
