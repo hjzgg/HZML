@@ -54,7 +54,7 @@ $(window).load(function () {
   	setInterval("corperationImage()", 300);
 });
 </script>
-<script type="text/javascript" src="js/mymouse.js" id="mymouse"></script>
+
 </head>
 
 <body>
