@@ -168,12 +168,18 @@
 				<br>
 				<%
 					DevelopingParty curDevelopingParty = (DevelopingParty)session.getAttribute("curDevelopingParty");
-					if(session.getAttribute("peopleName") != null && "user".equals((String)session.getAttribute("peopleType")) && task.getState() != 2 /* && curDevelopingParty.getEvaluate()>=100 */){//没有登录的用户只能查看任务
+					if(session.getAttribute("peopleName") != null && "user".equals((String)session.getAttribute("peopleType"))/* && curDevelopingParty.getEvaluate()>=100 */){//没有登录的用户只能查看任务
+							if(task.getState() == 0){
 				%>
-						<a class="button" style="float:left;" href="javascript:void(0)" onclick="takeInDistribute('<%=task.getTaskid()%>')"><span>加入项目开发</span></a>
+								<a class="button" style="float:left;" href="javascript:void(0)" onclick="takeInDistribute('<%=task.getTaskid()%>')"><span>加入项目开发</span></a>
 				<%
-				    }
-				%>
+				   			 } else {
+			    %>
+				   				<a class="button" style="float:left;" href="javascript:void(0)"><span>项目已经开始或完成</span></a>
+				 <%
+				   			 }
+					}
+				 %>
 			<%
 				}
 			%>

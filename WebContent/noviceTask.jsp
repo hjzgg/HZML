@@ -118,7 +118,7 @@
 			<ul id="subNavigation">
 				<li><a href="#" class="current">新手学习</a></li>
 				<li><a href="questionsAction!getUserQuestionsAndQuestions">查看已做题目</a></li>
-				<li><a href="shaizi.jsp"><img src="images/骰子.png" height="12" width="12">&nbsp;随机做题</a></li>
+				<li><a href="randomQuestion.jsp"><img src="images/骰子.png" height="12" width="12">&nbsp;随机做题</a></li>
 			</ul>
 		</div>
 		<div class="clear"></div>
@@ -160,7 +160,7 @@
 			 		&nbsp;&nbsp;&nbsp;&nbsp;随机性的学习适用于基础比较好的人。
 			 	</span>
 			 	<span>
-			 		<a class="button3d" style="margin-top: 103px" href="javascript:void(0)">随机学习</a>
+			 		<a class="button3d" style="margin-top: 103px" href="randomQuestion.jsp">随机学习</a>
 			 	</span>
 			 </div>
 			 

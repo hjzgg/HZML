@@ -234,10 +234,10 @@ var myfun=function()
 		var oDoc = Aui(document),
 			docWidth = oDoc.width();
 			
-		Aui("body").html("<div id=\"questionList\" style=\"z-index:100; position:absolute; left:800px; top:20px; background:url(images/题目背景.png); width:490px; height:600px\"></div>"+
-					"</h1><div id=\"container\" style=\"left:"+ ( ( docWidth - 480 )*0.5 ) +"px;\"></div><strong id=\"shadow\" style=\"left:"+ ( ( docWidth - 800 )*0.5 ) +"px;\"></strong>" + 
-					"<a class=\"button3d\" style=\"width:120px; height:20px;margin-left:100px; margin-top:200px\" href=\"javascript:void(0)\" onclick=\"myfun()\">随机抽题</a>" +
-					"<br><a class=\"button3d\" style=\"width:120px; height:20px;margin-left:100px; margin-top:20px\"  href=\"javascript:void(0)\" onclick=\"location.href='practice.jsp'\">开始测试</a>");
+		Aui("body").html("<div id=\"questionList\" style=\"z-index:100; position:absolute; left:445px; top:20px; background:url(images/题目背景.png); width:490px; height:600px\"></div>"+
+					"</h1><div id=\"container\" style=\"left:"+ ( ( docWidth - 550 )*0.5 ) +"px;\"></div><strong id=\"shadow\" style=\"left:"+ ( ( docWidth - 900 )*0.5 ) +"px;\"></strong>" + 
+					"<a class=\"button3d\" style=\"width:120px; height:20px;margin-left:45px; margin-top:200px\" href=\"javascript:void(0)\" onclick=\"myfun()\">随机抽题</a>" +
+					"<br><a class=\"button3d\" style=\"width:120px; height:20px;margin-left:45px; margin-top:20px\"  href=\"practice.jsp\" target=\"_top\">开始测试</a>");
 		
 		var oContainer = Aui.byID("#container")[0],
 			AuiCon = Aui( oContainer ),

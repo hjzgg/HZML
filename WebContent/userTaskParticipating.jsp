@@ -71,12 +71,10 @@
 			</div>
 		</div>
 		<div class="clear"></div>
-		
 		<div class="grid_16" id="logo">
 			<a href="index.jsp"><img src="images/logo.gif" alt="ChillyBlues" /></a>
 		</div>
 		<div class="clear"></div>
-		
 		<div class="grid_16" id="navigation">
 			<ul>
 				<li><a href="index.jsp"><span>主页</span></a></li>
@@ -99,11 +97,9 @@
 		<div class="clear"></div>
 		
 	</div><!-- /#main -->
-			
 	<div class="container_16" id="content">
-	
 		<div class="grid_11 content" id="two_col">
-			<h2>已经完成的任务如下:</h2>
+			<h2>正在参与的任务如下:</h2>
 			<%
 				//////////////////////////////分页代码
 				int pageCur=0, pageBegin=0, pageTot=0, num= 0;

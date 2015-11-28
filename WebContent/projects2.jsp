@@ -36,8 +36,10 @@ body {
 }
 </style>
 <script type="text/javascript">
+
 Cufon.replace('http://chillyblues.chillyorange.com/h1');
 Cufon.replace('http://chillyblues.chillyorange.com/h2');
+
 $(document).ready(function(){
 
 	$('#port1 div p').animate({
@@ -47,6 +49,7 @@ $(document).ready(function(){
 	$('#port1 div').hover(function(){$(this).children('p').slideDown();}, function(){$(this).children('p').slideUp();})
 	
 });
+
 $(window).load(function () {
   	setInterval("corperationImage()", 300);
 });
@@ -144,8 +147,8 @@ $(window).load(function () {
 				<div>
 					<a href="http://www.cnblogs.com/hujunzheng/"><img width="280px" height="180px" src="images/胡峻峥.jpg" title="胡峻峥" /></a>
 					<p>
-						<b>HJZGG---越努力，越幸运!</b>
-						我是胡峻峥，我是本项目的经理！
+						<b>HZML---越努力，越幸运!</b>
+						大家好，我是胡峻峥，我是本项目的经理！
 					</p>
 					<p><b>主要负责:</b></p>
 					<ul class="hjzggul">
@@ -159,72 +162,114 @@ $(window).load(function () {
 				<div>
 					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/冷茂顺.jpg" title="冷茂顺" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HZML---越努力，越幸运!</b>
+						大家好，我是冷茂顺，我是本项目的项目设计！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>需求调查</li>
+						<li>技术支持</li>
+					</ul>
 				</div>
 			</div>
 			<div id="port2">
 				<div>
 					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/黎国健.jpg" title="黎国健" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HZML---越努力，越幸运!</b>
+						我是黎国健，我是本项目的质量控制！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>项目调试</li>
+						<li>项目维护</li>
+					</ul>
 				</div>
 			</div>
 			<div id="port2">
 				<div>
 					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/林志宝.jpg" title="林志宝" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HZML---越努力，越幸运!</b>
+						我是林志宝，我是本项目的项目设计！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>需求调查</li>
+						<li>技术支持</li>
+					</ul>
 				</div>
 			</div>
 			<div id="port2">
 				<div>
 					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/刘晓康.jpg" title="刘晓康" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HZML---越努力，越幸运!</b>
+						我是刘晓康，我是本项目的规划和控制！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>项目规划</li>
+						<li>项目控制</li>
+					</ul>
 				</div>
 			</div>
 			<div id="port2">
 				<div>
 					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/马永花.jpg" title="马永花" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HZML---越努力，越幸运!</b>
+						我是马永花，我是本项目的财务！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>经费分配</li>
+						<li>财务监控</li>
+						<li>申请经费</li>
+					</ul>
 				</div>
 			</div>
 			<div id="port2">
 				<div>
 					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/张丹阳.jpg" title="张丹阳" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HZML---越努力，越幸运!</b>
+						我是张丹阳，我是本项目的秘书！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>起草报告</li>
+						<li>收集材料</li>
+						<li>做好记录</li>
+					</ul>
 				</div>
 			</div>
 			<div id="port2">
 				<div>
 					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/张凯华.jpg" title="张凯华" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HZML---越努力，越幸运!</b>
+						我是张凯华，我是本项目的项目设计！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>需求调查</li>
+						<li>技术支持</li>
+					</ul>
 				</div>
 			</div>
 			<div id="port2">
 				<div>
 					<a href="http://www.flashden.net/"><img width="280px" height="180px" src="images/张康.jpeg" title="张康" /></a>
 					<p>
-					<b>HJZGG---越努力，越幸运!</b>
-					大家好，我是hjzgg! Thank you!
+						<b>HZML---越努力，越幸运!</b>
+						我是张康，我是本项目的市场营销！
 					</p>
+					<p><b>主要负责:</b></p>
+					<ul class="hjzggul">
+						<li>市场调研</li>
+						<li>项目营销</li>
+					</ul>
 				</div>
 			</div>
 		</div><!-- /#left -->
@@ -238,22 +283,23 @@ $(window).load(function () {
 		
 			<div class="grid_16" id="footer">
 			
-				<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
+			<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
+			
 				<div>
 					<ul class="services">
-						<li>敏捷开发</li>
-						<li>在线团队合作</li>
-						<li>新手学习</li>
+						<li>web design</li>
+						<li>design customization</li>
+						<li>CMS systems</li>
 					</ul>
 					<ul class="services">
-						<li>项目开发者</li>
-						<li>项目发布者</li>
-						<li>web维护者</li>
+						<li>Wordpress themes/setups</li>
+						<li>Slicing PSD's into HTML/WP</li>
+						<li>code/html optimization</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
+						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
 					</ul>
 				</div>
 			

@@ -135,7 +135,7 @@
 	 	<action name="questionsAction" class="questionsAction" method="struts-default">
 			 <result name="addQuestion" type="redirect">/addQuestion.jsp</result> 
 			 <result name="randomQuestion">/questionList.jsp</result> 
-			 <result name="produceToQuestionList" type="redirect">/shaizi.jsp</result>
+			 <result name="produceToQuestionList" type="redirect">/randomQuestion.jsp</result>
 			 <result name="getUserQuestionsAndQuestions">/userPageQuestions.jsp</result>
 			 <result name="errors" type="redirect">/sampleJsp/helloWord.jsp</result>
 		</action>

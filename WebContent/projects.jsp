@@ -13,14 +13,17 @@
 <script type="text/javascript" src="js/TitilliumText15L_100-TitilliumText15L_400.font.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <style type="text/css">
+
 body {
 	background: #f9fafb url(images/pages/bg.gif) top repeat-x;
 }
 </style>
 <script type="text/javascript" src="js/mymouse.js" id="mymouse"></script>
 <script type="text/javascript">
+
 Cufon.replace('http://chillyblues.chillyorange.com/h1');
 Cufon.replace('http://chillyblues.chillyorange.com/h2');
+
 $(document).ready(function(){
 
 	$('#port1 div p').animate({
@@ -126,14 +129,14 @@ $(window).load(function () {
 		<div class="grid_16 content" id="three_col">
 			<div id="port1">
 				<div><img width="280px" height="180px" src="images/胡峻峥.jpg" title="胡峻峥" /><p><b>永不言弃</b> 越努力，越幸运! <a href="http://www.cnblogs.com/hujunzheng/">博客主页</a></p></div>
-				<div><img width="280px" height="180px" src="images/冷茂顺.jpg" title="冷茂顺" /><p><b>Flashden</b>Some project details and blah blah blah <a href="#">www.flashden.net</a></p></div>
-				<div><img width="280px" height="180px" src="images/黎国健.jpg" title="黎国健" /><p><b>Flashden</b>Some project details and blah blah blah <a href="#">www.flashden.net</a></p></div>
-				<div><img width="280px" height="180px" src="images/林志宝.jpg" title="林志宝" /><p><b>Flashden</b>Some project details and blah blah blah <a href="#">www.flashden.net</a></p></div>
-				<div><img width="280px" height="180px" src="images/刘晓康.jpg" title="刘晓康" /><p><b>Flashden</b>Some project details and blah blah blah <a href="#">www.flashden.net</a></p></div>
-				<div><img width="280px" height="180px" src="images/马永花.jpg" title="马永花" /><p><b>Flashden</b>Some project details and blah blah blah <a href="#">www.flashden.net</a></p></div>
-				<div><img width="280px" height="180px" src="images/张凯华.jpg" title="张凯华" /><p><b>Flashden</b>Some project details and blah blah blah <a href="#">www.flashden.net</a></p></div>
-				<div><img width="280px" height="180px" src="images/张丹阳.jpg" title="张丹阳" /><p><b>Flashden</b>Some project details and blah blah blah <a href="#">www.flashden.net</a></p></div>
-				<div><img width="280px" height="180px" src="images/张康.jpeg" title="张康" /><p><b>Flashden</b>Some project details and blah blah blah <a href="#">www.flashden.net</a></p></div>
+				<div><img width="280px" height="180px" src="images/冷茂顺.jpg" title="冷茂顺" /><p><b>做好自己</b>用爱心来做事，用感恩的心做人 <a href="#"></a></p></div>
+				<div><img width="280px" height="180px" src="images/黎国健.jpg" title="黎国健" /><p><b>奋斗不止</b>停止奋斗，生命也就停止了 <a href="#"></a></p></div>
+				<div><img width="280px" height="180px" src="images/林志宝.jpg" title="林志宝" /><p><b>勇攀高峰</b>成功者绝不给自己软弱的借口 <a href="#"></a></p></div>
+				<div><img width="280px" height="180px" src="images/刘晓康.jpg" title="刘晓康" /><p><b>海阔天空</b>有能力的人才能谈自由 <a href="#"></a></p></div>
+				<div><img width="280px" height="180px" src="images/马永花.jpg" title="马永花" /><p><b>慎思勤勉</b>失之毫厘谬以千里 <a href="#"></a></p></div>
+				<div><img width="280px" height="180px" src="images/张凯华.jpg" title="张凯华" /><p><b>懂得感恩</b>相互了解是朋友，相互理解是知己 <a href="#"></a></p></div>
+				<div><img width="280px" height="180px" src="images/张丹阳.jpg" title="张丹阳" /><p><b>追逐理想</b>理想的路总是为有信心的人预备着 <a href="#"></a></p></div>
+				<div><img width="280px" height="180px" src="images/张康.jpeg" title="张康" /><p><b>志在四方</b>人各有志，自己的路自己走 <a href="#"></a></p></div>
 			</div>
 		</div><!-- /#left -->
 		<div class="clear"></div>
@@ -146,22 +149,23 @@ $(window).load(function () {
 		
 			<div class="grid_16" id="footer">
 			
-			 	<span id="address"><b>在线软件工程 Web Solutions</b> - qq群:271413190 &nbsp;&nbsp; 邮箱:271413190@qq.com</span>
+			<span id="address"><b>ChillyBlues Web Solutions</b> - Somewherestreet 22 12345 Somewhere Town - phone: 000 123 456 789 - @: info@chillyblues.com</span>
+			
 				<div>
 					<ul class="services">
-						<li>敏捷开发</li>
-						<li>在线团队合作</li>
-						<li>新手学习</li>
+						<li>web design</li>
+						<li>design customization</li>
+						<li>CMS systems</li>
 					</ul>
 					<ul class="services">
-						<li>项目开发者</li>
-						<li>项目发布者</li>
-						<li>web维护者</li>
+						<li>Wordpress themes/setups</li>
+						<li>Slicing PSD's into HTML/WP</li>
+						<li>code/html optimization</li>
 					</ul>
 					<ul class="links" id="first">
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">关于</a></li>
-						<li><a href="#">联系我们</a></li><!-- 自动打开qq  -->
+						<li><a href="http://www.cssmoban.com/">Portfolio</a></li>
 					</ul>
 				</div>
 			 
