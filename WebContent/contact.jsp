@@ -161,6 +161,18 @@ $(window).load(function () {
 			phone: 15670637914<br/>
 			e-mail: <a href="#">271413190@qq.com</a>
 			</p>
+			<div style="text-align: center; width: 100%">
+				<div style="text-align: center; width: 50%; float:left;">
+					<img src="image/联系我们.png"/ height="120" width="120">
+					<br>
+					<b>联系我们</b>
+				</div>
+				<div style="text-align: center; width: 50%; float:left;">
+					<img src="image/网址.png"/ height="120" width="120">
+					<br>
+					<b>访问主页</b>
+				</div>
+			</div>
 		</div><!-- /#right -->
 		<div class="clear"></div>
 		

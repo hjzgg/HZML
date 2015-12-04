@@ -1,0 +1,3 @@
+CATALINA_HOME(Tomcat安装路径)
+set names "gbk";(mysql中文乱码问题)
+application.xml中更改mysql用户名和密码
